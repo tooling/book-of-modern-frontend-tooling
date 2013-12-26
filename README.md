@@ -6,15 +6,15 @@ A free open-source book introducing you to the world of tooling for modern web a
 
 * Introduction
 * Build systems
-  * Grunt
-  * Gulp
+  * [Grunt](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/2)
+  * [Gulp](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/3)
 * Scaffolding
-  * Yeoman
-  * Brunch
+  * [Yeoman](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/4)
+  * [Brunch](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/5)
   * Loom?
 * Dependency Management
-  * Bower
-  * npm + Browserify
+  * [Bower](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/6)
+  * [npm + Browserify](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/7)
 
 ## Status
 
