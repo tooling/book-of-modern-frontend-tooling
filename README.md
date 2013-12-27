@@ -7,10 +7,10 @@ A free open-source book introducing you to the world of tooling for modern web a
 * Introduction
 * Build systems
   * [Grunt](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/2)
+  * [Brunch](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/5)
   * [Gulp](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/3)
 * Scaffolding
   * [Yeoman](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/4)
-  * [Brunch](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/5)
   * Loom?
 * Dependency Management
   * [Bower](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/6)
