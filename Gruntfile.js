@@ -11,6 +11,24 @@ module.exports = function(grunt) {
       distribution: ['dist']
     },
 
+    // Markdown to HTML
+    markdown: {
+      all: {
+        options: {
+          gfm: true,
+          highlight: 'auto'
+        },
+        files: [
+          {
+            expand: true,
+            src: 'chapters/*.md',
+            dest: 'dist/html',
+            ext: '.html'
+          }
+        ]
+      }
+    },
+
     // Markdown to PDF
     markdownpdf: {
       options: {
@@ -20,11 +38,11 @@ module.exports = function(grunt) {
         paperBorder: '1cm'
       },
       files: {
-        src: "chapters/*.md",
-        dest: "dist"
+        src: 'chapters/*.md',
+        dest: 'dist/pdf'
       }
     }
   })
 
-  grunt.registerTask('default', ['clean', 'markdownpdf']) 
+  grunt.registerTask('default', ['clean', 'markdown', 'markdownpdf']) 
 }
