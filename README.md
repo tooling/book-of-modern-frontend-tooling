@@ -5,6 +5,8 @@ A free open-source book introducing you to the world of tooling for modern web a
 ## Chapters
 
 * Introduction
+  * Command-line
+  * Node and npm
 * Build systems
   * [Grunt](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/2)
   * [Brunch](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/5)
