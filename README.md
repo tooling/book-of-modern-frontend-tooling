@@ -17,6 +17,7 @@ A free open-source book introducing you to the world of tooling for modern web a
 * Dependency Management
   * [Bower](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/6)
   * [npm + Browserify](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/7)
+  * [ComponentJS](https://github.com/addyosmani/book-of-modern-frontend-tooling/issues/11)
 
 ## Status
 
