@@ -39,7 +39,7 @@ var jshint = require('gulp-jshint');
 In your gulpfile add the following code:
 ```
 gulp.task('lint', function(){
-    gulp.src('./src/*.js') // Targets All JS Files In Our src/ Directory
+    gulp.src('./src/js/*.js') // Targets All JS Files In Our src/ Directory
         .pipe(jshint()) // Runs Our Code Through JSHint
         .pipe(jshint.reporter('default')); // Shows Us Results In Our Command Line
 });
