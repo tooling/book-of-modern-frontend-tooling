@@ -189,7 +189,7 @@ gulp.task('default', function() {
 });
 ```
 
-## Chaining Tasks Together
+## Chaining Actions Together
 The examples above are only performing a single action for the sake of simplicity, but you can actually chain many of those actions together into a single, more refined task. Gulp makes this incredibly easy.
 
 For example, we have created both a concat and a minify task separately, but in most cases we would likely need to perform these actions within the same task. Let's take a look at an example of how this can be done inside of our scripts task:
