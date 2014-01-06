@@ -19,8 +19,8 @@ var concat = require('gulp-concat');
 Now, concatenating is as simple as passing a .pipe(concat('filename')) in your tasks pipechain. Like so:
 ```
 gulp.task('concat', function(){
-    gulp.src('src/css/*.css') // Targets All CSS Files In Our src/ Directory
-        .pipe(concat('all.css')) // Creates New all.css File With Code From Target Files
+    gulp.src('./src/js/*.js') // Targets All JS Files In Our src/ Directory
+        .pipe(concat('all.js')) // Creates New all.js File With Code From Target Files
         .pipe(gulp.dest('./dist')); // Places The New File In Our dist/ Directory
 });
 ```
@@ -39,7 +39,7 @@ var jshint = require('gulp-jshint');
 In your gulpfile add the following code:
 ```
 gulp.task('lint', function(){
-    gulp.src('src/*.js') // Targets All JS Files In Our src/ Directory
+    gulp.src('./src/*.js') // Targets All JS Files In Our src/ Directory
         .pipe(jshint()) // Runs Our Code Through JSHint
         .pipe(jshint.reporter('default')); // Shows Us Results In Our Command Line
 });
@@ -100,14 +100,32 @@ var sass = require('gulp-sass');
 ### 3. Create Preprocessing Task
 ```
 gulp.task('styles', function() {
-    gulp.src('./src/css/*.scss') // Targets All SCSS Files In Our src/ Directory
+    gulp.src('./src/scss/*.scss') // Targets All SCSS Files In Our src/ Directory
         .pipe(sass()) // Processes Our SCSS Using Sass
         .pipe(gulp.dest('./dist')); // Places Processed File In Our dist/ Directory
 });
 ```
 
+## Default Task
+The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This will reference the other tasks that we have created and setup our .watch() methods so that gulp will continuously check for while our files have changed.
+```
+gulp.task('default', function() {
+    gulp.run('styles', 'scripts');
+    
+    // Watch For Changes To JS
+    gulp.watch('./src/js/*.js', function (e) {
+        gulp.run('scripts');
+    });
+
+    // Watch For Changes to SCSS
+    gulp.watch('./src/scss/*.scss', function (e) {
+        gulp.run('styles');
+    });
+});
+```
+
 ## Live Reload
-Live Reload allows us to refresh our browser window automatically when a file is saved - saving us from the F5's or the extra refresh clicks in our lives. Implementing this is a little more involved and takes an additional step compared to the task that we have setup. Although, it is still quite simple to do!
+Live Reload allows us to refresh our browser window automatically when a file is saved - saving us from the F5's and extra refresh clicks Implementing this is a little more involved and takes an additional step compared to the tasks that we have setup so far. Although, don't worry, it is still quite simple to do!
 
 ### 1. Install LiveReload Chrome Extension (Or Equivalent)
 First we need to be able to communicate to our browser to let it know when to reload our page. In this example, I will be using Chrome, as I imagine most developers will be. To install, head over to the Chrome Webstore and install [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei "LiveReload on Chrome Webstore").
@@ -137,7 +155,7 @@ Now, we need to make a few changes. First we need add an additional pipe to the 
 ```
 // Compile/Process Styles
 gulp.task('styles', function() {
-    gulp.src('./src/css/*.css')
+    gulp.src('./src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('./dist'))
         .pipe(refresh(server)); // Just Add This To Your Pipechain
@@ -153,24 +171,30 @@ gulp.task('scripts', function() {
 
 // Default Task
 gulp.task('default', function() {
-    server.listen(35729, function (err) { // Initiate Tiny LR Server
+    server.listen(35729, function (err) { // Initiate Tiny LR Server On Port 35729
         if (err) return console.log(err);
 
         gulp.run('styles', 'scripts');
-
-        gulp.watch(['./src/css/*.css', './src/js/*.js', 'index.html'], function (e) {
-            gulp.run('styles', 'scripts');
+        
+        // Watch For Changes To JS
+        gulp.watch('./src/js/*.js', function (e) {
+            gulp.run('scripts');
+        });
+    
+        // Watch For Changes to SCSS
+        gulp.watch('./src/scss/*.scss', function (e) {
+            gulp.run('styles');
         });
     });
 });
 ```
 
 ## Chaining Tasks Together
-The examples above are only performing a single action for the sake of simplicity, but you can actually chain many of those actions together into a single, more refined task. The great news is, that gulp makes this incredibly easy.
+The examples above are only performing a single action for the sake of simplicity, but you can actually chain many of those actions together into a single, more refined task. Gulp makes this incredibly easy.
 
-For example, we have created both a concat and a minify task separately, but in most cases we would likely need to perform these actions within the same task. Let's take a look at an example of how this can be done:
+For example, we have created both a concat and a minify task separately, but in most cases we would likely need to perform these actions within the same task. Let's take a look at an example of how this can be done inside of our scripts task:
 ```
-// Concat AND Minify Scripts
+// Concat & Minify Scripts
 gulp.task('scripts', function() {
     gulp.src('./src/js/*.js')
         .pipe(concat('all.js'))
@@ -178,4 +202,4 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('./dist'));
 });
 ```
-We have created a new scripts task that not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task.
+Now our scripts task not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task instead of creating two separate tasks dedicated to a single action.
