@@ -26,7 +26,7 @@ gulp
 
 Now, you should see a few lines of feedback from gulp notifying you of what is happening. This could be the tasks you're running or it could be an error. If you have recieved an error, just jump back into your gulpfile and make sure that you didn't make a typo somewhere.
 
-If you are using the .watch() method in your gulpfile, then gulp will continue to run until you explicitly tell it to stop. This may be confusing to beginners, especially if you are expecting to go back to your command-line and start firing off new commands. To stop gulp at any time, simply press CTRL+C and it will stop the execution and your input cursor will return allowing you to begin writing new commands.
+If you are using the .watch() method in your gulpfile, then gulp will continue to run until you explicitly tell it to stop. This may be confusing to beginners, especially if you are expecting to go back to your command-line and start firing off new commands. To stop gulp at any time, simply press `CTRL+C` and it will stop the execution and your input cursor will return allowing you to begin writing new commands.
 
 That's it! Let's start writing tasks.
 
