@@ -20,6 +20,7 @@ A free open-source book introducing you to the world of tooling for modern web a
   * [Bower](https://github.com/tooling/book-of-modern-frontend-tooling/issues/6)
   * [npm + Browserify](https://github.com/tooling/book-of-modern-frontend-tooling/issues/7)
   * [ComponentJS](https://github.com/tooling/book-of-modern-frontend-tooling/issues/11)
+  * [WebPack](https://github.com/tooling/book-of-modern-frontend-tooling/issues/20)
 
 ## Status
 
