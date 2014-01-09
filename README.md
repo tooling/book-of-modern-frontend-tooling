@@ -9,10 +9,11 @@ A free open-source book introducing you to the world of tooling for modern web a
   * Command-line
   * Node and npm
 * Build systems
-  * Modern tools vs. shell scripts 
+  * [Introduction](https://github.com/tooling/book-of-modern-frontend-tooling/issues/19) 
   * [Grunt](https://github.com/tooling/book-of-modern-frontend-tooling/issues/2)
   * [Brunch](https://github.com/tooling/book-of-modern-frontend-tooling/issues/5)
   * [Gulp](https://github.com/tooling/book-of-modern-frontend-tooling/issues/3)
+  * Automation with [npm run](https://github.com/tooling/book-of-modern-frontend-tooling/issues/22)
 * Scaffolding
   * [Yeoman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/4)
   * Loom
@@ -20,6 +21,7 @@ A free open-source book introducing you to the world of tooling for modern web a
   * [Bower](https://github.com/tooling/book-of-modern-frontend-tooling/issues/6)
   * [npm + Browserify](https://github.com/tooling/book-of-modern-frontend-tooling/issues/7)
   * [ComponentJS](https://github.com/tooling/book-of-modern-frontend-tooling/issues/11)
+  * [webpack](https://github.com/tooling/book-of-modern-frontend-tooling/issues/20)
 
 ## Status
 
