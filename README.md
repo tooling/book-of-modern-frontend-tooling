@@ -16,6 +16,7 @@ A free open-source book introducing you to the world of tooling for modern web a
   * Automation with [npm run](https://github.com/tooling/book-of-modern-frontend-tooling/issues/22)
 * Scaffolding
   * [Yeoman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/4)
+  * [Lineman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/27)
   * Loom
 * Dependency Management
   * [Bower](https://github.com/tooling/book-of-modern-frontend-tooling/issues/6)
