@@ -4,7 +4,7 @@ A free open-source book introducing you to the world of tooling for modern web a
 
 ## Chapters
 
-* Introduction
+* [Introduction](https://github.com/tooling/book-of-modern-frontend-tooling/issues/19)
   * Why automate?
   * Command-line
   * Node and npm
