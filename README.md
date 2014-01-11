@@ -1,10 +1,10 @@
 # The Little Book Of Modern Front-end Tooling
 
-A free open-source book introducing you to the world of tooling for modern web applications.
+A free open-source book introducing you to the world of tooling for modern web applications. Currently a WIP.
 
 ## Chapters
 
-* [Introduction](https://github.com/tooling/book-of-modern-frontend-tooling/issues/19)
+* Introduction
   * Why automate?
   * Command-line
   * Node and npm
@@ -26,7 +26,7 @@ A free open-source book introducing you to the world of tooling for modern web a
 
 ## Status
 
-This book is in the early phases of planning. The idea is to capture enough useful content on each topic that a beginner could get started with a specific tool in a short space of time.
+This book is currently in progress. The idea is to capture enough useful content on each topic that a beginner could get started with a specific tool in a short space of time.
 
 We will aim to present all tools in a balanced light, providing the user with enough information to make up their minds on what makes sense for them to use. 
 
