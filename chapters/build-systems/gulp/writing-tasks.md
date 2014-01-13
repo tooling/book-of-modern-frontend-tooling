@@ -1,5 +1,5 @@
 # Writing Tasks
-Once you have installed gulp, you can now begin writing the tasks that you would like to automate. These tasks could include (but are not limited to) concatenating files, compiling SASS or Less, minifying JavaScript, or linting your code. In this section, we will identify some common development tasks and walkthrough how to write them in gulp. These code examples should give you a solid enough understanding of how gulp works so that once you have completed this section you will be ready to write your own tasks from scratch.
+Once you have installed gulp, you can now begin writing the tasks that you would like to automate. These tasks could include (but are not limited to) concatenating files, compiling SASS, minifying JavaScript, or linting your code. In this section, we will identify some common development tasks and walkthrough how to automate them in gulp using pipes. These code examples should give you a solid enough understanding of how gulp works so that once you have completed this section you will be ready to write your own tasks from scratch.
 
 ## Concatenating Your Files
 Concatenating files is an important performance improvement because it reduces the amount of HTTP requests your project is required to make to display your website or application.
@@ -23,6 +23,8 @@ gulp.task('concat', function(){
         .pipe(gulp.dest('dist'));   // Places The New File In Our dist/ Directory
 });
 ```
+> Reminder! The `.pipe()` is how we connect our smaller, single-purpose applications/libraries together. This collection of pipes is referred to as the _pipechain_.
+
 This task looks for any changes that have been made to our .js files in our `src/js/` directory. It then takes all of those files and concatenates them into a new file named `all.js` and saves it into our compiled `dist/` directory for use in production. To avoid confusion, it is also worth noting that our gulp.dest() parameter is relative to our gulpfile.js.
 
 ## Linting Your Code

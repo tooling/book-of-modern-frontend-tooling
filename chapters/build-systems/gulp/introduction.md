@@ -1,6 +1,14 @@
 # Introduction
 Gulp is a _streaming_ build system that allows you to automate tedious development tasks.
 
+## What are Streams?
+Streams were designed to perform complex operations by using a collection of smaller, single purpose applications in a sequence. The idea was that we could stack these applications end to end and then pass the output of one application into the input of another. As the data passes through each application it is modified (or analyzed) and then piped to the next application in the sequence until the stream is complete. This connection of applications is referred to as _piping_ and the collection of pipes as a whole is referred to as the _pipechain_.
+
+If you would like to learn more about streams, take a look at the following resources:
+- [Stream Handbook on Github](https://github.com/substack/stream-handbook "Stream Handbook on Github")
+- [Video: Harnessing The Awesome Power Of Streams - LXJS 2012](http://www.youtube.com/watch?v=lQAV3bPOYHo "Video: Harnessing The Awesome Power Of Streams - LXJS 2012")
+- [Video: AT&T Archives: The UNIX Operating System](http://youtu.be/tc4ROCJYbm0?t=5m32s "Video: AT&T Archives: The UNIX Operating System")
+
 ## Why Another Build System?
 Compared with other build systems, such as Grunt, gulp uses Node.js streams as a means to automate tasks, thereby removing the need to create intermediate files when transforming source files. In gulp, you would install plugins, that do one thing and do it well, and construct a 'pipeline' by connecting them to each other. Doing it in this manner, source files would be transformed by plugins, and output from one plugin would be an input to the next. This idea is similar to the concept of piplines in *nix systems. Some Node.js applications support pipelining as a feature. For example:
 
