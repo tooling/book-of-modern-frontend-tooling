@@ -58,7 +58,7 @@ npm install grunt-contrib-jshint --save-dev
 
 [^jshint]: JSHint is a JavaScript linter –a tool that analyses your code and spots syntax errors and bad practises and formatting.
 
-In order to use a plugin, we need to load its tasks in the `Gruntfile.js`, and provide some configuration in it as well. Here's an example of a `Gruntfile.js` that makes use of the `grunt-contrib-jshint` plugin:
+In order to use a plugin, we need to load its tasks in the `Gruntfile.js`, and provide some configuration in it as well. Here's an example of a `Gruntfile.js` that makes use of the `grunt-contrib-jshint`[^contrib] plugin:
 
 ```js
 module.exports = function (grunt) {
@@ -78,6 +78,8 @@ module.exports = function (grunt) {
   });
 };
 ```
+
+[^contrib]: Plugins which package name start with `grunt-contrib` are plugins mantained by the Grunt project. You should favor these plugins (they are the most popular ones –that potentially means more bug reporting & fixing) over a non-contrib version.
 
 You can execute the `jshint` task, and it will lint the `Gruntfile.js` itself, with the options that we have specified in the task configuration:
 
