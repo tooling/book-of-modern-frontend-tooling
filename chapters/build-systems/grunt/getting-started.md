@@ -16,11 +16,23 @@ You can test it by running:
 grunt --version
 ```
 
-To add Grunt to your project, just **install `grunt` locally**. Remember to add the flag `--save-dev` so the package is added to your `package.json` as a development dependency:
+To add Grunt to your project, just **install `grunt` locally**. Remember to setup your project as a NPM package with `npm init` so you can have an initial `package.json` created.
 
 ```bash
+npm init
 npm install grunt --save-dev
 ```
+The flag `--save-dev` will update your `package.json` to add Grunt as a development dependency. This is how it will look:
+
+```json
+{
+  // ...
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
+}
+```
+
 
 And that's enough `npm`! If you try to run `grunt` now, you will see an error message complaining about the lack of a `Gruntfile.js`… It's time to fix this.
 
@@ -48,7 +60,7 @@ grunt version
 
 ## Grunt plugins
 
-Grunt has been around for a while, and there are a lot of **plugins with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatening, linting, etc.
+Grunt has been around for a while, and there are a lot of **[plugins](http://gruntjs.com/plugins) with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatening, linting, etc.
 
 Grunt plugins are Node.js packages that you install with `npm` as usual. For example, to install the `grunt-contrib-jshint`[^jshint] plugin:
 
