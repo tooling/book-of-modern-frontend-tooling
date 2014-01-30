@@ -1,6 +1,6 @@
 # Linting code
 
-**Adding a linter** to your project is a wise decision. A linter is a tool that analyses your code and looks for syntax errors, bad practises and bad formatted code.
+**Adding a linter** to your project is a wise decision. A linter is a tool that analyses your code and looks for syntax errors, bad practises and badly formatted code.
 
 A popular JavaScript linter is [JSHint](http://www.jshint.com/), which you can try online. JSHint provides a sensible default ruleset, but you can customise it to suit your needs.
 
@@ -46,7 +46,7 @@ If you run the `jshint` task now, you will see that the linter will scan one fil
 grunt jshint
 ```
 
-If you want to see more output in the tasks you run, you can add the flag `--verbose`:
+If you want to see more output in the tasks you run, you can add the `--verbose` flag: 
 
 ```bash
 grunt jshint --verbose
@@ -54,9 +54,9 @@ grunt jshint --verbose
 
 If you try that, you will see which files exactly were scanned (in this case `Gruntfile.js`).
 
-## File-matching with regular expressions
+## File-matching with globbing
 
-On the inside, Grunt makes use of [minimatch](https://github.com/isaacs/minimatch) to match filenames. This is a nice library that allow the use of **regular expressions** and will make your life easier. You could have, for instance:
+On the inside, Grunt makes use of [minimatch](https://github.com/isaacs/minimatch) to match filenames. This is a nice library that allow the use of **globbing** to refer to multiple files, and it will make your life easier. You could have, for instance:
 
 ```js
 files: ['Gruntfile.js', 'app/*.js']
@@ -87,7 +87,9 @@ grunt.initConfig({
 });
 ```
 
-A common practice in projects which use JSHint is to have the rules defined in a `.jshintrc` file. If you want to use this feature, just create a `.jshintrc` JSON file with your rules inside and then set the option `jshintrc` to `true`:
+A common practice in projects which use JSHint is to have the rules defined in a `.jshintrc` file so the same configuration can be shared across text editors, continuous integration systems, etc.
+
+If you want to use this feature, just create a `.jshintrc` JSON file with your rules inside and then set the option `jshintrc` to `true`:
 
 ```js
 grunt.initConfig({

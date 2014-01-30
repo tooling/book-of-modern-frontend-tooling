@@ -48,15 +48,15 @@ grunt version
 
 ## Grunt plugins
 
-Grunt has been aroun for a while, and there are a lot of **plugins with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: run linters, compile Sass stylesheets, zip files, etc.
+Grunt has been around for a while, and there are a lot of **plugins with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatening, linting, etc.
 
-Grunt plugins are Node.js package that you install with `npm` as usual. For example, to install the `grunt-contrib-jshint`[^jshint] plugin:
+Grunt plugins are Node.js packages that you install with `npm` as usual. For example, to install the `grunt-contrib-jshint`[^jshint] plugin:
 
 ```bash
-npm install grunt-contrib-jshint --save-dev
+npm install --save-dev grunt-contrib-jshint
 ```
 
-[^jshint]: JSHint is a JavaScript linter –a tool that analyses your code and spots syntax errors and bad practises and formatting.
+[^jshint]: JSHint is a JavaScript linter – a tool that analyses your code and spots syntax errors and bad practises and formatting.
 
 In order to use a plugin, we need to load its tasks in the `Gruntfile.js`, and provide some configuration in it as well. Here's an example of a `Gruntfile.js` that makes use of the `grunt-contrib-jshint`[^contrib] plugin:
 
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
   // tasks configuration
   grunt.initConfig({
     jshint: {
-      files: ['Gruntfile.js'], // files to run jshint on
+      files: ['Gruntfile.js'], // files to run JSHint on
       options: { // options for JShint
         globals: {
           module: true // allow the use of 'module' global
