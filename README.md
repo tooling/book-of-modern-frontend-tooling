@@ -46,6 +46,21 @@ New issues will be created for each corresponding section so commenting on the a
 
 Blog posts are an excellent way to spread knowledge, but they are typically ephemeral. This is particularly challenging in the fast-paced world of tooling. By harnessing the collaborative power of the front-end community, we feel we can create a reliable, succinct resource that is kept up to date in the open. Anyone can get access to it. Anyone can improve it.
 
+## Generating the book
+
+### Depedencies
+
+*[TeX Live](http://www.tug.org/texlive/acquire-netinstall.html). If you are using OSX, use [MacTex](http://tug.org/mactex/downloading.html).
+*[Pandoc](http://johnmacfarlane.net/pandoc/)
+
+### Building
+
+Make sure you are running Node > 0.10.0 and run `npm install` to install the development dependencies. This project uses Gulp JS defined tasks to build the book from markdown to pdf, html and other file formats.
+
+* `gulp concat:pdf`: Generates a Pdf version of the book from all the markdowns as listed in `chapters/toc.md`.
+
+* `gulp concat:html`: Generates a single HTML version of the book from all the markdowns as listed in `chapters/toc.md`.
+
 
 ## Licensing
 

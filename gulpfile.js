@@ -1,12 +1,19 @@
 var 
-path       = require('path'),
-gulp       = require('gulp'),
-gutil      = require('gulp-util'),
-concat     = require('gulp-concat'),
-pandoc     = require('gulp-pandoc'),
-through    = require('through'),
-markdown   = require('gulp-markdown');
+path        = require('path'),
+gulp        = require('gulp'),
+clean       = require('gulp-clean'),
+gutil       = require('gulp-util'),
+PluginError = gutil.PluginError,
+concat      = require('gulp-concat'),
+pandoc      = require('gulp-pandoc'),
+through     = require('through'),
+markdown    = require('gulp-markdown');
 
+/*
+ * Read from the table of contents (toc.md) file (specific to this book)
+ * and return a sorted list of markdown files
+ * as source for other gulp plugins.
+**/
 function sortFileList (tocFilePath) {
   var files = [];
 
@@ -22,12 +29,15 @@ function sortFileList (tocFilePath) {
 
   function getFileList () {
     var tempPath = tocFilePath.split('/');
-    tempPath.pop();
     var resultFiles, linkPattern, contents;
-    resultFiles = []
-    linkPattern = new RegExp(/\[([^\[]+)\]\(([^\)]+)\)/m);
-    contents = files[tocFilePath].contents.toString('utf8');
 
+    tempPath.pop();
+    resultFiles = [];
+    // Markdown link regex
+    linkPattern = new RegExp(/\[([^\[]+)\]\(([^\)]+)\)/m);
+    // Get file contents
+    contents = files[tocFilePath].contents.toString('utf8');
+    // Split by new line
     contents.split('\n').forEach(function (line) {
       var constructedPath, results, matchedPath;
       results = line.match(linkPattern);
@@ -38,15 +48,15 @@ function sortFileList (tocFilePath) {
       if ( files[constructedPath] ) {
         resultFiles.push(files[constructedPath]);
       } else {
-        console.log('file not found =>', constructedPath);
+        this.emit('error', new PluginError('gulp-sort-file-list',  'File ' + constructedPath + " does not exist."));
       } 
-    });
+    }.bind(this));
 
     return resultFiles;
   }
 
   function endStream () {
-    getFileList().forEach(function (file) {
+    getFileList.bind(this)().forEach(function (file) {
       this.emit('data', file);
     }.bind(this));
     this.emit('end');
@@ -55,10 +65,33 @@ function sortFileList (tocFilePath) {
   return through(bufferContents, endStream); 
 }
 
-gulp.task('concat:html', function () {
-  gulp.src(["chapters/**/*.md"])
+
+/*
+ * Removes the distribution (dist/) directory.
+**/
+gulp.task('clean', function () {
+  return gulp.src(['dist'], {read: false}).
+    pipe(clean());
+});
+
+/*
+ * Concatenates all the markdowns into a single index.md markdown
+**/
+gulp.task('concat', ['clean'], function () {
+  return gulp.src(["chapters/**/*.md"])
     .pipe(sortFileList('chapters/toc.md'))
     .pipe(concat('index.md'))
+    .pipe(gulp.dest('./dist'));
+})
+
+/*
+ * Converts the concatenated markdown (index.md) to
+ * index.html
+ * [TODO]: This may change based on how the book website
+ * may look.
+**/
+gulp.task('concat:html', ['concat'], function () {
+  return gulp.src(['dist/index.md'])
     .pipe(pandoc({
       from: 'markdown',
       to  : 'html5',
@@ -68,15 +101,16 @@ gulp.task('concat:html', function () {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('concat:pdf', function () {
-  gulp.src(["chapters/**/*.md"])
-    .pipe(sortFileList('chapters/toc.md'))
-    .pipe(concat('index.md'))
-    .pipe(gulp.dest('./dist'))
+/*
+ * Converts the concatenated markdown (index.md) to
+ * index.pdf
+**/
+gulp.task('concat:pdf', ['concat'], function () {
+  return gulp.src(['dist/index.md'])
     .pipe(pandoc({
       from: 'markdown',
       to  : 'latex',
       ext : '.latex',
-      args: ['-o', './dist/index.pdf']
+      args: ['-o', './dist/index.pdf', '--latex-engine', 'xelatex']
     }));
 });
