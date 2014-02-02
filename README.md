@@ -61,6 +61,9 @@ Make sure you are running Node > 0.10.0 and run `npm install` to install the dev
 
 * `gulp concat:html`: Generates a single HTML version of the book from all the markdowns as listed in `chapters/toc.md`.
 
+### Output
+
+The output from the build phase will be available in the `dist` folder.
 
 ## Licensing
 
