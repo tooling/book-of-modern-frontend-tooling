@@ -1,13 +1,12 @@
-var 
-path        = require('path'),
-gulp        = require('gulp'),
-clean       = require('gulp-clean'),
-gutil       = require('gulp-util'),
-PluginError = gutil.PluginError,
-concat      = require('gulp-concat'),
-pandoc      = require('gulp-pandoc'),
-through     = require('through'),
-markdown    = require('gulp-markdown');
+var path        = require('path');
+var gulp        = require('gulp');
+var clean       = require('gulp-clean');
+var gutil       = require('gulp-util');
+var PluginError = gutil.PluginError;
+var concat      = require('gulp-concat');
+var pandoc      = require('gulp-pandoc');
+var through     = require('through');
+var markdown    = require('gulp-markdown');
 
 /*
  * Read from the table of contents (toc.md) file (specific to this book)
