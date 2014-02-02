@@ -3,6 +3,7 @@ path       = require('path'),
 gulp       = require('gulp'),
 gutil      = require('gulp-util'),
 concat     = require('gulp-concat'),
+pandoc     = require('gulp-pandoc'),
 through    = require('through'),
 markdown   = require('gulp-markdown');
 
@@ -54,10 +55,28 @@ function sortFileList (tocFilePath) {
   return through(bufferContents, endStream); 
 }
 
-gulp.task('default', function() {
+gulp.task('concat:html', function () {
   gulp.src(["chapters/**/*.md"])
     .pipe(sortFileList('chapters/toc.md'))
     .pipe(concat('index.md'))
-    .pipe(markdown())
+    .pipe(pandoc({
+      from: 'markdown',
+      to  : 'html5',
+      ext : '.html',
+      args: []
+    }))
     .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('concat:pdf', function () {
+  gulp.src(["chapters/**/*.md"])
+    .pipe(sortFileList('chapters/toc.md'))
+    .pipe(concat('index.md'))
+    .pipe(gulp.dest('./dist'))
+    .pipe(pandoc({
+      from: 'markdown',
+      to  : 'latex',
+      ext : '.latex',
+      args: ['-o', './dist/index.pdf']
+    }));
 });
