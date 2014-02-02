@@ -21,20 +21,15 @@
   },
   "homepage": "https://github.com/addyosmani/book-of-modern-frontend-tooling",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-markdown-pdf": "1.1.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "load-grunt-tasks": "~0.2.1",
-    "grunt-markdown": "~0.4.0"
+    "gulp-util": "~2.2.12",
+    "gulp": "~3.5.0",
+    "gulp-markdown": "~0.1.2",
+    "through": "~2.3.4",
+    "gulp-concat": "~2.1.7"
   },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "peerDependencies": {
-    "grunt": "~0.4.1"
-  },
-  "dependencies": {
-    "markdown-pdf": "~1.2.0",
-    "async": "~0.2.8"
-  }
+  "peerDependencies": {},
+  "dependencies": {}
 }
