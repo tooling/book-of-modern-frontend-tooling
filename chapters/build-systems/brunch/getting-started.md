@@ -8,8 +8,8 @@ The first thing to do is install the ``brunch`` command with ``npm`` by running 
 ## Conventions
 Brunch has a few conventions that help keep things simple - but you don't have to follow all of them. Firstly, Brunch asks you to specify a folder called 'assets' that is directly copied into your output folder with no modifications. Secondly, most Brunch projects have two separate JavaScript files - app.js, which contains your code, and vendor.js for all external libraries, including bower packages. This allows you to package your files into modules without affecting external libraries.
 
-## Folder Structure
-In order to understand how best to structure Brunch applications, lets look at a typical application folder structure and modify it to follow Brunch's conventions.
+## Folder structure
+In order to understand how best to use Brunch, lets look at a typical folder structure and modify it to follow Brunch's conventions.
 
 The application we'll be converting uses CoffeeScript, AngularJS, and LESS, and has no current build system beyond running the CoffeeScript and LESS watchers on the app/ directory. Here's what the application structure looks like before we install Brunch:
 
