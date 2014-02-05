@@ -27,7 +27,8 @@
     "through": "~2.3.4",
     "gulp-concat": "~2.1.7",
     "gulp-pandoc": "~0.1.0",
-    "gulp-clean": "~0.2.4"
+    "gulp-clean": "~0.2.4",
+    "gulp-markdown-pdf": "~0.1.1"
   },
   "engines": {
     "node": ">= 0.10.0"
