@@ -45,9 +45,11 @@ gulp.task('concat:html', ['concat'], function () {
  * index.pdf
 **/
 gulp.task('concat:pdf', ['concat'], function () {
+  const CSS_PATH = __dirname + '/build-assets/pdf.css';
+  
   return gulp.src(['dist/index.md'])
     .pipe(markdownpdf({
-      cssPath: __dirname + '/build/pdf.css'
+      cssPath: CSS_PATH
     }))
     .pipe(gulp.dest(DEST_DIR))
 });
