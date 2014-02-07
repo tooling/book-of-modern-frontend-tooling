@@ -2,7 +2,7 @@
 Gulp is a _streaming_ build system that allows you to automate tedious development tasks.
 
 ## What are Streams?
-Streams were designed to perform complex operations by using a collection of smaller, single purpose applications in a sequence. The idea was that we could stack these applications end to end and then pass the output of one application into the input of another. As the data passes through each application it is modified (or analyzed) and then piped to the next application in the sequence until the stream is complete. This connection of applications is referred to as _piping_ and the collection of pipes as a whole is referred to as the _pipechain_.
+Streams are designed to perform complex operations when constructed as a sequence of smaller, single purpose applications. These applications would connect from one end-point to a starting-point of another, allowing passage of data to be modified or analyzed at each application. This connection of applications is a concept referred to as piping, and the collection of pipes as a whole is referred to as the pipechain.
 
 If you would like to learn more about streams, take a look at the following resources:
 - [Stream Handbook on Github](https://github.com/substack/stream-handbook "Stream Handbook on Github")

@@ -18,7 +18,7 @@ var concat = require('gulp-concat');
 Now, concatenating is as simple as passing a .pipe(concat('filename')) in your tasks pipechain. Like so:
 ```
 gulp.task('concat', function(){
-    gulp.src('./src/js/*.js')       // Targets All JS Files In Our src/ Directory
+    gulp.src('src/js/*.js')         // Targets All JS Files In Our src/ Directory
         .pipe(concat('all.js'))     // Creates New all.js File With Code From Target Files
         .pipe(gulp.dest('dist'));   // Places The New File In Our dist/ Directory
 });
@@ -41,7 +41,7 @@ var jshint = require('gulp-jshint');
 In your gulpfile add the following code:
 ```
 gulp.task('lint', function(){
-    gulp.src('./src/js/*.js')
+    gulp.src('src/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default')); 
 });
@@ -66,7 +66,7 @@ var uglify = require('gulp-uglify');
 Now, we will write our minify task. Add the following code to your gulpfile.
 ```
 gulp.task('minify', function() {
-    gulp.src('./src/js/*.js')
+    gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
@@ -90,28 +90,21 @@ var sass = require('gulp-sass');
 ### 3. Create Preprocessing Task
 ```
 gulp.task('styles', function() {
-    gulp.src('./src/scss/*.scss')
+    gulp.src('src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('dist'));
 });
 ```
 
-## Default Task
-The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This will reference the other tasks that we have created and setup our .watch() methods so that gulp will continuously check for while our files have changed.
+## Creating A Default Task & Watching Our Files
+The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This will reference the other tasks that we have created including a new __watch__ task that will check for changes to our files and run our tasks each time we save them.
 ```
-gulp.task('default', function() {
-    gulp.run('styles', 'scripts');
-    
-    // Watch For Changes To JS
-    gulp.watch('./src/js/*.js', function (e) {
-        gulp.run('scripts');
-    });
-
-    // Watch For Changes to SCSS
-    gulp.watch('./src/scss/*.scss', function (e) {
-        gulp.run('styles');
-    });
+gulp.task('watch', function() {
+    gulp.watch('src/js/*.js', [scripts]); 
+    gulp.watch('src/scss/*.scss', [styles]); 
 });
+
+gulp.task('default', ['scripts', 'styles', 'watch']);
 ```
 
 ## Live Reload
@@ -120,15 +113,13 @@ Live Reload allows us to refresh our browser window automatically when a file is
 ### 1. Install Plugins
 To get LiveReload working properly we need a couple plugins: tiny-lr and gulp-livereload.
 ```
-npm install --save-dev tiny-lr gulp-livereload
+npm install --save-dev gulp-livereload
 ```
 The tiny-lr plugin is a _tiny_ implementation of the LiveReload server that allows us to communicate with our browser so that it can refresh our pages when we save our files. The gulp-livereload plugin works as a bridge between gulp and LiveReload and allows us to pipe our file changes to our tiny-lr server so it knows exactly when to refresh our browser.
 
-### 2. Include Plugins In gulpfile
+### 2. Include Plugin In gulpfile
 ```
-var lr = require('tiny-lr');
-var server = lr();
-var refresh = require('gulp-livereload');
+var livereload = require('gulp-livereload');
 ```
 
 ### 3. Add LiveReload To Tasks
@@ -136,41 +127,31 @@ Now, we need to make a few changes. First we need add an additional pipe to the 
 ```
 // Compile/Process Styles
 gulp.task('styles', function() {
-    gulp.src('./src/scss/*.scss')
+    gulp.src('src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('dist'))
-        .pipe(refresh(server)); // Just Add This To Your Pipechain
+        .pipe(livereload()); // Just Add This To Your Pipechain
 });
 
 // Minify Scripts
 gulp.task('scripts', function() {
-    gulp.src('./src/js/*.js')
+    gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist'))
-        .pipe(refresh(server)); // Just Add This To Your Pipechain
+        .pipe(livereload()); // Just Add This To Your Pipechain
+});
+
+// Watch Task
+gulp.task('watch', function() {
+    gulp.watch('src/js/*.js', [scripts]); 
+    gulp.watch('src/scss/*.scss', [styles]); 
 });
 
 // Default Task
-gulp.task('default', function() {
-    server.listen(35729, function (err) { // Start Tiny LR Server Listening On Port 35729
-        if (err) return console.log(err);
-
-        gulp.run('styles', 'scripts');
-        
-        // Watch For Changes To JS
-        gulp.watch('./src/js/*.js', function () {
-            gulp.run('scripts');
-        });
-    
-        // Watch For Changes to SCSS
-        gulp.watch('./src/scss/*.scss', function () {
-            gulp.run('styles');
-        });
-    });
-});
+gulp.task('default', ['scripts', 'styles', 'watch']);
 ```
 
-### 4. Add Live Reload Script To Your Page
+### 4. Add LiveReload Script To Your Page
 Now that our gulpfile has been setup we need to add a reference to the livereload.js file on our pages so that our browser can properly communicate with tiny-lr. There are multiple ways of doing this and it's really up to your personal preference. Let's go over a couple, and you can decide which is best for you.
 
 #### Manual
@@ -197,7 +178,7 @@ For example, we have created both a concat and a minify task separately, but in 
 ```
 // Concat & Minify Scripts
 gulp.task('scripts', function() {
-    gulp.src('./src/js/*.js')
+    gulp.src('src/js/*.js')
         .pipe(concat('all.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
