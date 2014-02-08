@@ -1,6 +1,5 @@
 * [Introduction](introduction.md)
 * [Getting started](getting-started.md)
-registerTask
-* [Gulp - Topic 1](gulp-topic-1.md)
+* [Writing Tasks](writing-tasks.md)
 * [Troubleshooting](troubleshooting.md)
 * [References](references.md)
