@@ -1,2 +1,0 @@
-# Brunch topic
-
