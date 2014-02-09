@@ -50,16 +50,18 @@ Blog posts are an excellent way to spread knowledge, but they are typically ephe
 
 ### Depedencies
 
-*[TeX Live](http://www.tug.org/texlive/acquire-netinstall.html). If you are using OSX, use [MacTex](http://tug.org/mactex/downloading.html).
-*[Pandoc](http://johnmacfarlane.net/pandoc/)
+At the moment, the following dependencies are required to export the book to EPUB file format.
+
+* [TeX Live](http://www.tug.org/texlive/acquire-netinstall.html). If you are using OSX, use [MacTex](http://tug.org/mactex/downloading.html).
+* [Pandoc](http://johnmacfarlane.net/pandoc/)
 
 ### Building
 
-Make sure you are running Node > 0.10.0 and run `npm install` to install the development dependencies. This project uses Gulp JS defined tasks to build the book from markdown to pdf, html and other file formats.
+Make sure you are running Node > 0.10.0 and run `npm install` to install the development dependencies. This project uses GulpJS tasks to build the book from markdown files (as listed on the table of contents - `chapters/toc.md`) to various file formats.
 
-* `gulp concat:pdf`: Generates a Pdf version of the book from all the markdowns as listed in `chapters/toc.md`.
-
-* `gulp concat:html`: Generates a single HTML version of the book from all the markdowns as listed in `chapters/toc.md`.
+* `gulp generate:pdf`: Generate a PDF version of the book.
+* `gulp generate:html`: Generate a single file HTML of the book.
+* `gulp generate:epub`: Generate a EPUB version of the book.
 
 ### Output
 
