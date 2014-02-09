@@ -1,7 +1,7 @@
 'use strict'
 var path        = require('path');
 var gutil       = require('gulp-util');
-var through     = require('through');
+var through     = require('through2');
 var PluginError = gutil.PluginError;
 
 /*
@@ -23,7 +23,7 @@ module.exports = function (tocFilePath) {
     files[filePath] = file;
   }
 
-  function getFileList () {
+  function getFileList (files) {
     var tempPath = tocFilePath.split('/');
     var resultFiles, linkPattern, contents;
 
@@ -51,13 +51,14 @@ module.exports = function (tocFilePath) {
     return resultFiles;
   }
 
-  function endStream () {
-    getFileList.bind(this)().forEach(function (file) {
+  return through.obj(function (file, enc, cb) {
+    bufferContents(file);
+    cb();
+  }, function (cb) {
+    getFileList.bind(this)(files).forEach(function (file) {
       file.contents = Buffer.concat([new Buffer("\n"), file.contents]);
-      this.emit('data', file);
+      this.push(file);
     }.bind(this));
-    this.emit('end');
-  }
-
-  return through(bufferContents, endStream); 
+    cb();
+  }); 
 }

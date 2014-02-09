@@ -21,12 +21,12 @@
   },
   "homepage": "https://github.com/addyosmani/book-of-modern-frontend-tooling",
   "devDependencies": {
-    "gulp-util": "~2.2.12",
-    "gulp": "~3.5.0",
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.2",
     "gulp-markdown": "~0.1.2",
-    "through": "~2.3.4",
+    "through2": "~0.4.1",
     "gulp-concat": "~2.1.7",
-    "gulp-pandoc": "~0.1.0",
+    "gulp-pandoc": "~0.2.0",
     "gulp-clean": "~0.2.4",
     "gulp-markdown-pdf": "~0.1.1"
   },
