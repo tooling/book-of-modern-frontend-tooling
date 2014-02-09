@@ -1,4 +1,5 @@
-# Introduction
+# Gulp
+
 Gulp is a _streaming_ build system that allows you to automate tedious development tasks.
 
 ## What are Streams?

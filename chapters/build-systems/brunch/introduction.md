@@ -1,4 +1,4 @@
-# Introduction
+# Brunch
 
 ## Brunch's Capabilities
 [Brunch](http://brunch.io) is a front end build system that lets you get stuff done with little configuration. Brunch compiles, concats and (optionally) minifies your scripts and styles. It can also package JavaScript files into AMD or CommonJS modules. Brunch automatically applies plugins in the correct order to the right files - so with the right plugins, a .coffee file would be converted into a .js file and automatically minified, with no explicit setup necessary.
