@@ -2,7 +2,7 @@
 
 **CSS preprocessors** can compile CSS stylesheets from other (more powerful) styling languages. These new languages have features like variables, functions, mixins (to re-use code), etc. and they will change for the better the way you approach class naming an use.
 
-The most popular CSS preprocessors are [Sass](http://sass-lang.com/) and [Less](http://lesscss.org/), and since both of them do their job really well, it's up to you to decide which one you like the most. In this chapter we are going to see Sass examples, but the way to integrate Less in Grunt is almost identical.
+The most popular CSS preprocessors are [Sass](http://sass-lang.com/) and [Less](http://lesscss.org/), and since both of them do their job really well, it's up to you to decide which one you like the most. This chapter will cover Sass examples, but the way to integrate Less in Grunt is similar.
 
 Sass was originally a Ruby gem, although there are versions for other languages, like C or Node.js. Once installed[^install], you can compile a Sass stylesheet with:
 
@@ -44,6 +44,8 @@ A target is just a name associated to a task configuration. Let's say that you w
 grunt sass:dev
 ```
 
+[^names]: Note that these are arbitrary names.
+
 When a task has multiple targets, if you omit the target name, then *all targets* will be executed. We will see examples of this use in other plugins.
 
 The way you define targets, is by adding them as a key in the configuration object. For instance:
@@ -66,7 +68,7 @@ The easiest — but less powerful — way to supply these source-destination fil
 ```js
 sass: {
   dev: {
-    files: { 'styles/screen.css': ['sass/common.sass', 'sass/main.sass']}
+    files: {'styles/screen.css': ['sass/common.sass', 'sass/main.sass']}
   }
 }
 ```
@@ -116,4 +118,40 @@ sass: {
 
 [^sass-docs]: See [the plugin documentation](https://github.com/gruntjs/grunt-contrib-sass) for a full list.
 
-[^names]: Note that these are arbitrary names.
+## Avoid repetition with Grunt's template engine
+
+It is very likely that you will need to process **the same** Sass files in both your development and distribution targets. You could repeat the `files` configuration like this:
+
+```js
+sass: {
+  dev: {
+    options: {style: 'expanded'},
+    files: {'css/main.css': ['sass/*.{sass,scss}']}
+  },
+  prod: {
+    options: {style: 'compressed'},
+    files: {'css/main.css': ['sass/*.{sass,scss}']}
+  }
+}
+```
+
+A DRY[^dry] approach would be to take advantage of Grunt's **template engine**[^lo-dash]. Long story short: everything you include between `<%=` and `%>` in a string, will be processed as a template and — here's the cool part — you can use your tasks configuration properties as template variables, for instance: `<%= jshint.files %>`. 
+
+[^lo-dash]: Powered by [Lo-Dash](http://lodash.com/docs#template)
+
+This is an improved version of the previous example:
+
+```js
+sass: {
+  dev: {
+    options: {style: 'expanded'},
+    files: {'css/main.css': ['sass/*.{sass,scss}']}
+  },
+  prod: {
+    options: {style: 'compressed'},
+    files: '<%= sass.dev.files %>'
+  }
+}
+```
+
+[^dry]: "Don't Repeat Yourself"
