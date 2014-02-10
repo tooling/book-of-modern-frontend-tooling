@@ -1,5 +1,6 @@
 * [Introduction](introduction.md)
 * [Getting started](getting-started.md)
 * [Linting code](linter.md)
+* [Integrating a CSS preprocessor](sass.md)
 * [Troubleshooting](troubleshooting.md)
 * [References](references.md)
