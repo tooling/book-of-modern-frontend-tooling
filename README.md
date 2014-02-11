@@ -46,6 +46,26 @@ New issues will be created for each corresponding section so commenting on the a
 
 Blog posts are an excellent way to spread knowledge, but they are typically ephemeral. This is particularly challenging in the fast-paced world of tooling. By harnessing the collaborative power of the front-end community, we feel we can create a reliable, succinct resource that is kept up to date in the open. Anyone can get access to it. Anyone can improve it.
 
+## Generating the book
+
+### Depedencies
+
+At the moment, the following dependencies are required to export the book to EPUB file format.
+
+* [TeX Live](http://www.tug.org/texlive/acquire-netinstall.html). If you are using OSX, use [MacTex](http://tug.org/mactex/downloading.html).
+* [Pandoc](http://johnmacfarlane.net/pandoc/)
+
+### Building
+
+Make sure you are running Node > 0.10.0 and run `npm install` to install the development dependencies. This project uses GulpJS tasks to build the book from markdown files (as listed on the table of contents - `chapters/toc.md`) to various file formats.
+
+* `gulp generate:pdf`: Generate a PDF version of the book.
+* `gulp generate:html`: Generate a single file HTML of the book.
+* `gulp generate:epub`: Generate a EPUB version of the book.
+
+### Output
+
+The output from the build phase will be available in the `dist` folder.
 
 ## Licensing
 
