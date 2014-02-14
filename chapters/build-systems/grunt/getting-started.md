@@ -60,7 +60,7 @@ grunt version
 
 ## Grunt plugins
 
-Grunt has been around for a while, and there are a lot of **[plugins](http://gruntjs.com/plugins) with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatening, linting, etc.
+Grunt has been around for a while, and there are a lot of **[plugins](http://gruntjs.com/plugins) with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatenating, linting, etc.
 
 Grunt plugins are Node.js packages that you install with `npm` as usual. For example, to install the `grunt-contrib-jshint`[^jshint] plugin:
 
