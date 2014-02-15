@@ -6,6 +6,7 @@
     * [Introduction](build-systems/grunt/introduction.md)
     * [Getting started](build-systems/grunt/getting-started.md)
     * [Linting code](build-systems/grunt/linter.md)
+    * [Integrating a CSS preprocessor](build-systems/grunt/sass.md)
     * [Troubleshooting](build-systems/grunt/troubleshooting.md)
     * [References](build-systems/grunt/references.md)
 
