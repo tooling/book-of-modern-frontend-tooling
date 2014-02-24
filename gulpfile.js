@@ -115,18 +115,14 @@ gulp.task('site:sass', function () {
  * Generates site
 **/
 gulp.task('generate:site', ['site:sass'], function () {
-  var fileStreams = gutil.combine(
-    gulp.src(["chapters/**/*.md"]),
-    srcFromToc('chapters/toc.md'),
-    markdown()
-  );
-
   var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8').replace(/md/g, 'html');
-
-  return gulp.src([
-      path.join(TEMPLATE_VIEWS_DIR, 'index.jade')
-    ])
-    .pipe(layoutize(fileStreams(), {
+  var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
+  
+  return gulp.src(["chapters/**/*.md"])
+    .pipe(srcFromToc('chapters/toc.md'))
+    .pipe(markdown())
+    .pipe(layoutize({
+      template: templatePath,
       engine: 'jade',
       locals: {
         tocContent: tocFile

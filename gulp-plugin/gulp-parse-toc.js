@@ -16,7 +16,8 @@ module.exports = function (tocFilePath) {
 
   function bufferContents (file) {
     if (file.isNull()) return; // ignore
-    if (file.isStream()) return this.emit('error', new PluginError('gulp-parse-toc',  'Streaming not supported'));
+    if (file.isStream()) return this.emit('error', 
+      new PluginError('gulp-parse-toc',  'Streaming not supported'));
 
     var filePath = file.path.split('/');
     // Remove unwanted path frome the absolute source
@@ -46,7 +47,8 @@ module.exports = function (tocFilePath) {
       if ( files[constructedPath] ) {
         resultFiles.push(files[constructedPath]);
       } else {
-        this.emit('error', new PluginError('gulp-parse-toc',  'File ' + constructedPath + " does not exist."));
+        this.emit('error', 
+          new PluginError('gulp-parse-toc',  'File ' + constructedPath + " does not exist."));
       } 
     }.bind(this));
 
