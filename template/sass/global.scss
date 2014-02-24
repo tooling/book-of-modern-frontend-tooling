@@ -1,0 +1,17 @@
+@import "variables";
+@import "typeset";
+
+/* Base */
+body {
+  font-family: $custom-font-family;
+  color: $primary-text-color;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+.center {
+  text-align: center;
+}

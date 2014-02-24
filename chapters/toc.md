@@ -54,7 +54,7 @@
     * [Troubleshooting](scaffolding/loom/troubleshooting.md)
     * [References](scaffolding/loom/references.md)
   
-* [Yeoman]()
+  * [Yeoman]()
     * [Introduction](scaffolding/yeoman/introduction.md)
     * [Getting started](scaffolding/yeoman/getting-started.md)
     * [Topic](scaffolding/yeoman/yeoman-topic-1.md)

@@ -28,7 +28,12 @@
     "gulp-concat": "~2.1.7",
     "gulp-pandoc": "~0.2.0",
     "gulp-clean": "~0.2.4",
-    "gulp-markdown-pdf": "~0.1.1"
+    "gulp-markdown-pdf": "~0.1.1",
+    "gulp-ruby-sass": "~0.3.1",
+    "node-static": "~0.7.3",
+    "gulp-livereload": "~1.1.1",
+    "gulp-jade": "~0.4.2",
+    "rimraf": "~2.2.6"
   },
   "engines": {
     "node": ">= 0.10.0"
