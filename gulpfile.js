@@ -4,15 +4,16 @@ var gulp        = require('gulp');
 var rimraf      = require("rimraf");
 var fs          = require("fs");
 
+var consolidate = require("gulp-consolidate");
 var gutil       = require('gulp-util');
 var concat      = require('gulp-concat');
 var pandoc      = require('gulp-pandoc');
 var sass        = require('gulp-ruby-sass');
-var jade        = require('gulp-jade');
 var markdown    = require('gulp-markdown');
 var markdownpdf = require('gulp-markdown-pdf');
 var livereload  = require('gulp-livereload');
 
+var layoutize  = require('./gulp-plugin/gulp-layoutize');
 var srcFromToc  = require('./gulp-plugin/gulp-parse-toc');
 
 const CHAPTERS_DIR       = "./chapters";
@@ -111,28 +112,24 @@ gulp.task('site:sass', function () {
 });
 
 /*
- * Generates html from markdown when generating a site
-**/
-gulp.task('site:html', ['concat'], function () {
-  return gulp.src([
-      path.join(DEST_DIR, 'index.md'),
-      path.join(CHAPTERS_DIR, 'toc.md'),
-    ])
-    .pipe(markdown())
-    .pipe(gulp.dest(TMP_DIR));
-});
-
-/*
  * Generates site
 **/
-gulp.task('generate:site', ['site:html', 'site:sass'], function () {
+gulp.task('generate:site', ['site:sass'], function () {
+  var fileStreams = gutil.combine(
+    gulp.src(["chapters/**/*.md"]),
+    srcFromToc('chapters/toc.md'),
+    markdown()
+  );
+
+  var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8').replace(/md/g, 'html');
+
   return gulp.src([
       path.join(TEMPLATE_VIEWS_DIR, 'index.jade')
     ])
-    .pipe(jade({
+    .pipe(layoutize(fileStreams(), {
+      engine: 'jade',
       locals: {
-        mainContent: fs.readFileSync(TMP_DIR + '/index.html', 'utf8'),
-        tocContent: fs.readFileSync(TMP_DIR + '/toc.html', 'utf8'),
+        tocContent: tocFile
       }
     }))
     .pipe(gulp.dest(SITE_DIR));

@@ -5,9 +5,11 @@ var through     = require('through2');
 var PluginError = gutil.PluginError;
 
 /*
+ * gulp-parse-toc
  * Read from the table of contents (toc.md) file (specific to this book)
  * and return a sorted list of markdown files
  * as source for other gulp plugins.
+ * @param tocFilePath {String} - Path to the table of contents file
 **/
 module.exports = function (tocFilePath) {
   var files = [];

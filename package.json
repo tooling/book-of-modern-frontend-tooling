@@ -32,8 +32,11 @@
     "gulp-ruby-sass": "~0.3.1",
     "node-static": "~0.7.3",
     "gulp-livereload": "~1.1.1",
-    "gulp-jade": "~0.4.2",
-    "rimraf": "~2.2.6"
+    "rimraf": "~2.2.6",
+    "gulp-consolidate": "~0.1.1",
+    "consolidate": "~0.10.0",
+    "node.extend": "~1.0.9",
+    "jade": "~1.1.5"
   },
   "engines": {
     "node": ">= 0.10.0"
