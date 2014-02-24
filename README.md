@@ -55,12 +55,16 @@ At the moment, the following dependencies are required to export the book to EPU
 * [TeX Live](http://www.tug.org/texlive/acquire-netinstall.html). If you are using OSX, use [MacTex](http://tug.org/mactex/downloading.html).
 * [Pandoc](http://johnmacfarlane.net/pandoc/)
 
+## Developing the site template
+
+The HTML site design exists in the `template` folder. We use `jade` for HTML and `SCSS` for CSS.
+
 ### Building
 
 Make sure you are running Node > 0.10.0 and run `npm install` to install the development dependencies. This project uses GulpJS tasks to build the book from markdown files (as listed on the table of contents - `chapters/toc.md`) to various file formats.
 
 * `gulp generate:pdf`: Generate a PDF version of the book.
-* `gulp generate:html`: Generate a single file HTML of the book.
+* `gulp generate:site`: Generate a HTML version of the book.
 * `gulp generate:epub`: Generate a EPUB version of the book.
 
 ### Output
