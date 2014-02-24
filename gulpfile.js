@@ -4,7 +4,7 @@ var gulp        = require('gulp');
 var rimraf      = require("rimraf");
 var fs          = require("fs");
 
-var consolidate = require("gulp-consolidate");
+var replace     = require('gulp-replace');
 var gutil       = require('gulp-util');
 var concat      = require('gulp-concat');
 var pandoc      = require('gulp-pandoc');
@@ -12,8 +12,8 @@ var sass        = require('gulp-ruby-sass');
 var markdown    = require('gulp-markdown');
 var markdownpdf = require('gulp-markdown-pdf');
 var livereload  = require('gulp-livereload');
+var layoutize   = require('gulp-layoutize');
 
-var layoutize  = require('./gulp-plugin/gulp-layoutize');
 var srcFromToc  = require('./gulp-plugin/gulp-parse-toc');
 
 const CHAPTERS_DIR       = "./chapters";
@@ -104,7 +104,7 @@ gulp.task('generate:epub', ['concat'], function () {
 **/
 gulp.task('site:sass', function () {
   const CSS_PATH = "style.css";
-  
+
   return gulp.src(TEMPLATE_SASS_DIR + '/*.scss')
     .pipe(sass())
     .pipe(concat(CSS_PATH))
@@ -112,17 +112,27 @@ gulp.task('site:sass', function () {
 });
 
 /*
+ * Generates TOC html to OS's tmp directory
+**/
+gulp.task('site:toc', function () {
+  return gulp.src(['chapters/toc.md'])
+    .pipe(markdown())
+    .pipe(replace(/md/g, 'html'))
+    .pipe(gulp.dest(TMP_DIR));
+});
+
+/*
  * Generates site
 **/
-gulp.task('generate:site', ['site:sass'], function () {
-  var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8').replace(/md/g, 'html');
+gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
+  var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8');
   var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
-  
+
   return gulp.src(["chapters/**/*.md"])
     .pipe(srcFromToc('chapters/toc.md'))
     .pipe(markdown())
     .pipe(layoutize({
-      template: templatePath,
+      templatePath: templatePath,
       engine: 'jade',
       locals: {
         tocContent: tocFile
@@ -139,12 +149,12 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
   var server = livereload();
 
   return gulp.watch([
-      TEMPLATE_DIR + '/**/*', 
+      TEMPLATE_DIR + '/**/*',
       SITE_DIR + '/**/*'
     ])
     .on('change', function (file) {
       var filePath = path.relative(__dirname, file.path);
-      
+
       if ( filePath.indexOf(TEMPLATE_VIEWS_DIR) === 0 || 
         filePath.indexOf(TEMPLATE_SASS_DIR) === 0 ) {
         gulp.run('generate:site');

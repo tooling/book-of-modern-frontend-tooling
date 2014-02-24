@@ -33,10 +33,9 @@
     "node-static": "~0.7.3",
     "gulp-livereload": "~1.1.1",
     "rimraf": "~2.2.6",
-    "gulp-consolidate": "~0.1.1",
-    "consolidate": "~0.10.0",
-    "node.extend": "~1.0.9",
-    "jade": "~1.1.5"
+    "jade": "~1.1.5",
+    "gulp-layoutize": "~0.0.2",
+    "gulp-replace": "^0.2.0"
   },
   "engines": {
     "node": ">= 0.10.0"
