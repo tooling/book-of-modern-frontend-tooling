@@ -1,8 +1,8 @@
 var path        = require('path');
 var os          = require('os');
 var gulp        = require('gulp');
-var rimraf      = require("rimraf");
-var fs          = require("fs");
+var rimraf      = require('rimraf');
+var fs          = require('fs');
 
 var replace     = require('gulp-replace');
 var gutil       = require('gulp-util');
