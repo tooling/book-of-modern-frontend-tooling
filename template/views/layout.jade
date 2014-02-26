@@ -1,0 +1,20 @@
+doctype
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="")
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,700',rel='stylesheet',type='text/css')
+    link(rel="stylesheet",href= "http://getbootstrap.com/dist/css/bootstrap.min.css")
+    script(src="http://code.jquery.com/jquery-2.1.0.min.js")
+    link(rel="stylesheet",href= "/assets/css/style.css")
+  body
+    #container.container-fluid
+      .row
+        #sidebar.sidebar.col-md-3
+          include ./includes/sidebar.jade
+        #content.content.col-md-9
+          block content
+      include ./includes/footer.jade
+    
+    include ./includes/ga.jade

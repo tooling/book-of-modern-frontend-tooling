@@ -5,16 +5,19 @@ var through     = require('through2');
 var PluginError = gutil.PluginError;
 
 /*
+ * gulp-parse-toc
  * Read from the table of contents (toc.md) file (specific to this book)
  * and return a sorted list of markdown files
  * as source for other gulp plugins.
+ * @param tocFilePath {String} - Path to the table of contents file
 **/
 module.exports = function (tocFilePath) {
   var files = [];
 
   function bufferContents (file) {
     if (file.isNull()) return; // ignore
-    if (file.isStream()) return this.emit('error', new PluginError('gulp-parse-toc',  'Streaming not supported'));
+    if (file.isStream()) return this.emit('error', 
+      new PluginError('gulp-parse-toc',  'Streaming not supported'));
 
     var filePath = file.path.split('/');
     // Remove unwanted path frome the absolute source
@@ -44,7 +47,8 @@ module.exports = function (tocFilePath) {
       if ( files[constructedPath] ) {
         resultFiles.push(files[constructedPath]);
       } else {
-        this.emit('error', new PluginError('gulp-parse-toc',  'File ' + constructedPath + " does not exist."));
+        this.emit('error', 
+          new PluginError('gulp-parse-toc',  'File ' + constructedPath + " does not exist."));
       } 
     }.bind(this));
 
