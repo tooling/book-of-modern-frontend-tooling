@@ -1,0 +1,150 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="/introduction.html">Introduction</a></p>
+</li>
+<li><p><a href="">Build Systems</a></p>
+<ul>
+<li><a href="/build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li><p><a href="">Grunt</a></p>
+<ul>
+<li><a href="/build-systems/grunt/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="/build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+<li><a href="/build-systems/grunt/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/grunt/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Brunch</a> </p>
+<ul>
+<li><a href="/build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+<li><a href="/build-systems/brunch/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/brunch/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Gulp</a></p>
+<ul>
+<li><a href="/build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="/build-systems/gulp/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Dependency management</a></p>
+<ul>
+<li><p><a href="">Bower</a></p>
+<ul>
+<li><a href="/dependency-management/bower/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/bower/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/bower/bower-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/bower/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/bower/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Component JS</a></p>
+<ul>
+<li><a href="/dependency-management/componentjs/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/componentjs/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/componentjs/componentjs-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/componentjs/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/componentjs/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">NPM browserify</a></p>
+<ul>
+<li><a href="/dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/npm-browserify/npm-browserify-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/npm-browserify/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/npm-browserify/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Scaffolding</a></p>
+<ul>
+<li><p><a href="">Loom</a></p>
+<ul>
+<li><a href="/scaffolding/loom/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/loom/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/loom/loom-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/loom/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/loom/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Yeoman</a></p>
+<ul>
+<li><a href="/scaffolding/yeoman/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/yeoman/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/yeoman/yeoman-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/yeoman/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/yeoman/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><div id="content" class="content col-md-9"><h1 id="bower">Bower</h1>
+<p>Imagine the situation, you sit at your desk at work and you have to build yet another
+super fancy website for a client. You already talked about concept and design and
+probably also about interaction on the page. You already know what tools and
+libraries will make your life easier, when it comes to implementing the project you
+are working on. Let&#39;s say you have decided to build the website with the help of
+<a href="http://getbootstrap.com">Bootstrap</a>, so you don&#39;t have to care about the different
+implementations of responsive design. You also want to use <a href="http://jquery.com">jQuery</a>
+for easy DOM manipulation and last but not least, you want to add some fancy special
+effects by adding animations using <a href="http://h5bp.github.io/Effeckt.css/dist/">Effeckt.css</a>.</p>
+<p>So now you have three libraries you want to use and you have to somehow get the source
+code into your project. Now ask yourself: how would you do that? Remember the times
+where you visited the corresponding page of a library, you fiddled around a bit to find
+the place where the source is linked and once you found it, you did the following:
+You hit CTRL+a to mark everything, then you hit CTRL+c to copy everything and then you
+open up your favorite text editor or IDE, to finally hit CTRL+v to paste the source right
+into it. Then you had to do that two more times.</p>
+<p>Think about that for a second. Seriously.</p>
+<p>Did you notice something? You had to do several actions to just get some source code.
+And not only that you had to do all these actions, you also had to jump between your
+browser and your IDE or text editor! You probably had to create a file first to have
+a place to paste the stuff into! And now imagine the libraries you use get updated?
+<strong>Now really, who has time for that?</strong></p>
+<p>Wouldn&#39;t it be better to just have a simple command to search for a package you are
+interested in, without browsing the entire web? Wouldn&#39;t it be better to just have a
+simple command to get the source of that particular package, without copying and pasting
+all that stuff from one application to another? Wouldn&#39;t it be better, if you don&#39;t have
+to care about how the source flies from the internet down to your local machine on your 
+hard drive?</p>
+<p>Oh yes, this would be indeed better. And you know what? <strong>Bower</strong> got you covered.</p>
+<h2 id="a-package-manager-for-the-web">A package manager for the web</h2>
+<p>Bower is a package manager for the web. It offers a generic solution to make front-end
+packages installable from the command line. So searching for a package is just one 
+command away. Installing a package? Just one command away. Updating existing packages?
+You get it, right?</p>
+<p>Bower comes with a solution for a world where are no system wide dependencies, no
+dependencies are shared between different apps and the dependency tree is flat.</p>
+<h2 id="wait-how-does-that-differ-to-npm-">Wait, how does that differ to npm?</h2>
+<p>npm (Node Package Manager) is a great tool to install <a href="http://nodejs.org">Node.js</a>
+modules and packages. Actually, npm has been developed for exactly that. Installing
+node packages. The reason for that is, that a node modules can have several dependencies,
+and these dependencies can have their own dependencies and so forth. It is not 
+uncommon, that some dependencies have the same dependency like other dependencies, but in
+a different version. npm is the smart tool to resolve that kind of dependency tree
+without getting conflicts.</p>
+<p>However, this doesn&#39;t work for the web, or especially, front-end development. You don&#39;t
+want to have different jQuery versions in your app, just because the plugins you use
+depend on different versions, right? You actually have to decide which particular
+version to use to avoid conflicts. And that is a big difference. The dependency tree
+in front-end applications should always be flat, otherwise you would have too much
+overhead. Bower takes care of that.</p>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', google_uid]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

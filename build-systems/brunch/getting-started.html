@@ -1,0 +1,152 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="/introduction.html">Introduction</a></p>
+</li>
+<li><p><a href="">Build Systems</a></p>
+<ul>
+<li><a href="/build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li><p><a href="">Grunt</a></p>
+<ul>
+<li><a href="/build-systems/grunt/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="/build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+<li><a href="/build-systems/grunt/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/grunt/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Brunch</a> </p>
+<ul>
+<li><a href="/build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+<li><a href="/build-systems/brunch/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/brunch/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Gulp</a></p>
+<ul>
+<li><a href="/build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="/build-systems/gulp/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Dependency management</a></p>
+<ul>
+<li><p><a href="">Bower</a></p>
+<ul>
+<li><a href="/dependency-management/bower/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/bower/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/bower/bower-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/bower/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/bower/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Component JS</a></p>
+<ul>
+<li><a href="/dependency-management/componentjs/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/componentjs/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/componentjs/componentjs-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/componentjs/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/componentjs/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">NPM browserify</a></p>
+<ul>
+<li><a href="/dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/npm-browserify/npm-browserify-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/npm-browserify/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/npm-browserify/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Scaffolding</a></p>
+<ul>
+<li><p><a href="">Loom</a></p>
+<ul>
+<li><a href="/scaffolding/loom/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/loom/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/loom/loom-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/loom/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/loom/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Yeoman</a></p>
+<ul>
+<li><a href="/scaffolding/yeoman/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/yeoman/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/yeoman/yeoman-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/yeoman/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/yeoman/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><div id="content" class="content col-md-9"><h1 id="getting-started">Getting started</h1>
+<h2 id="-installation-"><em>Installation</em></h2>
+<p>The first thing to do is install the <code>brunch</code> command with <code>npm</code> by running <code>sudo npm install brunch -g</code>. You&#39;ll also want to be using <a href="http://bower.io">Bower</a> for external packages, which Brunch has excellent support for.</p>
+<h2 id="-walkthrough-"><em>Walkthrough</em></h2>
+<h2 id="conventions">Conventions</h2>
+<p>Brunch has a few conventions that help keep things simple - but you don&#39;t have to follow all of them. Firstly, Brunch asks you to specify a folder called &#39;assets&#39; that is directly copied into your output folder with no modifications. Secondly, most Brunch projects have two separate JavaScript files - app.js, which contains your code, and vendor.js for all external libraries, including bower packages. This allows you to package your files into modules without affecting external libraries.</p>
+<h2 id="folder-structure">Folder structure</h2>
+<p>In order to understand how best to use Brunch, lets look at a typical folder structure and modify it to follow Brunch&#39;s conventions.</p>
+<p>The application we&#39;ll be converting uses CoffeeScript, AngularJS, and LESS, and has no current build system beyond running the CoffeeScript and LESS watchers on the app/ directory. Here&#39;s what the application structure looks like before we install Brunch:</p>
+<pre><code>|- app/ # this folder is served statically, with the compiled files living alongside the originals
+|-- images/
+|-- scripts/ # contains .coffee files, which are converted to .js files by coffee -wc
+|--- components/ # components, installed by bower. Currently
+|-- styles/ # contains .less files, which are converted into .css files by the less watcher
+|-- views/ # angularjs views and templates.
+|- index.html # the main app file. Includes &lt;script&gt; tags for every .js file and bower component
+|- test/
+|- server.coffee # our server file - statically serves the app directory when run.
+|- bower.json # bower package folder - still using the old version of bower
+|- .bowerrc # bower config file that tells it to install into the app/components folder
+|- package.json # npm package folder
+</code></pre><p>The first thing we need to do is modify the application structure to fit Brunch&#39;s conventions. That means moving installed packages to outside the <code>app/</code> directory, and creating an assets folder for static files.</p>
+<p>The assets folder will live inside <code>app/</code>. It needs to contain any files that will be served statically - in this case, just <code>index.html</code> along with the <code>images/</code> and <code>views/</code> folders.</p>
+<p>For this project, we also had to delete the existing bower configuration file (.bowerrc) and <code>components/</code> folder, rename the <code>component.json</code> file to <code>bower.json</code> before updating bower to the latest version. Running <code>bower install</code> created a <code>bower_components/</code> folder in the root project directory. This allows Brunch to easily identify which files are part of our app and which files are external libraries without having to write any complex regular expressions.</p>
+<p>Finally, we need to update our index.html to be aware of the changes in structure. Currently, we have this in the head:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/styles/bootstrap.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/styles/main.css&quot;&gt;
+</code></pre>
+<p>and this in the body:</p>
+<pre><code class="lang-html">&lt;script src=&quot;/components/jquery/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/lodash/lodash.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/angular-unstable/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/angular-bootstrap/ui-bootstrap-tpls.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/angular-sanitize/angular-sanitize.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/angular-resource/angular-resource.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/components/angular-cookies/angular-cookies.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/app.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/directives.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/data.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/services.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/controllers/landing.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/controllers/decision-tree.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/controllers/resource.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;scripts/controllers/task.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Ouch! With Brunch, we can replace the css files with this:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/css/app.css&quot;&gt;
+</code></pre>
+<p>and the ridiculous number of scripts with this:</p>
+<pre><code class="lang-html">&lt;script src=&quot;/js/vendor.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/js/app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Much better!</p>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', google_uid]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

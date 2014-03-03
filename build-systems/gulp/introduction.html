@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="/introduction.html">Introduction</a></p>
+</li>
+<li><p><a href="">Build Systems</a></p>
+<ul>
+<li><a href="/build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li><p><a href="">Grunt</a></p>
+<ul>
+<li><a href="/build-systems/grunt/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="/build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+<li><a href="/build-systems/grunt/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/grunt/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Brunch</a> </p>
+<ul>
+<li><a href="/build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+<li><a href="/build-systems/brunch/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/brunch/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Gulp</a></p>
+<ul>
+<li><a href="/build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="/build-systems/gulp/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Dependency management</a></p>
+<ul>
+<li><p><a href="">Bower</a></p>
+<ul>
+<li><a href="/dependency-management/bower/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/bower/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/bower/bower-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/bower/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/bower/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Component JS</a></p>
+<ul>
+<li><a href="/dependency-management/componentjs/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/componentjs/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/componentjs/componentjs-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/componentjs/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/componentjs/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">NPM browserify</a></p>
+<ul>
+<li><a href="/dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/npm-browserify/npm-browserify-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/npm-browserify/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/npm-browserify/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Scaffolding</a></p>
+<ul>
+<li><p><a href="">Loom</a></p>
+<ul>
+<li><a href="/scaffolding/loom/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/loom/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/loom/loom-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/loom/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/loom/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Yeoman</a></p>
+<ul>
+<li><a href="/scaffolding/yeoman/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/yeoman/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/yeoman/yeoman-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/yeoman/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/yeoman/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><div id="content" class="content col-md-9"><h1 id="gulp">Gulp</h1>
+<p>Gulp is a <em>streaming</em> build system that allows you to automate tedious development tasks.</p>
+<h2 id="what-are-streams-">What are Streams?</h2>
+<p>Streams are designed to perform complex operations when constructed as a sequence of smaller, single purpose applications. These applications would connect from one end-point to a starting-point of another, allowing passage of data to be modified or analyzed at each application. This connection of applications is a concept referred to as piping, and the collection of pipes as a whole is referred to as the pipechain.</p>
+<p>If you would like to learn more about streams, take a look at the following resources:</p>
+<ul>
+<li><a href="https://github.com/substack/stream-handbook" title="Stream Handbook on Github">Stream Handbook on Github</a></li>
+<li><a href="http://www.youtube.com/watch?v=lQAV3bPOYHo" title="Video: Harnessing The Awesome Power Of Streams - LXJS 2012">Video: Harnessing The Awesome Power Of Streams - LXJS 2012</a></li>
+<li><a href="http://youtu.be/tc4ROCJYbm0?t=5m32s" title="Video: AT&amp;T Archives: The UNIX Operating System">Video: AT&amp;T Archives: The UNIX Operating System</a></li>
+</ul>
+<h2 id="why-another-build-system-">Why Another Build System?</h2>
+<p>Compared with other build systems, such as Grunt, gulp uses Node.js streams as a means to automate tasks, thereby removing the need to create intermediate files when transforming source files. In gulp, you would install plugins, that do one thing and do it well, and construct a &#39;pipeline&#39; by connecting them to each other. Doing it in this manner, source files would be transformed by plugins, and output from one plugin would be an input to the next. This idea is similar to the concept of piplines in *nix systems. Some Node.js applications support pipelining as a feature. For example:</p>
+<p><code>browserify main.js | uglifyjs &gt; bundle.js</code></p>
+<p>This can be intuitively translated into a gulp task. And if you can think in *nix pipelines, you will be able to easily construct gulp tasks.</p>
+<p>Writing tasks in gulp requires you to use JavaScript (or a language that compiles to JavaScript) to set up the desirable build system. This code-over-configuration style allows the gulp user to be more flexible in setting up their tasks. The requirement placed on the user is knowing how to use Node.js streams and how they typically work.</p>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', google_uid]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

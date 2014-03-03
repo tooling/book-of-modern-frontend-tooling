@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="/introduction.html">Introduction</a></p>
+</li>
+<li><p><a href="">Build Systems</a></p>
+<ul>
+<li><a href="/build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li><p><a href="">Grunt</a></p>
+<ul>
+<li><a href="/build-systems/grunt/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="/build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+<li><a href="/build-systems/grunt/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/grunt/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Brunch</a> </p>
+<ul>
+<li><a href="/build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+<li><a href="/build-systems/brunch/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/brunch/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Gulp</a></p>
+<ul>
+<li><a href="/build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="/build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="/build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="/build-systems/gulp/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Dependency management</a></p>
+<ul>
+<li><p><a href="">Bower</a></p>
+<ul>
+<li><a href="/dependency-management/bower/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/bower/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/bower/bower-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/bower/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/bower/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Component JS</a></p>
+<ul>
+<li><a href="/dependency-management/componentjs/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/componentjs/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/componentjs/componentjs-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/componentjs/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/componentjs/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">NPM browserify</a></p>
+<ul>
+<li><a href="/dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="/dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="/dependency-management/npm-browserify/npm-browserify-topic-1.html">Topic</a></li>
+<li><a href="/dependency-management/npm-browserify/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/dependency-management/npm-browserify/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="">Scaffolding</a></p>
+<ul>
+<li><p><a href="">Loom</a></p>
+<ul>
+<li><a href="/scaffolding/loom/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/loom/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/loom/loom-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/loom/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/loom/references.html">References</a></li>
+</ul>
+</li>
+<li><p><a href="">Yeoman</a></p>
+<ul>
+<li><a href="/scaffolding/yeoman/introduction.html">Introduction</a></li>
+<li><a href="/scaffolding/yeoman/getting-started.html">Getting started</a></li>
+<li><a href="/scaffolding/yeoman/yeoman-topic-1.html">Topic</a></li>
+<li><a href="/scaffolding/yeoman/troubleshooting.html">Troubleshooting</a></li>
+<li><a href="/scaffolding/yeoman/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><div id="content" class="content col-md-9"><h1 id="getting-started">Getting Started</h1>
+<h2 id="installing-gulp">Installing gulp</h2>
+<p>First, we must install gulp globally so that we can access <code>gulp</code> from the command-line.</p>
+<pre><code>npm install -g gulp
+</code></pre><p>Next, let&#39;s navigate to our project directory and we will install gulp locally and add it to our list of devDependencies. This allows our gulpfile, containing the build tasks, to access it.</p>
+<pre><code>npm install --save-dev gulp
+</code></pre><h2 id="creating-your-gulpfile">Creating Your Gulpfile</h2>
+<p>Once gulp is installed, we need to create a file in your projects root directory and name it <code>gulpfile.js</code>. A gulpfile is the set of instructions that gulp will use to automate the tasks that you have set for your project. This file is where we will be doing all of our work and setting up our development tasks.</p>
+<h2 id="running-gulp">Running Gulp</h2>
+<p>Now that you have gulp installed and your <code>gulpfile.js</code> has been created. All that is left to do is simply run the gulp command in your command-line application. Type in the following line, and press enter.</p>
+<pre><code>gulp
+</code></pre><p>Now, you should see a few lines of feedback from gulp notifying you of what is happening. This could be the tasks you&#39;re running or it could be an error. If you have recieved an error, just jump back into your gulpfile and make sure that you didn&#39;t make a typo somewhere. </p>
+<p>If you are using the .watch() method in your gulpfile, then gulp will continue to run until you explicitly tell it to stop. This may be confusing to beginners, especially if you are expecting to go back to your command-line and start firing off new commands. To stop gulp at any time, simply press <code>CTRL+C</code> and it will stop the execution and allow you to begin writing new commands.</p>
+<h2 id="extending-gulp">Extending Gulp</h2>
+<p>Plugins are a huge component to build systems and they allow you to perform additional actions in your tasks. This will introduce you to the process of finding and installing plugins so that you are comfortable when the time comes to add more functionality to your gulp tasks.</p>
+<h3 id="finding-a-plugin">Finding A Plugin</h3>
+<p>We can search for plugins using the official gulp plugin search tool or we can search by keyword using the npm package search.</p>
+<ul>
+<li><a href="http://gratimax.github.io/search-gulp-plugins/">Official gulp Search Tool</a></li>
+<li><a href="https://npmjs.org/browse/keyword/gulpplugin">gulpplugin on npm</a></li>
+<li><a href="https://npmjs.org/browse/keyword/gulpfriendly">gulpfriendly on npm</a></li>
+</ul>
+<blockquote>
+<p>Note: The <strong>gulpfriendly</strong> keyword is assigned to plugins that do not accept streams of file objects but still work nicely in the gulp ecosystem.</p>
+</blockquote>
+<h3 id="installing-a-plugin">Installing A Plugin</h3>
+<p>Installing a gulp plugin requires the same simple process we used when installing gulp. Once you have found the plugin that you would like to use, simply take note of its name and return to your command line to install it via npm. As a quick example, let&#39;s install gulp-concat. Open your command-line application and then run the following command:</p>
+<pre><code>npm install gulp-concat
+</code></pre><p>It&#39;s that simple. You can pass any of the npm flags such as <code>--save</code> and <code>--save-dev</code> along with it if you would like to add that plugin to your package.json file as a dependency. </p>
+<p>That&#39;s all there is to it! Let&#39;s start writing tasks.</p>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', google_uid]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
