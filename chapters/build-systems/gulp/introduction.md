@@ -11,7 +11,7 @@ If you would like to learn more about streams, take a look at the following reso
 - [Video: AT&T Archives: The UNIX Operating System](http://youtu.be/tc4ROCJYbm0?t=5m32s "Video: AT&T Archives: The UNIX Operating System")
 
 ## Why Another Build System?
-Compared with other build systems, such as Grunt, gulp uses Node.js streams as a means to automate tasks, thereby removing the need to create intermediate files when transforming source files. In gulp, you would install plugins, that do one thing and do it well, and construct a 'pipeline' by connecting them to each other. Doing it in this manner, source files would be transformed by plugins, and output from one plugin would be an input to the next. This idea is similar to the concept of piplines in *nix systems. Some Node.js applications support pipelining as a feature. For example:
+Compared with other build systems, such as Grunt, gulp uses Node.js streams as a means to automate tasks, thereby removing the need to create intermediate files when transforming source files. In gulp, you would install plugins, that do one thing and do it well, and construct a 'pipeline' by connecting them to each other. Doing it in this manner, source files would be transformed by plugins, and output from one plugin would be an input to the next. This idea is similar to the concept of pipelines in *nix systems. Some Node.js applications support pipelining as a feature. For example:
 
 `browserify main.js | uglifyjs > bundle.js`
 
