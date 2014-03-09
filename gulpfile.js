@@ -13,6 +13,7 @@ var markdown    = require('gulp-markdown');
 var markdownpdf = require('gulp-markdown-pdf');
 var livereload  = require('gulp-livereload');
 var layoutize   = require('gulp-layoutize');
+var deploy      = require('gulp-gh-pages');
 
 var srcFromToc  = require('./gulp-plugin/gulp-parse-toc');
 
@@ -92,6 +93,15 @@ gulp.task('generate:epub', ['concat'], function () {
       ext : '.epub',
       args: ['-o', './dist/index.epub', '--latex-engine', 'xelatex']
     }));
+});
+
+
+/*
+ * Deploy the contents of the site folder to github pages (gh-pages)
+**/
+gulp.task('deploy', function (cb) {
+  return gulp.src(DEST_DIR + '/site/**/*')
+    .pipe(deploy('git@github.com:rowoot/book-of-modern-frontend-tooling.git', 'origin'));
 });
 
 /*
