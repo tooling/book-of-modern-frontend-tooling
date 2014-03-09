@@ -99,9 +99,9 @@ gulp.task('generate:epub', ['concat'], function () {
 /*
  * Deploy the contents of the site folder to github pages (gh-pages)
 **/
-gulp.task('deploy', function (cb) {
+gulp.task('deploy', ['generate:site'], function (cb) {
   return gulp.src(DEST_DIR + '/site/**/*')
-    .pipe(deploy('git@github.com:rowoot/book-of-modern-frontend-tooling.git', 'origin'));
+    .pipe(deploy('git@github.com:tooling/book-of-modern-frontend-tooling.git', 'origin'));
 });
 
 /*
