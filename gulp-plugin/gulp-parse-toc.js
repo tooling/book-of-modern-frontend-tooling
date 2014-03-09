@@ -19,10 +19,10 @@ module.exports = function (tocFilePath) {
     if (file.isStream()) return this.emit('error', 
       new PluginError('gulp-parse-toc',  'Streaming not supported'));
 
-    var filePath = file.path.split('/');
+    var filePath = file.path.split(path.sep);
     // Remove unwanted path frome the absolute source
     filePath = filePath.splice(filePath.indexOf('chapters'), filePath.length);
-    filePath = path.join.apply({}, filePath);
+    filePath = path.join.apply({}, filePath).replace(path.sep, "/");
     files[filePath] = file;
   }
 
@@ -43,7 +43,7 @@ module.exports = function (tocFilePath) {
       if (results === null) return;
       matchedPath = results[2];
       
-      constructedPath = path.join(tempPath.join('/'), matchedPath);
+      constructedPath = path.join(tempPath.join('/'), matchedPath).replace(path.sep, "/");
       if ( files[constructedPath] ) {
         resultFiles.push(files[constructedPath]);
       } else {
