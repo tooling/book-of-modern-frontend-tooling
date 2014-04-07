@@ -42,7 +42,8 @@
   * [NPM browserify]()
     * [Introduction](/dependency-management/npm-browserify/introduction.md)
     * [Getting started](/dependency-management/npm-browserify/getting-started.md)
-    * [Topic](/dependency-management/npm-browserify/npm-browserify-topic-1.md)
+    * [Writing Modules](/dependency-management/npm-browserify/writing-modules.md)
+    * [Development Workflow](/dependency-management/npm-browserify/development-workflow.md)
     * [Troubleshooting](/dependency-management/npm-browserify/troubleshooting.md)
     * [References](/dependency-management/npm-browserify/references.md)
 
