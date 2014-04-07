@@ -2,10 +2,10 @@
 
 ## Installing Browserify
 
-Browserify is installed globally through npm. It's a command line tool, so we want to install it globally to be able to run it anywhere on our system. Run the following command:
+Browserify is installed globally through npm and gives you a command line tool for running Browserify and generating output files. Run the following command:
 
 ```sh
-npm install -g browserify
+npm install --global browserify
 ```
 
 You should now have access to the `browserify` command. Let's go ahead and use it in a basic example.
@@ -32,13 +32,13 @@ If you were to try to run this in a browser now it would fail, because there is 
 To generate a bundled JavaScript file, we need to pass Browserify the main file in our application. It will then recursively go through each file and its dependencies.
 
 ```sh
-browserify app.js -o bundle.js
+browserify app.js --output bundle.js
 ```
 
 This instructs Browserify to start parsing at `app.js` and then output to `bundle.js`. Now we can add `bundle.js` to our HTML file:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <title>Browserify Test 1</title>
