@@ -1,63 +1,31 @@
 * [Introduction](/introduction.md)
 
-* [Build Systems]()
+* Build Systems
   * [Modern tools vs shell scripts](/build-systems/modern-tools-vs-shell-scripts.md)
-  * [Grunt]()
-    * [Introduction](/build-systems/grunt/introduction.md)
+  * Grunt
     * [Getting started](/build-systems/grunt/getting-started.md)
     * [Linting code](/build-systems/grunt/linter.md)
     * [Integrating a CSS preprocessor](/build-systems/grunt/sass.md)
-    * [Troubleshooting](/build-systems/grunt/troubleshooting.md)
-    * [References](/build-systems/grunt/references.md)
-
-  * [Brunch]() 
+  * Brunch
     * [Introduction](/build-systems/brunch/introduction.md)
     * [Getting started](/build-systems/brunch/getting-started.md)
     * [Using Brunch](/build-systems/brunch/using-brunch.md)
-    * [Troubleshooting](/build-systems/brunch/troubleshooting.md)
-    * [References](/build-systems/brunch/references.md)
-
-  * [Gulp]()
+  * Gulp
     * [Introduction](/build-systems/gulp/introduction.md)
     * [Getting started](/build-systems/gulp/getting-started.md)
     * [Writing tasks](/build-systems/gulp/writing-tasks.md)
-    * [Troubleshooting](/build-systems/gulp/troubleshooting.md)
     * [References](/build-systems/gulp/references.md)
 
-* [Dependency management]()
-  * [Bower]()
+* Dependency management
+  * Bower
     * [Introduction](/dependency-management/bower/introduction.md)
-    * [Getting started](/dependency-management/bower/getting-started.md)
-    * [Topic](/dependency-management/bower/bower-topic-1.md)
-    * [Troubleshooting](/dependency-management/bower/troubleshooting.md)
-    * [References](/dependency-management/bower/references.md)
-  
-  * [Component JS]()
-    * [Introduction](/dependency-management/componentjs/introduction.md)
-    * [Getting started](/dependency-management/componentjs/getting-started.md)
-    * [Topic](/dependency-management/componentjs/componentjs-topic-1.md)
-    * [Troubleshooting](/dependency-management/componentjs/troubleshooting.md)
-    * [References](/dependency-management/componentjs/references.md)
-  
-  * [NPM browserify]()
+  * Component JS
+  * NPM browserify
     * [Introduction](/dependency-management/npm-browserify/introduction.md)
     * [Getting started](/dependency-management/npm-browserify/getting-started.md)
     * [Writing Modules](/dependency-management/npm-browserify/writing-modules.md)
     * [Development Workflow](/dependency-management/npm-browserify/development-workflow.md)
-    * [Troubleshooting](/dependency-management/npm-browserify/troubleshooting.md)
-    * [References](/dependency-management/npm-browserify/references.md)
-
-* [Scaffolding]()
-  * [Loom]()
-    * [Introduction](/scaffolding/loom/introduction.md)
-    * [Getting started](/scaffolding/loom/getting-started.md)
-    * [Topic](/scaffolding/loom/loom-topic-1.md)
-    * [Troubleshooting](/scaffolding/loom/troubleshooting.md)
-    * [References](/scaffolding/loom/references.md)
-  
-  * [Yeoman]()
-    * [Introduction](/scaffolding/yeoman/introduction.md)
-    * [Getting started](/scaffolding/yeoman/getting-started.md)
-    * [Topic](/scaffolding/yeoman/yeoman-topic-1.md)
-    * [Troubleshooting](/scaffolding/yeoman/troubleshooting.md)
-    * [References](/scaffolding/yeoman/references.md)
+  * NPM browserify
+* Scaffolding
+  * Loom
+  * Yeoman
