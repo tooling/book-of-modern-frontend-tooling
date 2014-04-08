@@ -2,7 +2,7 @@
 
 Multiple entry points can be useful if your application has multiple ways it can be entered but share a common source tree. Such as if creating an optimized and separate build for mobile devices or builds specific for users of a certain language.
 
-Multiple entry points are speficified by supplying an array or object to the `entry` configuration option in your `webpack.config.js`:
+Multiple entry points are specified by supplying an array or object to the `entry` configuration option in your `webpack.config.js`:
 
 ``` javascript
 module.exports = {

@@ -59,7 +59,7 @@ In the `src/app.js`, type in `alert('Hello world!');`. Then in your terminal typ
 
 ## Creating Assets
 
-The power of webpack is through its ability to include assets that compose the final web application. Let's create and include another javascript file. Create the folder and file `src/js/alert.js`:
+The power of webpack is through its ability to include assets that compose the final web application. Let's create and include another JavaScript file. Create the folder and file `src/js/alert.js`:
 
 ``` shell
 ├── package.json
@@ -81,7 +81,7 @@ module.exports = function (what) {
 };
 ```
 
-`module.exports` signifies what part of this file we want to export as a module. In this case, we are exporting a javascript function.
+`module.exports` signifies what part of this file we want to export as a module. In this case, we are exporting a JavaScript function.
 
 Within our application entry point `src/app.js` we can use this module with:
 
