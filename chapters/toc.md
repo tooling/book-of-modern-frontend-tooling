@@ -21,7 +21,11 @@
     * [Introduction](/dependency-management/bower/introduction.md)
   * Component JS
   * NPM browserify
-
+    * [Introduction](/dependency-management/npm-browserify/introduction.md)
+    * [Getting started](/dependency-management/npm-browserify/getting-started.md)
+    * [Writing Modules](/dependency-management/npm-browserify/writing-modules.md)
+    * [Development Workflow](/dependency-management/npm-browserify/development-workflow.md)
+  * NPM browserify
 * Scaffolding
   * Loom
   * Yeoman
