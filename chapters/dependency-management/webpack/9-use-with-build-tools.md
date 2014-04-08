@@ -1,6 +1,6 @@
 # Use with Build Tools
 
-The following is instructions on how to integrat webpack with common build tools.
+The following is instructions on how to integrate webpack with common build tools.
 
 ## Using with a Node.js script
 

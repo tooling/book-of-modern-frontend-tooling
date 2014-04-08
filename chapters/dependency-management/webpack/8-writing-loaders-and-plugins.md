@@ -54,7 +54,7 @@ module.exports = function(source) {
 };
 ```
 
-Each *kind* of module and library that converts the syntax into javascript will have its own method of compiling the source and determining the dependencies of the source. webpack only exposes a generic API to signify what is a dependency and what is not.
+Each *kind* of module and library that converts the syntax into JavaScript will have its own method of compiling the source and determining the dependencies of the source. webpack only exposes a generic API to signify what is a dependency and what is not.
 
 // TODO: Talk about `this.resolve()` here
 

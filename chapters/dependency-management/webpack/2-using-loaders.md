@@ -2,9 +2,9 @@
 
 The power of webpack comes from its ability to load anything as a module. This is done through loaders.
 
-If you try to `require()` a CSS file by default webpack will make no assumptions and consider it a javascript module. The CSS file needs to be first translated into a javascript module and then can be loaded.
+If you try to `require()` a CSS file by default webpack will make no assumptions and consider it a JavaScript module. The CSS file needs to be first translated into a JavaScript module and then can be loaded.
 
-Using npm, install the css loader with: `npm install css-loader --save-dev`
+Using npm, install the CSS loader with: `npm install css-loader --save-dev`
 
 Then as you require the file, prefix the loader to perform the transformation separated by a `'!'` character:
 
@@ -64,7 +64,7 @@ module.exports = {
 };
 ```
 
-Now any module that ends with `.css` that is resolved will automatically have the css and style loader applied. Which shortens our previous call to apply CSS to our page to:
+Now any module that ends with `.css` that is resolved will automatically have the CSS and style loader applied. Which shortens our previous call to apply CSS to our page to:
 
 ``` javascript
 require('./css/style.css');

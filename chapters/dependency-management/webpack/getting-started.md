@@ -32,7 +32,7 @@ Your `package.json` is key to orchestrating your builds. Here is an example `pac
     "start": "webpack src/app.js dist/bundle.js"
   },
   "devDependencies": {
-    "webpack": "~1.0.0"
+    "webpack": "^1.0.0"
   }
 }
 ```
@@ -44,12 +44,12 @@ The `src/app.js` file is the main entry point to your application. From here, we
 The `dist/` contains your distributable application. The `dist/bundle.js` file is created by webpack and is to be included by our `dist/index.html` file. In a typical webpack project, the main `index.html` is usually very simple like such:
 
 ``` html
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <script type="text/javascript" src="bundle.js"></script>
+  <script src="bundle.js"></script>
 </head>
-<body></body>
+  <body></body>
 </html>
 ```
 
@@ -59,7 +59,7 @@ In the `src/app.js`, type in `alert('Hello world!');`. Then in your terminal typ
 
 ## Creating Assets
 
-The power of webpack is through it's ability to include assets that compose the final web application. Let's create and include another javascript file. Create the folder and file `src/js/alert.js`:
+The power of webpack is through its ability to include assets that compose the final web application. Let's create and include another javascript file. Create the folder and file `src/js/alert.js`:
 
 ``` shell
 ├── package.json
@@ -76,7 +76,7 @@ The power of webpack is through it's ability to include assets that compose the 
 We'll turn `src/js/alert.js` into a module by adding the contents:
 
 ``` js
-module.exports = function(what) {
+module.exports = function (what) {
   alert('Hello ' + what + '!');
 };
 ```
@@ -98,7 +98,7 @@ Typing `npm start` and opening `dist/index.html` in your web browser should open
 
 ### Stylesheets
 
-In order to include assets other than javascript modules, we will need to use loaders. Loaders are prefixes in our `require()` statements that instruct webpack to transform the asset into a module.
+In order to include assets other than JavaScript modules, we will need to use loaders. Loaders are prefixes in our `require()` statements that instruct webpack to transform the asset into a module.
 
 For stylesheets we will use two loaders: one to turn CSS into a module and one to apply the modularized CSS to the web page. Loaders are available on npm and these two can be installed and saved to the `package.json` with: `npm install css-loader style-loader --save-dev`.
 
