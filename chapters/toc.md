@@ -25,7 +25,6 @@
     * [Getting started](dependency-management/npm-browserify/getting-started.md)
     * [Writing Modules](dependency-management/npm-browserify/writing-modules.md)
     * [Development Workflow](dependency-management/npm-browserify/development-workflow.md)
-  * NPM browserify
 * Scaffolding
   * Loom
   * Yeoman

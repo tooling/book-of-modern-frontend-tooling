@@ -4,7 +4,7 @@
 
 The loader in webpack is the primary way to transform modules as they are loaded. A loader is a function that gets passed the source of the module:
 
-``` javascript
+```js
 module.exports = function(source) {
   // Transform the source and return it
   return source;
@@ -13,7 +13,7 @@ module.exports = function(source) {
 
 If transforming the source requires an asynchronous operation, use `this.callback` instead:
 
-``` javascript
+```js
 module.exports = function(source) {
   // Transform the source and use this.callback
   this.callback(null, source);
@@ -24,7 +24,7 @@ This follows the Node.js convention where the first parameter of the callback is
 
 The context of the loader function contains a bunch of useful APIs to enhance your loader. Such as `this.cacheable()` should generally be set as most module sources can be cached once transformed. This greatly speeds up the compile time upon subsequent bundles:
 
-``` javascript
+```js
 module.exports = function(source) {
   // Only transform this module when it has changed
   this.cacheable();
@@ -34,7 +34,7 @@ module.exports = function(source) {
 
 A lot of module types are able to include other files or have dependencies. Such as a CSS file is able to `@import` another or the Jade templating language is able to `include` another file. It is important to mark the dependencies that each module is able to include. This enables webpack to properly incrementally build and know when to invalidate the cache that module. This is done with the `this.addDependency()` API:
 
-``` javascript
+```js
 // transformer is a completely made up library that transforms our modules
 var transformer = require('transformer');
 

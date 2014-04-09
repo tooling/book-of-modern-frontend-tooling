@@ -3,6 +3,8 @@ var os          = require('os');
 var gulp        = require('gulp');
 var rimraf      = require('rimraf');
 var fs          = require('fs');
+var pygmentize  = require('pygmentize-bundled');
+var opn         = require('opn');
 
 var replace     = require('gulp-replace');
 var gutil       = require('gulp-util');
@@ -17,14 +19,16 @@ var deploy      = require('gulp-gh-pages');
 
 var srcFromToc  = require('./gulp-plugin/gulp-parse-toc');
 
-const CHAPTERS_DIR       = "./chapters";
+const CHAPTERS_DIR       = './chapters';
 
-const TEMPLATE_DIR       = "./template";
-const TEMPLATE_VIEWS_DIR = path.join(TEMPLATE_DIR, "views");
-const TEMPLATE_SASS_DIR  = path.join(TEMPLATE_DIR, "sass");
+const TEMPLATE_DIR       = './template';
+const TEMPLATE_VIEWS_DIR = path.join(TEMPLATE_DIR, 'views');
+const TEMPLATE_SASS_DIR  = path.join(TEMPLATE_DIR, 'sass');
 
-const DEST_DIR = "./dist";
-const SITE_DIR = path.join(DEST_DIR, 'site');
+const DEST_DIR = './dist';
+const REPO_NAME = 'book-of-modern-frontend-tooling';
+const BASE_DIR = path.join(DEST_DIR, 'site');
+const SITE_DIR = path.join(BASE_DIR, REPO_NAME);
 const SITE_JS_DIR     = path.join(SITE_DIR, 'assets', 'js');
 const SITE_CSS_DIR    = path.join(SITE_DIR, 'assets', 'css');
 const SITE_VENDOR_DIR = path.join(SITE_DIR, 'assets', 'vendor');
@@ -35,10 +39,10 @@ const TMP_DIR = os.tmpDir();
  * List all tasks
 **/
 gulp.task('default', function () {
-  gutil.log("Available Tasks:");
+  gutil.log('Available Tasks:');
   Object.keys(gulp.tasks).forEach(function (taskName) {
     if ( taskName.indexOf('generate') > -1 ) {
-      gutil.log("\t", gutil.colors.yellow(taskName));
+      gutil.log('\t', gutil.colors.yellow(taskName));
     }
   });
 });
@@ -56,7 +60,7 @@ gulp.task('clean', function () {
 gulp.task('concat', function () {
   var concatFileName = 'index.md';
 
-  return gulp.src(["chapters/**/*.md"])
+  return gulp.src(['chapters/**/*.md'])
     .pipe(srcFromToc('chapters/toc.md'))
     .pipe(concat(concatFileName))
     .pipe(gulp.dest(DEST_DIR));
@@ -113,7 +117,7 @@ gulp.task('deploy', ['generate:site'], function (cb) {
  * Generate css from sass files in the template folder
 **/
 gulp.task('site:sass', function () {
-  const CSS_PATH = "style.css";
+  const CSS_PATH = 'style.css';
 
   return gulp.src(TEMPLATE_SASS_DIR + '/*.scss')
     .pipe(sass())
@@ -138,9 +142,18 @@ gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
   var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8');
   var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
 
-  return gulp.src(["chapters/**/*.md"])
+  return gulp.src(['chapters/**/*.md'])
     .pipe(srcFromToc('chapters/toc.md'))
-    .pipe(markdown())
+    .pipe(markdown({
+      highlight: function (code, lang, callback) {;
+        pygmentize({
+          lang: lang,
+          format: 'html'
+        }, code, function (err, result) {
+          callback(err, result.toString());
+        });
+      }
+    }))
     .pipe(layoutize({
       templatePath: templatePath,
       engine: 'jade',
@@ -148,7 +161,7 @@ gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
         tocContent: tocFile
       }
     }))
-    .pipe(gulp.dest(SITE_DIR + '/book-of-modern-frontend-tooling/'));
+    .pipe(gulp.dest(SITE_DIR));
 });
 
 /*
@@ -157,6 +170,7 @@ gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
 **/
 gulp.task('watch', ['generate:site', 'serve'], function() {
   var server = livereload();
+  opn('http://localhost:3000/' + REPO_NAME);
 
   return gulp.watch([
       TEMPLATE_DIR + '/**/*',
@@ -179,7 +193,7 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
 **/
 gulp.task('serve', function () {
   const PORT = 3000;
-  var fileServer = new (require('node-static')).Server(SITE_DIR);
+  var fileServer = new (require('node-static')).Server(BASE_DIR);
   require('http').createServer(function (request, response) {
     request.addListener('end', function () {
       fileServer.serve(request, response);

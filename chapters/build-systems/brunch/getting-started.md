@@ -13,18 +13,20 @@ In order to understand how best to use Brunch, lets look at a typical folder str
 
 The application we'll be converting uses CoffeeScript, AngularJS, and LESS, and has no current build system beyond running the CoffeeScript and LESS watchers on the app/ directory. Here's what the application structure looks like before we install Brunch:
 
-    |- app/ # this folder is served statically, with the compiled files living alongside the originals
-    |-- images/
-    |-- scripts/ # contains .coffee files, which are converted to .js files by coffee -wc
-    |--- components/ # components, installed by bower. Currently
-    |-- styles/ # contains .less files, which are converted into .css files by the less watcher
-    |-- views/ # angularjs views and templates.
-    |- index.html # the main app file. Includes <script> tags for every .js file and bower component
-    |- test/
-    |- server.coffee # our server file - statically serves the app directory when run.
-    |- bower.json # bower package folder - still using the old version of bower
-    |- .bowerrc # bower config file that tells it to install into the app/components folder
-    |- package.json # npm package folder
+```bash
+|- app/ # this folder is served statically, with the compiled files living alongside the originals
+|-- images/
+|-- scripts/ # contains .coffee files, which are converted to .js files by coffee -wc
+|--- components/ # components, installed by bower. Currently
+|-- styles/ # contains .less files, which are converted into .css files by the less watcher
+|-- views/ # angularjs views and templates.
+|- index.html # the main app file. Includes <script> tags for every .js file and bower component
+|- test/
+|- server.coffee # our server file - statically serves the app directory when run.
+|- bower.json # bower package folder - still using the old version of bower
+|- .bowerrc # bower config file that tells it to install into the app/components folder
+|- package.json # npm package folder
+```
 
 
 The first thing we need to do is modify the application structure to fit Brunch's conventions. That means moving installed packages to outside the ``app/`` directory, and creating an assets folder for static files.

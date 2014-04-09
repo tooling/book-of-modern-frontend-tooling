@@ -9,7 +9,7 @@ A popular JavaScript linter is [JSHint](http://www.jshint.com/), which you can t
 As with most front-end common tasks, there is a plugin for JSHint, [`grunt-contrib-jshint`](https://github.com/gruntjs/grunt-contrib-jshint). You need to install it via `npm` and then load the task in the `Gruntfile.js`:
 
 ```bash
-npm install grunt-contrib-jshint
+$ npm install grunt-contrib-jshint
 ```
 
 ```js
@@ -43,13 +43,13 @@ grunt.initConfig({
 If you run the `jshint` task now, you will see that the linter will scan one file:
 
 ```bash
-grunt jshint
+$ grunt jshint
 ```
 
 If you want to see more output in the tasks you run, you can add the `--verbose` flag: 
 
 ```bash
-grunt jshint --verbose
+$ grunt jshint --verbose
 ```
 
 If you try that, you will see which files exactly were scanned (in this case `Gruntfile.js`).

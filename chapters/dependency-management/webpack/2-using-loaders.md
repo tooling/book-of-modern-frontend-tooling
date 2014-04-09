@@ -8,7 +8,7 @@ Using npm, install the CSS loader with: `npm install css-loader --save-dev`
 
 Then as you require the file, prefix the loader to perform the transformation separated by a `'!'` character:
 
-``` javascript
+```js
 var css = require('css!./css/style.css');
 ```
 
@@ -22,7 +22,7 @@ Having your CSS as a raw string most of time isn't that useful. We likely would 
 
 Now you just need to chain the loaders in the order you would like the transformation to occur:
 
-``` javascript
+```js
 require('style!css!./css/style.css');
 ```
 
@@ -32,7 +32,7 @@ Which will first transform the file into resolved CSS and then apply that CSS to
 
 Some loaders have options that can be passed to them. Such as with the exports-loader, a loader for exporting a specific variable from within the module. For example if we have a module that does not use `module.exports` but rather just defines a global variable:
 
-``` javascript
+```js
 var Animal = (function() {
   return function(type) {
     console.log('I am a ' + type);
@@ -42,7 +42,7 @@ var Animal = (function() {
 
 You can resolve this module by specifying which variable should be exported by passing an option to the exports loader using the `'?'` separator:
 
-``` javascript
+```js
 var Animal = require('exports?Animal!animals/dist/animals.js');
 ```
 

@@ -3,7 +3,7 @@
 ## Configuration
 Brunch configuration is incredibly simple. Here's a sample ``config.coffee`` file for an AngularJS and CoffeeScript file.
 
-```coffee
+```
 conventions:
   assets: /^app\/assets\//
 modules:

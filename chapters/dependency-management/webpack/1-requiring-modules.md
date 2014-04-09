@@ -6,13 +6,13 @@ Any file within the context will be considered a module and attempted to be bund
 
 Typically a module is resolved by using `require()` and supplying a relative path to the file from the context:
 
-``` javascript
+```js
 var bear = require('./animals/bear.js');
 ```
 
 With webpack, due to its potential module bundling behavior, you can also dynamically require modules:
 
-``` javascript
+```js
 var animalType = 'bear';
 var animal = require('./animals/' + animalType + '.js');
 ```
@@ -21,7 +21,7 @@ var animal = require('./animals/' + animalType + '.js');
 
 Since everything is considered a module with webpack, you can end up bundling very large files. Having your entire application bundled into a single large file in which users must fully download to view the application isn't very ideal. Some portions of your application should be only downloaded as needed and webpack handles this by using the familiar AMD syntax:
 
-``` javascript
+```js
 require(['./data/large.json'], function(large) {
   // When ./data/large.json has finished downloading,
   // we'll have access to it through the `large` variable
@@ -36,7 +36,7 @@ Vendor modules, third party modules or modules being maintained outside of your 
 
 To require a module from a vendor folder, omit the `./` prefix:
 
-``` javascript
+```js
 var Animal = require('animals');
 ```
 
@@ -50,7 +50,7 @@ This will create a number of steps to resolve the `animals` module where the fir
 
 You can also specifically require a file from within a vendor module:
 
-``` javascript
+```js
 var animalCSS = require('animals/dist/style.css');
 ```
 
@@ -67,7 +67,7 @@ You can customize the vendor folder and the order the should resolve in with the
 
 Use the same AMD syntax to load vendor modules asynchronously as well:
 
-``` javascript
+```js
 require(['animals'], function(Animal) {
   var bear = new Animal('bear');
 });

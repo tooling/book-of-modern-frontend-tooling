@@ -7,7 +7,7 @@ The most popular CSS preprocessors are [Sass](http://sass-lang.com/) and [Less](
 Sass was originally a Ruby gem, although there are versions for other languages, like C or Node.js. Once installed[^install], you can compile a Sass stylesheet with:
 
 ```bash
-sass main.sass main.css
+$ sass main.sass main.css
 ```
 
 [^install]: `gem install sass`
@@ -19,7 +19,7 @@ The good news is that you can integrate the compiling part into Grunt, so it's p
 The recommended plugin for Sass is `grunt-contrib-sass`, and you can install it like any other Grunt plugin:
 
 ```bash
-npm --save-dev grunt-contrib-sass
+$ npm --save-dev grunt-contrib-sass
 ```
 
 Don't forget to load the task in your `Gruntfile.js`:
@@ -41,7 +41,7 @@ The plugin we are using is a bit special, since it *requires* you to create **ta
 A target is just a name associated to a task configuration. Let's say that you want to have a Sass configuration for development (`dev`) different from the configuration for production (`prod`)[^names]. Once you define these two targets, you can run a task target with:
 
 ```
-grunt sass:dev
+$ grunt sass:dev
 ```
 
 [^names]: Note that these are arbitrary names.
@@ -87,7 +87,7 @@ sass: {
       ext: '.css',
       expand: true
     }]
-  }   
+  }
 }
 ```
 

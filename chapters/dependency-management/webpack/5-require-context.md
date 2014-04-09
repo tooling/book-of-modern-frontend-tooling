@@ -4,7 +4,7 @@ The `context` with webpack refers to the base folder in which modules are resolv
 
 Contexts can be generated on the fly as well using `require.context()`. This will create a new require method that operates within the constraints specified for the context. A useful example is when you would like to require all or certain tests within your test suite:
 
-``` javascript
+```js
 var requireTest = require.context('./tests', true, /_test\.js$/);
 ```
 
@@ -16,20 +16,20 @@ This will create a context with:
 
 Now we can use this new require function to resolve our test file `./tests/bear_test.js`:
 
-``` javascript
+```js
 var bearTest = requireTest('./bear_test.js');
 ```
 
 Or more useful, retrieving a list of modules the context contains (`require.keys()`) to require all tests within the `./tests` folder that end with `_test.js`:
 
-``` javascript
+```js
 var requireTest = require.context('./tests', true, /_test\.js$/);
 requireTest.keys().forEach(requireTest);
 ```
 
 Or setup to ignore certain tests:
 
-``` javascript
+```js
 var requireTest = require.context('./tests', true, /_test\.js$/);
 var ignoredTests = [
   './ignoreme_test.js'
