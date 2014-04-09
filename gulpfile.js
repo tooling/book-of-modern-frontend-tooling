@@ -148,7 +148,7 @@ gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
         tocContent: tocFile
       }
     }))
-    .pipe(gulp.dest(SITE_DIR));
+    .pipe(gulp.dest(SITE_DIR + '/book-of-modern-frontend-tooling/'));
 });
 
 /*
@@ -165,7 +165,7 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
     .on('change', function (file) {
       var filePath = path.relative(__dirname, file.path);
 
-      if ( filePath.indexOf(TEMPLATE_VIEWS_DIR) === 0 || 
+      if ( filePath.indexOf(TEMPLATE_VIEWS_DIR) === 0 ||
         filePath.indexOf(TEMPLATE_SASS_DIR) === 0 ) {
         gulp.run('generate:site');
       } else {

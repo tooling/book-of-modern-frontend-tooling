@@ -1,4 +1,4 @@
-* [Introduction](introduction.md)
+* [Introduction](index.md)
 
 * Build Systems
   * [Modern tools vs shell scripts](build-systems/modern-tools-vs-shell-scripts.md)
