@@ -12,7 +12,7 @@ Typically you will want webpack saved along with your other dependencies into yo
 
 An example folder structure for a webpack based project could be as such after we have `npm init` and `npm install webpack --save-dev`:
 
-``` shell
+```bash
 ├── package.json
 ├── node_modules
 ├── src
@@ -24,7 +24,7 @@ An example folder structure for a webpack based project could be as such after w
 
 Your `package.json` is key to orchestrating your builds. Here is an example `package.json` for our application:
 
-``` json
+```json
 {
   "name": "myapp",
   "version": "0.1.0",
@@ -43,7 +43,7 @@ The `src/app.js` file is the main entry point to your application. From here, we
 
 The `dist/` contains your distributable application. The `dist/bundle.js` file is created by webpack and is to be included by our `dist/index.html` file. In a typical webpack project, the main `index.html` is usually very simple like such:
 
-``` html
+```html
 <!doctype html>
 <html>
 <head>
@@ -61,7 +61,7 @@ In the `src/app.js`, type in `alert('Hello world!');`. Then in your terminal typ
 
 The power of webpack is through its ability to include assets that compose the final web application. Let's create and include another JavaScript file. Create the folder and file `src/js/alert.js`:
 
-``` shell
+```bash
 ├── package.json
 ├── node_modules
 ├── src
@@ -75,7 +75,7 @@ The power of webpack is through its ability to include assets that compose the f
 
 We'll turn `src/js/alert.js` into a module by adding the contents:
 
-``` js
+```js
 module.exports = function (what) {
   alert('Hello ' + what + '!');
 };
@@ -85,7 +85,7 @@ module.exports = function (what) {
 
 Within our application entry point `src/app.js` we can use this module with:
 
-``` js
+```js
 var yell = require('./js/alert.js');
 yell('world');
 ```
@@ -104,7 +104,7 @@ For stylesheets we will use two loaders: one to turn CSS into a module and one t
 
 Next create a folder and file `src/css/style.css` and add some basic CSS rules:
 
-``` css
+```css
 body {
   background-color: #ddd;
 }
@@ -112,7 +112,7 @@ body {
 
 Then in your application entry point `src/app.js`, require the stylesheet prefixing the loaders in the desired order:
 
-``` js
+```js
 require('style!css!./css/style.css');
 ```
 
@@ -122,7 +122,7 @@ This statement will read the `src/css/style.css` file, transform it into a modul
 
 As the application grows, you may want to configure webpack to handle certain things automatically. This can be done with a `webpack.config.js` file:
 
-``` shell
+```bash
 ├── package.json
 ├── webpack.config.js
 ├── node_modules
@@ -139,7 +139,7 @@ As the application grows, you may want to configure webpack to handle certain th
 
 The `webpack.config.js` file is just like any other node module where you export the configuration for webpack to use. Here is an example `webpack.config.js` that specifies our entry file, output path and file and instructs webpack to always use the `css` and `style` loaders for any file that ends with `.css`:
 
-``` js
+```js
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -156,7 +156,7 @@ module.exports = {
 
 Now we can update our `package.json` script to just call `webpack` as our entry and output paths are in our config:
 
-``` json
+```json
 "scripts": {
   "start": "webpack"
 }
@@ -164,7 +164,7 @@ Now we can update our `package.json` script to just call `webpack` as our entry 
 
 Then update our application entry point `src/app.js` to require our stylesheet without needing to prefix loaders:
 
-``` js
+```js
 require('./css/style.css');
 ```
 
@@ -178,7 +178,7 @@ By default, webpack is configured to resolve modules installed by npm within the
 
 With npm, let's install and load a module. [hash-change](https://www.npmjs.org/package/hash-change) is a simple module that notifies us when the hash in the URL has changed. Install it into the `node_modules` folder by typing: `npm install hash-change`. Then add the following to your `src/app.js`:
 
-``` js
+```js
 var yell = require('./js/alert.js');
 require('hash-change').on('change', function(hash) {
   yell(hash);
@@ -193,7 +193,7 @@ If a library is not available to a package manager, you can simply download and 
 
 The third party module directories are completely customizable. You can use npm, Bower, JamJS, Component, Volo or any combination of the lot. In our `webpack.config.js`, let's add the `resolve.modulesDirectories` config option to make our app first search the `node_modules` folder, then `bower_components` (the default install location for Bower) and finally our agnostic `web_modules` folder, in that order.
 
-``` js
+```js
 module.exports = {
   entry: './src/app.js',
   output: {

@@ -4,8 +4,8 @@
 
 Browserify is installed globally through npm and gives you a command line tool for running Browserify and generating output files. Run the following command:
 
-```sh
-npm install --global browserify
+```bash
+$ npm install --global browserify
 ```
 
 You should now have access to the `browserify` command. Let's go ahead and use it in a basic example.
@@ -14,15 +14,15 @@ You should now have access to the `browserify` command. Let's go ahead and use i
 
 Say we're working on a project and we'd like to take advantage of [Underscore](http://underscorejs.org/), a utility belt library full of useful JavaScript functions. It's also available on npm, so the first step is to install it.
 
-```sh
-npm install --save underscore
+```bash
+$ npm install --save underscore
 ```
 
 The `--save` flag will add Underscore as a dependency to your `package.json` file.
 
 Now we can write some client side JavaScript that will require Underscore, in `app.js`:
 
-```javascript
+```js
 var _ = require('underscore');
 console.log(_.max([1,2,3,4,5]));
 ```
@@ -31,8 +31,8 @@ If you were to try to run this in a browser now it would fail, because there is 
 
 To generate a bundled JavaScript file, we need to pass Browserify the main file in our application. It will then recursively go through each file and its dependencies.
 
-```sh
-browserify app.js --output bundle.js
+```bash
+$ browserify app.js --output bundle.js
 ```
 
 This instructs Browserify to start parsing at `app.js` and then output to `bundle.js`. Now we can add `bundle.js` to our HTML file:

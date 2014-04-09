@@ -4,7 +4,7 @@ Multiple entry points can be useful if your application has multiple ways it can
 
 Multiple entry points are specified by supplying an array or object to the `entry` configuration option in your `webpack.config.js`:
 
-``` javascript
+```js
 module.exports = {
   entry: {
     desktop: './src/desktop.js',
@@ -24,7 +24,7 @@ This will create two separate builds within the `./dist` folder named: `./dist/d
 
 webpack includes another directive `'[hash]'` to generate a hash name based upon your build. This is useful in conjunction with setting a long expiration time as the file is served, such as 1 year. Consumers of your app will hopefully cache your application and quickly reload from their local copy upon subsequent visits. Then when your build has changed and a new hash is generated, consumers be given the new file and the latest version of your application.
 
-``` javascript
+```js
 module.exports = {
   entry: './src/main.js',
   output: {

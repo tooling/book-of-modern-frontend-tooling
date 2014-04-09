@@ -6,7 +6,7 @@ The following is instructions on how to integrate webpack with common build tool
 
 webpack at its core is a Node.js library and exposes an API to bundle programmatically. To add bundling to your Node.js program first install webpack with `npm install webpack --save-dev`. Then create a script with the following contents:
 
-``` javascript
+```js
 // require the webpack Node.js library
 var webpack = require('webpack');
 
@@ -25,7 +25,7 @@ webpack({
 
 To actively watch files and compile when a file changes, use the `watch` method:
 
-``` javascript
+```js
 var webpack = require('webpack');
 
 // Create an instance of the compiler
