@@ -22,7 +22,7 @@ The `--save` flag will add Underscore as a dependency to your `package.json` fil
 
 Now we can write some client side JavaScript that will require Underscore, in `app.js`:
 
-```javascript
+```js
 var _ = require('underscore');
 console.log(_.max([1,2,3,4,5]));
 ```
