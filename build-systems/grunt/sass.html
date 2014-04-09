@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"><base href="/book-of-modern-frontend-tooling/"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
-<li><p><a href="introduction.html">Introduction</a></p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><link rel="stylesheet" href="/book-of-modern-frontend-tooling/assets/css/style.css"><base href="/book-of-modern-frontend-tooling/"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="index.html">Introduction</a></p>
 </li>
 <li><p>Build Systems</p>
 <ul>
@@ -39,7 +39,6 @@
 <li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
 </ul>
 </li>
-<li>NPM browserify</li>
 </ul>
 </li>
 <li>Scaffolding<ul>
@@ -52,59 +51,73 @@
 <p><strong>CSS preprocessors</strong> can compile CSS stylesheets from other (more powerful) styling languages. These new languages have features like variables, functions, mixins (to re-use code), etc. and they will change for the better the way you approach class naming an use.</p>
 <p>The most popular CSS preprocessors are <a href="http://sass-lang.com/">Sass</a> and <a href="http://lesscss.org/">Less</a>, and since both of them do their job really well, it&#39;s up to you to decide which one you like the most. This chapter will cover Sass examples, but the way to integrate Less in Grunt is similar.</p>
 <p>Sass was originally a Ruby gem, although there are versions for other languages, like C or Node.js. Once installed[^install], you can compile a Sass stylesheet with:</p>
-<pre><code class="lang-bash">sass main.sass main.css
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>sass main.sass main.css
+</pre></div>
+
 </code></pre>
 <p>[^install]: <code>gem install sass</code></p>
 <p>The good news is that you can integrate the compiling part into Grunt, so it&#39;s part of your regular workflow.</p>
 <h2 id="install-the-plugin">Install the plugin</h2>
 <p>The recommended plugin for Sass is <code>grunt-contrib-sass</code>, and you can install it like any other Grunt plugin:</p>
-<pre><code class="lang-bash">npm --save-dev grunt-contrib-sass
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>npm --save-dev grunt-contrib-sass
+</pre></div>
+
 </code></pre>
 <p>Don&#39;t forget to load the task in your <code>Gruntfile.js</code>:</p>
-<pre><code class="lang-js">module.exports = function (grunt) {
-  grunt.loadNpmTasks(&#39;grunt-contrib-sass&#39;);
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-sass&#39;</span><span class="p">);</span>
 
-  grunt.initConfig({
-    sass: {} // config goes here
-  });
-};
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    <span class="nx">sass</span><span class="o">:</span> <span class="p">{}</span> <span class="c1">// config goes here</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+
 </code></pre>
 <h2 id="task-targets">Task targets</h2>
 <p>The plugin we are using is a bit special, since it <em>requires</em> you to create <strong>targets</strong> (or configurations) for it.</p>
 <p>A target is just a name associated to a task configuration. Let&#39;s say that you want to have a Sass configuration for development (<code>dev</code>) different from the configuration for production (<code>prod</code>)[^names]. Once you define these two targets, you can run a task target with:</p>
-<pre><code>grunt sass:dev
+<pre><code><div class="highlight"><pre><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">sass</span><span class="o">:</span><span class="nx">dev</span>
+</pre></div>
+
 </code></pre><p>[^names]: Note that these are arbitrary names.</p>
 <p>When a task has multiple targets, if you omit the target name, then <em>all targets</em> will be executed. We will see examples of this use in other plugins.</p>
 <p>The way you define targets, is by adding them as a key in the configuration object. For instance:</p>
-<pre><code class="lang-js">grunt.initConfig({
-  sass: {
-    dev: {}, // config for target &#39;dev&#39; here
-    prod: {}
-  }
-});
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">dev</span><span class="o">:</span> <span class="p">{},</span> <span class="c1">// config for target &#39;dev&#39; here</span>
+    <span class="nx">prod</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
 </code></pre>
 <h2 id="source-destination-file-matching">Source-destination file-matching</h2>
 <p>The <code>sass</code> task is different from the <code>jshint</code> task in the way the accept files. With the linter, you just needed to supply input files; but <code>sass</code> requires both <em>input</em> (source) and <em>output</em> (destination) files.</p>
 <p>The easiest — but less powerful — way to supply these source-destination files is by using a <em>files Object</em>. See this example:</p>
-<pre><code class="lang-js">sass: {
-  dev: {
-    files: {&#39;styles/screen.css&#39;: [&#39;sass/common.sass&#39;, &#39;sass/main.sass&#39;]}
-  }
-}
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dev</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;styles/screen.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;sass/common.sass&#39;</span><span class="p">,</span> <span class="s1">&#39;sass/main.sass&#39;</span><span class="p">]}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>There, the destination is <code>screen.css</code>, whereas the source is a list of files (<code>common.sass</code> and <code>main.sass</code>).</p>
 <p>If you have only a few sass files, this mapping is probably good enough. However, there is a way to have a <strong>dynamic mapping</strong>, in which the destination files are unknown. Here is an example:</p>
-<pre><code class="lang-js">sass: {
-  dev: {
-    files: [{
-      cwd: &#39;sass&#39;,
-      dest: &#39;styles&#39;,
-      src: [&#39;*.{sass.scss}&#39;],
-      ext: &#39;.css&#39;,
-      expand: true
-    }]
-  }   
-}
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dev</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">[{</span>
+      <span class="nx">cwd</span><span class="o">:</span> <span class="s1">&#39;sass&#39;</span><span class="p">,</span>
+      <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;styles&#39;</span><span class="p">,</span>
+      <span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;*.{sass.scss}&#39;</span><span class="p">],</span>
+      <span class="nx">ext</span><span class="o">:</span> <span class="s1">&#39;.css&#39;</span><span class="p">,</span>
+      <span class="nx">expand</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>The key here is the <strong><code>expand</code> flag</strong>, since setting it to <code>true</code> enables dynamic mapping. The task will get the <code>src</code> files, located under the <code>cwd</code> directory, and copy them into <code>dest</code> with the same name but <code>ext</code> extension. So, if we have two files <code>sass/main.sass</code> and <code>sass/common.sass</code> we would have them compiled into <code>styles/main.css</code> and <code>styles/common.css</code>.</p>
 <p>Also, note that we have <strong>an array of Objects</strong>, so you can specify more than one mapping rule set.</p>
@@ -112,52 +125,50 @@
 <h2 id="configuration-options">Configuration options</h2>
 <p>The <strong>options</strong> that you have available mimic what you can pass to Sass in the command line[^sass-docs]: the output style, whether to include or not line numbers, where is located the cache, etc.</p>
 <p>Here is a common configuration for development:</p>
-<pre><code class="lang-js">sass: {
-  dev: {
-    options: {
-      style: &#39;expanded&#39;, // output style
-      lineNumbers: true,
-      sourcemap: true // generate Source Maps for the browser
-    },
-    files: {&#39;css/main.css&#39;: [&#39;sass/*.{sass,scss}&#39;]}
-  }
-}
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dev</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;expanded&#39;</span><span class="p">,</span> <span class="c1">// output style</span>
+      <span class="nx">lineNumbers</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">sourcemap</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// generate Source Maps for the browser</span>
+    <span class="p">},</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;css/main.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;sass/*.{sass,scss}&#39;</span><span class="p">]}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>[^sass-docs]: See <a href="https://github.com/gruntjs/grunt-contrib-sass">the plugin documentation</a> for a full list.</p>
 <h2 id="avoid-repetition-with-grunt-s-template-engine">Avoid repetition with Grunt&#39;s template engine</h2>
 <p>It is very likely that you will need to process <strong>the same</strong> Sass files in both your development and distribution targets. You could repeat the <code>files</code> configuration like this:</p>
-<pre><code class="lang-js">sass: {
-  dev: {
-    options: {style: &#39;expanded&#39;},
-    files: {&#39;css/main.css&#39;: [&#39;sass/*.{sass,scss}&#39;]}
-  },
-  prod: {
-    options: {style: &#39;compressed&#39;},
-    files: {&#39;css/main.css&#39;: [&#39;sass/*.{sass,scss}&#39;]}
-  }
-}
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dev</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span><span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;expanded&#39;</span><span class="p">},</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;css/main.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;sass/*.{sass,scss}&#39;</span><span class="p">]}</span>
+  <span class="p">},</span>
+  <span class="nx">prod</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span><span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;compressed&#39;</span><span class="p">},</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;css/main.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;sass/*.{sass,scss}&#39;</span><span class="p">]}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>A DRY[^dry] approach would be to take advantage of Grunt&#39;s <strong>template engine</strong>[^lo-dash]. Long story short: everything you include between <code>&lt;%=</code> and <code>%&gt;</code> in a string, will be processed as a template and — here&#39;s the cool part — you can use your tasks configuration properties as template variables, for instance: <code>&lt;%= jshint.files %&gt;</code>. </p>
 <p>[^lo-dash]: Powered by <a href="http://lodash.com/docs#template">Lo-Dash</a></p>
 <p>This is an improved version of the previous example:</p>
-<pre><code class="lang-js">sass: {
-  dev: {
-    options: {style: &#39;expanded&#39;},
-    files: {&#39;css/main.css&#39;: [&#39;sass/*.{sass,scss}&#39;]}
-  },
-  prod: {
-    options: {style: &#39;compressed&#39;},
-    files: &#39;&lt;%= sass.dev.files %&gt;&#39;
-  }
-}
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">sass</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dev</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span><span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;expanded&#39;</span><span class="p">},</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;css/main.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;sass/*.{sass,scss}&#39;</span><span class="p">]}</span>
+  <span class="p">},</span>
+  <span class="nx">prod</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span><span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;compressed&#39;</span><span class="p">},</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="s1">&#39;&lt;%= sass.dev.files %&gt;&#39;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>[^dry]: &quot;Don&#39;t Repeat Yourself&quot;</p>
-</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
-_gaq.push(['_setAccount', google_uid]);
-_gaq.push(['_trackPageview']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();</script></body></html>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

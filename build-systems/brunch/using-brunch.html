@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"><base href="/book-of-modern-frontend-tooling/"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
-<li><p><a href="introduction.html">Introduction</a></p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><link rel="stylesheet" href="/book-of-modern-frontend-tooling/assets/css/style.css"><base href="/book-of-modern-frontend-tooling/"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
+<li><p><a href="index.html">Introduction</a></p>
 </li>
 <li><p>Build Systems</p>
 <ul>
@@ -39,7 +39,6 @@
 <li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
 </ul>
 </li>
-<li>NPM browserify</li>
 </ul>
 </li>
 <li>Scaffolding<ul>
@@ -51,29 +50,30 @@
 </div></div><div id="content" class="content col-md-9"><h1 id="using-brunch">Using Brunch</h1>
 <h2 id="configuration">Configuration</h2>
 <p>Brunch configuration is incredibly simple. Here&#39;s a sample <code>config.coffee</code> file for an AngularJS and CoffeeScript file.</p>
-<pre><code class="lang-coffee">conventions:
-  assets: /^app\/assets\//
-modules:
-  definition: false
-  wrapper: false
-paths:
-  public: &#39;_public&#39;
-files:
-  javascripts:
-    joinTo:
-      &#39;js/vendor.js&#39;: /^bower_components/
-      &#39;js/app.js&#39;: /^app\/scripts/
-    order:
-      before: [
-        &#39;bower_components/lodash/lodash.js&#39;
-        &#39;bower_components/jquery/jquery.js&#39;
-        &#39;bower_components/angular/angular.js&#39;
-      ]
-  stylesheets:
-    joinTo:
-      &#39;css/app.css&#39;: /^app\/styles/
-</code></pre>
-<p>(N.B: We&#39;re using CoffeeScript here, but you can use raw JavaScript instead if you prefer - just name your file <code>config.js</code> instead)</p>
+<pre><code><div class="highlight"><pre><span class="nx">conventions</span><span class="o">:</span>
+  <span class="nx">assets</span><span class="o">:</span> <span class="sr">/^app\/assets\//</span>
+<span class="nx">modules</span><span class="o">:</span>
+  <span class="nx">definition</span><span class="o">:</span> <span class="kc">false</span>
+  <span class="nx">wrapper</span><span class="o">:</span> <span class="kc">false</span>
+<span class="nx">paths</span><span class="o">:</span>
+  <span class="kr">public</span><span class="o">:</span> <span class="s1">&#39;_public&#39;</span>
+<span class="nx">files</span><span class="o">:</span>
+  <span class="nx">javascripts</span><span class="o">:</span>
+    <span class="nx">joinTo</span><span class="o">:</span>
+      <span class="s1">&#39;js/vendor.js&#39;</span><span class="o">:</span> <span class="sr">/^bower_components/</span>
+      <span class="s1">&#39;js/app.js&#39;</span><span class="o">:</span> <span class="sr">/^app\/scripts/</span>
+    <span class="nx">order</span><span class="o">:</span>
+      <span class="nx">before</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;bower_components/lodash/lodash.js&#39;</span>
+        <span class="s1">&#39;bower_components/jquery/jquery.js&#39;</span>
+        <span class="s1">&#39;bower_components/angular/angular.js&#39;</span>
+      <span class="p">]</span>
+  <span class="nx">stylesheets</span><span class="o">:</span>
+    <span class="nx">joinTo</span><span class="o">:</span>
+      <span class="s1">&#39;css/app.css&#39;</span><span class="o">:</span> <span class="sr">/^app\/styles/</span>
+</pre></div>
+
+</code></pre><p>(N.B: We&#39;re using CoffeeScript here, but you can use raw JavaScript instead if you prefer - just name your file <code>config.js</code> instead)</p>
 <p>The configuration file is simply specifying what folders Brunch should look for and what it should do with them. So, using regular expressions we tell Brunch that the <code>app/assets</code> folder should be copied directly into the output folder, which we name <code>_public</code> (see the <code>paths</code> property).</p>
 <p>The rest of this is fairly self explanatory, although it&#39;s important to note that Brunch uses the new bower.json files to find packages located in <code>bower_components</code> - so only one of <code>jquery.js</code> and <code>jquery.min.js</code> will be included in <code>vendor.js</code>.</p>
 <p>Finally, we&#39;re also telling Brunch to include certain scripts before others in the vendor.js file, mainly to make sure that <code>angular.js</code> uses jQuery rather than its jQLite implementation.</p>
@@ -81,42 +81,36 @@ files:
 <p>Looking at the config file again, you&#39;ll notice there&#39;s no configuration or &#39;registering&#39; of plugins - although most plugins can be configured, the default behaviour usually works with no configuration.</p>
 <p>Brunch plugins are just npm packages. Any Brunch plugin that&#39;s installed will automatically be used. Using <code>npm install --save-dev plugin-name</code> will install the package and update <code>package.json</code>.</p>
 <p>Looking at the <code>package.json</code> file, we can see the plugins we&#39;ll be using in this project:</p>
-<pre><code class="lang-json">{
-  &quot;name&quot;: &quot;project&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;dependencies&quot;: {
-    &quot;express&quot;: &quot;latest&quot;,
-    &quot;mongojs&quot;: &quot;latest&quot;,
-    &quot;mongoose&quot;: &quot;latest&quot;,
-    &quot;underscore&quot;: &quot;latest&quot;,
-    &quot;consolidate&quot;: &quot;~0.9.1&quot;,
-    &quot;q&quot;: &quot;~0.9.6&quot;,
-    &quot;webshot&quot;: &quot;~0.5.1&quot;,
-    &quot;gm&quot;: &quot;~1.11.1&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;javascript-brunch&quot;: &quot;&gt;= 1.0 &lt; 1.8&quot;,
-    &quot;coffee-script-brunch&quot;: &quot;&gt;= 1.0 &lt; 1.8&quot;,
-    &quot;css-brunch&quot;: &quot;&gt;= 1.0 &lt; 1.8&quot;,
-    &quot;ngmin-uglify-js-brunch&quot;: &quot;~1.7.2&quot;,
-    &quot;clean-css-brunch&quot;: &quot;&gt;= 1.0 &lt; 1.8&quot;,
-    &quot;auto-reload-brunch&quot;: &quot;~1.6.5&quot;,
-    &quot;less-brunch&quot;: &quot;~1.5.2&quot;
-  },
-  &quot;engines&quot;: {
-    &quot;node&quot;: &quot;&gt;=0.8.0&quot;
-  }
-}
+<pre><code class="lang-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;project&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;express&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mongojs&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mongoose&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;underscore&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;consolidate&quot;</span><span class="p">:</span> <span class="s2">&quot;~0.9.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;q&quot;</span><span class="p">:</span> <span class="s2">&quot;~0.9.6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;webshot&quot;</span><span class="p">:</span> <span class="s2">&quot;~0.5.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;gm&quot;</span><span class="p">:</span> <span class="s2">&quot;~1.11.1&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;javascript-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;= 1.0 &lt; 1.8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;coffee-script-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;= 1.0 &lt; 1.8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;css-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;= 1.0 &lt; 1.8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ngmin-uglify-js-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;~1.7.2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;clean-css-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;= 1.0 &lt; 1.8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;auto-reload-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;~1.6.5&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;less-brunch&quot;</span><span class="p">:</span> <span class="s2">&quot;~1.5.2&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;engines&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;node&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=0.8.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 </code></pre>
 <p>Here we include the &#39;base&#39; plugins for JavaScript and CSS, the CoffeeScript and LESS compilation plugins, the CSS minification plugin <code>clean-css-brunch</code>, and the <code>ngmin-uglify-js-brunch</code> - a plugin that runs JavaScript code through <a href="https://github.com/btford/ngmin">ngmin</a>, the AngularJS &#39;pre-minifier&#39;, then uglifyjs to compress the code. We also use the auto reload plugin, which sets up a web socket server and refreshes the page whenever any files on disk are changed. </p>
 <h2 id="-workflow-"><em>Workflow</em></h2>
 <h2 id="-deployment-"><em>Deployment</em></h2>
-</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
-_gaq.push(['_setAccount', google_uid]);
-_gaq.push(['_trackPageview']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();</script></body></html>
+</div></div><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>
