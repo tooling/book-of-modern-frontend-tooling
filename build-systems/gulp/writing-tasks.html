@@ -56,15 +56,17 @@
 <pre><code>npm install --save-dev gulp-concat
 </code></pre><h3 id="2-include-concat-plugin">2. Include Concat Plugin</h3>
 <p>Now that we have installed our concat plugin locally, we need to include it in our gulpfile so that we may use it in our tasks.</p>
-<pre><code>var concat = require(&#39;gulp-concat&#39;);
-</code></pre><h3 id="3-create-concat-task">3. Create Concat Task</h3>
+<pre><code class="lang-javascript">var concat = require(&#39;gulp-concat&#39;);
+</code></pre>
+<h3 id="3-create-concat-task">3. Create Concat Task</h3>
 <p>Now, concatenating is as simple as passing a .pipe(concat(&#39;filename&#39;)) in your tasks pipechain. Like so:</p>
-<pre><code>gulp.task(&#39;concat&#39;, function(){
+<pre><code class="lang-javascript">gulp.task(&#39;concat&#39;, function(){
     gulp.src(&#39;src/js/*.js&#39;)         // Targets All JS Files In Our src/ Directory
         .pipe(concat(&#39;all.js&#39;))     // Creates New all.js File With Code From Target Files
         .pipe(gulp.dest(&#39;dist&#39;));   // Places The New File In Our dist/ Directory
 });
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>Reminder! The <code>.pipe()</code> is how we connect our smaller, single-purpose applications/libraries together. This collection of pipes is referred to as the <em>pipechain</em>.</p>
 </blockquote>
 <p>This task looks for any changes that have been made to our .js files in our <code>src/js/</code> directory. It then takes all of those files and concatenates them into a new file named <code>all.js</code> and saves it into our compiled <code>dist/</code> directory for use in production. To avoid confusion, it is also worth noting that our gulp.dest() parameter is relative to our gulpfile.js.</p>
@@ -73,62 +75,70 @@
 <h3 id="1-install-jshint-plugin">1. Install JSHint Plugin</h3>
 <pre><code>npm install --save-dev gulp-jshint
 </code></pre><h3 id="2-include-jshint-plugin">2. Include JSHint Plugin</h3>
-<pre><code>var jshint = require(&#39;gulp-jshint&#39;);
-</code></pre><h3 id="3-create-lint-task">3. Create Lint Task</h3>
+<pre><code class="lang-javascript">var jshint = require(&#39;gulp-jshint&#39;);
+</code></pre>
+<h3 id="3-create-lint-task">3. Create Lint Task</h3>
 <p>In your gulpfile add the following code:</p>
-<pre><code>gulp.task(&#39;lint&#39;, function(){
+<pre><code class="lang-javascript">gulp.task(&#39;lint&#39;, function(){
     gulp.src(&#39;src/js/*.js&#39;)
         .pipe(jshint())
-        .pipe(jshint.reporter(&#39;default&#39;)); 
+        .pipe(jshint.reporter(&#39;default&#39;));
 });
-</code></pre><p>Now, when you run this task it will check for problems in your code and then send those along to the reporter that you have assigned which will output them in your command-line application. In this case we have used the default reporter for the sake of simplicity. </p>
+</code></pre>
+<p>Now, when you run this task it will check for problems in your code and then send those along to the reporter that you have assigned which will output them in your command-line application. In this case we have used the default reporter for the sake of simplicity.</p>
 <h2 id="minifying-your-code">Minifying Your Code</h2>
 <p>Minifying your code is another performance improvement like concatenation except instead of reducing the amount of files, it reduces the size of your files. Using both together is a simple way to improve the efficiency and performance of your website or application.</p>
 <h3 id="1-install-uglify-plugin">1. Install Uglify Plugin</h3>
 <pre><code>npm install --save-dev gulp-uglify
 </code></pre><h3 id="2-include-uglify-plugin">2. Include Uglify Plugin</h3>
 <p>Open your gulpfile.js and add the following code to the top.</p>
-<pre><code>var uglify = require(&#39;gulp-uglify&#39;);
-</code></pre><h3 id="3-create-minify-task">3. Create Minify Task</h3>
+<pre><code class="lang-javascript">var uglify = require(&#39;gulp-uglify&#39;);
+</code></pre>
+<h3 id="3-create-minify-task">3. Create Minify Task</h3>
 <p>Now, we will write our minify task. Add the following code to your gulpfile.</p>
-<pre><code>gulp.task(&#39;minify&#39;, function() {
+<pre><code class="lang-javascript">gulp.task(&#39;minify&#39;, function() {
     gulp.src(&#39;src/js/*.js&#39;)
         .pipe(uglify())
         .pipe(gulp.dest(&#39;dist&#39;));
 });
-</code></pre><h2 id="css-preprocessing">CSS Preprocessing</h2>
+</code></pre>
+<h2 id="css-preprocessing">CSS Preprocessing</h2>
 <h3 id="1-install-preprocessor-plugin">1. Install Preprocessor Plugin</h3>
 <p>Identify the preprocessor that your project will be using (e.g. Sass, Less, Stylus, Myth) and then locate the correct plugin for gulp.</p>
 <p>For instance, to install the gulp-sass plugin:</p>
 <pre><code>npm install --save-dev gulp-sass
 </code></pre><h3 id="2-include-preprocessor-plugin">2. Include Preprocessor Plugin</h3>
 <p>Now that we have installed the proper plugin, we need to include it at the top of our gulpfile. In our case we&#39;re using Sass, but this applies to any of the others as well.</p>
-<pre><code>var sass = require(&#39;gulp-sass&#39;);
-</code></pre><h3 id="3-create-preprocessing-task">3. Create Preprocessing Task</h3>
-<pre><code>gulp.task(&#39;styles&#39;, function() {
+<pre><code class="lang-javascript">var sass = require(&#39;gulp-sass&#39;);
+</code></pre>
+<h3 id="3-create-preprocessing-task">3. Create Preprocessing Task</h3>
+<pre><code class="lang-javascript">gulp.task(&#39;styles&#39;, function() {
     gulp.src(&#39;src/scss/*.scss&#39;)
         .pipe(sass())
         .pipe(gulp.dest(&#39;dist&#39;));
 });
-</code></pre><h2 id="creating-a-default-task-watching-our-files">Creating A Default Task &amp; Watching Our Files</h2>
+</code></pre>
+<h2 id="creating-a-default-task-watching-our-files">Creating A Default Task &amp; Watching Our Files</h2>
 <p>The default task is the task that runs when you input <code>gulp</code> in your command line tool without passing it a specific task name. This will reference the other tasks that we have created including a new <strong>watch</strong> task that will check for changes to our files and run our tasks each time we save them.</p>
-<pre><code>gulp.task(&#39;watch&#39;, function() {
-    gulp.watch(&#39;src/js/*.js&#39;, [scripts]); 
-    gulp.watch(&#39;src/scss/*.scss&#39;, [styles]); 
+<pre><code class="lang-javascript">gulp.task(&#39;watch&#39;, function() {
+    gulp.watch(&#39;src/js/*.js&#39;, [&#39;scripts&#39;]);
+    gulp.watch(&#39;src/scss/*.scss&#39;, [&#39;styles&#39;]);
 });
 
 gulp.task(&#39;default&#39;, [&#39;scripts&#39;, &#39;styles&#39;, &#39;watch&#39;]);
-</code></pre><h2 id="live-reload">Live Reload</h2>
+</code></pre>
+<h2 id="live-reload">Live Reload</h2>
 <p>Live Reload allows us to refresh our browser window automatically when a file is saved. Implementing this is a little more involved and takes an additional step compared to the tasks that we have setup so far. Although, don&#39;t worry, it is still quite simple to do!</p>
 <h3 id="1-install-plugins">1. Install Plugins</h3>
 <p>To get LiveReload working properly we need a couple plugins: tiny-lr and gulp-livereload.</p>
 <pre><code>npm install --save-dev gulp-livereload
 </code></pre><p>The tiny-lr plugin is a <em>tiny</em> implementation of the LiveReload server that allows us to communicate with our browser so that it can refresh our pages when we save our files. The gulp-livereload plugin works as a bridge between gulp and LiveReload and allows us to pipe our file changes to our tiny-lr server so it knows exactly when to refresh our browser.</p>
 <h3 id="2-include-plugin-in-gulpfile">2. Include Plugin In gulpfile</h3>
-<pre><code>var livereload = require(&#39;gulp-livereload&#39;);
-</code></pre><h3 id="3-add-livereload-to-tasks">3. Add LiveReload To Tasks</h3>
+<pre><code class="lang-javascript">var livereload = require(&#39;gulp-livereload&#39;);
+</code></pre>
+<h3 id="3-add-livereload-to-tasks">3. Add LiveReload To Tasks</h3>
 <p>Now, we need to make a few changes. First we need add an additional pipe to the tasks that we want to reload our browser. Second, we need to start our LiveReload server in our default task and assign it a port to listen to.</p>
-<pre><code>// Compile/Process Styles
+<pre><code class="lang-javascript">// Compile/Process Styles
 gulp.task(&#39;styles&#39;, function() {
     gulp.src(&#39;src/scss/*.scss&#39;)
         .pipe(sass())
@@ -146,21 +156,23 @@ gulp.task(&#39;scripts&#39;, function() {
 
 // Watch Task
 gulp.task(&#39;watch&#39;, function() {
-    gulp.watch(&#39;src/js/*.js&#39;, [scripts]); 
-    gulp.watch(&#39;src/scss/*.scss&#39;, [styles]); 
+    gulp.watch(&#39;src/js/*.js&#39;, [&#39;scripts&#39;]);
+    gulp.watch(&#39;src/scss/*.scss&#39;, [&#39;styles&#39;]);
 });
 
 // Default Task
 gulp.task(&#39;default&#39;, [&#39;scripts&#39;, &#39;styles&#39;, &#39;watch&#39;]);
-</code></pre><h3 id="4-add-livereload-script-to-your-page">4. Add LiveReload Script To Your Page</h3>
+</code></pre>
+<h3 id="4-add-livereload-script-to-your-page">4. Add LiveReload Script To Your Page</h3>
 <p>Now that our gulpfile has been setup we need to add a reference to the livereload.js file on our pages so that our browser can properly communicate with tiny-lr. There are multiple ways of doing this and it&#39;s really up to your personal preference. Let&#39;s go over a couple, and you can decide which is best for you.</p>
 <h4 id="manual">Manual</h4>
 <p>If you wish to manually add the LiveReload script, then open up your HTML file and simply include it just as you would any other script.</p>
-<pre><code>&lt;body&gt;
+<pre><code class="lang-html">&lt;body&gt;
     ...
     &lt;script src=&quot;http://localhost:35729/livereload.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
-</code></pre><p>That&#39;s it! You&#39;re ready to go. Keep in mind that you will have to manually include this on every page that you wish to reload automatically. In many cases that wont be much of a problem, but it is good to keep in mind if you run into issues.</p>
+</code></pre>
+<p>That&#39;s it! You&#39;re ready to go. Keep in mind that you will have to manually include this on every page that you wish to reload automatically. In many cases that wont be much of a problem, but it is good to keep in mind if you run into issues.</p>
 <h4 id="browser-extension">Browser Extension</h4>
 <p>If you prefer to avoid manually adding the script in yourself, you can download a simple browser extension that will add the script for you automatically.</p>
 <p>In this example I will be using Chrome, but there are also extensions available for Firefox and Safari. To install, head over to the Chrome Webstore and install the <a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei" title="LiveReload on Chrome Webstore">LiveReload extension</a>. Once you have it installed it will create a small icon that will allow you to enable or disable it quickly.</p>
@@ -168,14 +180,15 @@ gulp.task(&#39;default&#39;, [&#39;scripts&#39;, &#39;styles&#39;, &#39;watch&#3
 <h2 id="chaining-actions-together">Chaining Actions Together</h2>
 <p>The examples above are only performing a single action for the sake of simplicity, but you can actually chain many of those actions together into a single, more refined task. Gulp makes this incredibly easy.</p>
 <p>For example, we have created both a concat and a minify task separately, but in most cases we would likely need to perform these actions within the same task. Let&#39;s take a look at an example of how this can be done inside of our scripts task that we created earlier.</p>
-<pre><code>// Concat &amp; Minify Scripts
+<pre><code class="lang-javascript">// Concat &amp; Minify Scripts
 gulp.task(&#39;scripts&#39;, function() {
     gulp.src(&#39;src/js/*.js&#39;)
         .pipe(concat(&#39;all.js&#39;))
         .pipe(uglify())
         .pipe(gulp.dest(&#39;dist&#39;));
 });
-</code></pre><p>Now our scripts task not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task instead of creating two separate tasks dedicated to a single action.</p>
+</code></pre>
+<p>Now our scripts task not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task instead of creating two separate tasks dedicated to a single action.</p>
 </div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', google_uid]);
 _gaq.push(['_trackPageview']);
