@@ -1,94 +1,85 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><link rel="stylesheet" href="/assets/css/style.css"></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><br><ul>
 <li><p><a href="/introduction.html">Introduction</a></p>
 </li>
-<li><p><a href="">Build Systems</a></p>
+<li><p>Build Systems</p>
 <ul>
 <li><a href="/build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
-<li><p><a href="">Grunt</a></p>
-<ul>
-<li><a href="/build-systems/grunt/introduction.html">Introduction</a></li>
+<li>Grunt<ul>
 <li><a href="/build-systems/grunt/getting-started.html">Getting started</a></li>
 <li><a href="/build-systems/grunt/linter.html">Linting code</a></li>
 <li><a href="/build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
-<li><a href="/build-systems/grunt/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/build-systems/grunt/references.html">References</a></li>
 </ul>
 </li>
-<li><p><a href="">Brunch</a> </p>
-<ul>
+<li>Brunch<ul>
 <li><a href="/build-systems/brunch/introduction.html">Introduction</a></li>
 <li><a href="/build-systems/brunch/getting-started.html">Getting started</a></li>
 <li><a href="/build-systems/brunch/using-brunch.html">Using Brunch</a></li>
-<li><a href="/build-systems/brunch/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/build-systems/brunch/references.html">References</a></li>
 </ul>
 </li>
-<li><p><a href="">Gulp</a></p>
-<ul>
+<li>Gulp<ul>
 <li><a href="/build-systems/gulp/introduction.html">Introduction</a></li>
 <li><a href="/build-systems/gulp/getting-started.html">Getting started</a></li>
 <li><a href="/build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
-<li><a href="/build-systems/gulp/troubleshooting.html">Troubleshooting</a></li>
 <li><a href="/build-systems/gulp/references.html">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a href="">Dependency management</a></p>
+<li><p>Dependency management</p>
 <ul>
-<li><p><a href="">Bower</a></p>
-<ul>
+<li>Bower<ul>
 <li><a href="/dependency-management/bower/introduction.html">Introduction</a></li>
-<li><a href="/dependency-management/bower/getting-started.html">Getting started</a></li>
-<li><a href="/dependency-management/bower/bower-topic-1.html">Topic</a></li>
-<li><a href="/dependency-management/bower/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/dependency-management/bower/references.html">References</a></li>
 </ul>
 </li>
-<li><p><a href="">Component JS</a></p>
-<ul>
-<li><a href="/dependency-management/componentjs/introduction.html">Introduction</a></li>
-<li><a href="/dependency-management/componentjs/getting-started.html">Getting started</a></li>
-<li><a href="/dependency-management/componentjs/componentjs-topic-1.html">Topic</a></li>
-<li><a href="/dependency-management/componentjs/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/dependency-management/componentjs/references.html">References</a></li>
-</ul>
-</li>
-<li><p><a href="">NPM browserify</a></p>
-<ul>
+<li>Component JS</li>
+<li>NPM browserify<ul>
 <li><a href="/dependency-management/npm-browserify/introduction.html">Introduction</a></li>
 <li><a href="/dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
-<li><a href="/dependency-management/npm-browserify/npm-browserify-topic-1.html">Topic</a></li>
-<li><a href="/dependency-management/npm-browserify/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/dependency-management/npm-browserify/references.html">References</a></li>
+<li><a href="/dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="/dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
 </ul>
 </li>
+<li>NPM browserify</li>
 </ul>
 </li>
-<li><p><a href="">Scaffolding</a></p>
-<ul>
-<li><p><a href="">Loom</a></p>
-<ul>
-<li><a href="/scaffolding/loom/introduction.html">Introduction</a></li>
-<li><a href="/scaffolding/loom/getting-started.html">Getting started</a></li>
-<li><a href="/scaffolding/loom/loom-topic-1.html">Topic</a></li>
-<li><a href="/scaffolding/loom/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/scaffolding/loom/references.html">References</a></li>
-</ul>
-</li>
-<li><p><a href="">Yeoman</a></p>
-<ul>
-<li><a href="/scaffolding/yeoman/introduction.html">Introduction</a></li>
-<li><a href="/scaffolding/yeoman/getting-started.html">Getting started</a></li>
-<li><a href="/scaffolding/yeoman/yeoman-topic-1.html">Topic</a></li>
-<li><a href="/scaffolding/yeoman/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/scaffolding/yeoman/references.html">References</a></li>
-</ul>
-</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
 </ul>
 </li>
 </ul>
 </div></div><div id="content" class="content col-md-9"><h1 id="getting-started">Getting started</h1>
+<h2 id="installing-browserify">Installing Browserify</h2>
+<p>Browserify is installed globally through npm and gives you a command line tool for running Browserify and generating output files. Run the following command:</p>
+<pre><code class="lang-sh">npm install --global browserify
+</code></pre>
+<p>You should now have access to the <code>browserify</code> command. Let&#39;s go ahead and use it in a basic example.</p>
+<h2 id="basic-browserify-usage">Basic Browserify Usage</h2>
+<p>Say we&#39;re working on a project and we&#39;d like to take advantage of <a href="http://underscorejs.org/">Underscore</a>, a utility belt library full of useful JavaScript functions. It&#39;s also available on npm, so the first step is to install it.</p>
+<pre><code class="lang-sh">npm install --save underscore
+</code></pre>
+<p>The <code>--save</code> flag will add Underscore as a dependency to your <code>package.json</code> file.</p>
+<p>Now we can write some client side JavaScript that will require Underscore, in <code>app.js</code>:</p>
+<pre><code class="lang-javascript">var _ = require(&#39;underscore&#39;);
+console.log(_.max([1,2,3,4,5]));
+</code></pre>
+<p>If you were to try to run this in a browser now it would fail, because there is no global <code>require</code> function available. Once we have our code, we need to run it through Browserify to generate a browser specific file that defines a <code>require</code> function and deals with the dependencies for us.</p>
+<p>To generate a bundled JavaScript file, we need to pass Browserify the main file in our application. It will then recursively go through each file and its dependencies.</p>
+<pre><code class="lang-sh">browserify app.js --output bundle.js
+</code></pre>
+<p>This instructs Browserify to start parsing at <code>app.js</code> and then output to <code>bundle.js</code>. Now we can add <code>bundle.js</code> to our HTML file:</p>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Browserify Test 1&lt;/title&gt;
+        &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>And if you look in your console you should see the number &#39;5&#39; logged to your screen. It worked!</p>
 </div></div><hr><div id="footer" class="center">Copyright 2014</div></div><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', google_uid]);
 _gaq.push(['_trackPageview']);
