@@ -1,25 +1,18 @@
 {
   "name": "book-of-modern-frontend-tooling",
-  "version": "0.0.1",
   "description": "A book on tooling for modern webapps",
-  "main": "Gruntfile.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/addyosmani/book-of-modern-frontend-tooling"
-  },
+  "repository": "tooling/book-of-modern-frontend-tooling",
   "keywords": [
     "frontend",
     "tooling",
     "grunt",
     "yeoman",
-    "brunch"
+    "brunch",
+    "book",
+    "dev"
   ],
   "author": "The modern front-end tooling authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/addyosmani/book-of-modern-frontend-tooling/issues"
-  },
-  "homepage": "https://github.com/addyosmani/book-of-modern-frontend-tooling",
+  "license": "CC-BY-SA-4.0",
   "devDependencies": {
     "gulp-util": "~2.2.14",
     "gulp": "~3.5.5",
@@ -41,8 +34,7 @@
     "opn": "^0.1.1"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">=0.10.0"
   },
-  "peerDependencies": {},
-  "dependencies": {}
+  "private": true
 }
