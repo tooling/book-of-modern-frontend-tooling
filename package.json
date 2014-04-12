@@ -31,7 +31,8 @@
     "opn": "^0.1.1",
     "pygmentize-bundled": "^2.1.0",
     "rimraf": "^2.2.6",
-    "through2": "^0.4.1"
+    "through2": "^0.4.1",
+    "chalk": "^0.4.0"
   },
   "engines": {
     "node": ">=0.10.0"
