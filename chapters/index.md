@@ -2,7 +2,7 @@
 
 > This is a free, work-in-progress open-source book introducing you to the world of tooling for modern web applications.
 
-Over the past few years, there has been a new wave of highly compelling and immersive web applications. Some of them replacing native applications as they are on par (if not better) in terms of usability and features. To build and maintain such complex applications in a collaborative environment, it is important to use the right tool for the job. Unfortunately, there is no single place which documents available frontend tooling and provides an opinion for a developer. 
+Over the past few years, there has been a new wave of highly compelling and immersive web applications. Some of them replacing native applications as they are on par (if not better) in terms of usability and features. To build and maintain such complex applications in a collaborative environment, it is important to use the right tools. Unfortunately, there is no single place which documents available frontend tooling and provides an opinion for a developer. 
 
 The goal of this book is to walk developers through the application development lifecycle; help discover new concepts and introduce tooling that simplify building modern web applications.
 
