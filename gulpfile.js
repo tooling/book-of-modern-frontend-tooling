@@ -1,37 +1,38 @@
-var path = require('path');
-var os = require('os');
-var gulp = require('gulp');
-var rimraf = require('rimraf');
-var fs = require('fs');
-var pygmentize = require('pygmentize-bundled');
-var opn = require('opn');
-var chalk = require('chalk');
+var path        = require('path');
+var os          = require('os');
+var gulp        = require('gulp');
+var rimraf      = require('rimraf');
+var fs          = require('fs');
+var pygmentize  = require('pygmentize-bundled');
+var opn         = require('opn');
 
-var replace = require('gulp-replace');
-var gutil = require('gulp-util');
-var concat = require('gulp-concat');
-var pandoc = require('gulp-pandoc');
-var sass = require('gulp-ruby-sass');
-var markdown = require('gulp-markdown');
+var replace     = require('gulp-replace');
+var gutil       = require('gulp-util');
+var concat      = require('gulp-concat');
+var pandoc      = require('gulp-pandoc');
+var sass        = require('gulp-ruby-sass');
+var markdown    = require('gulp-markdown');
 var markdownpdf = require('gulp-markdown-pdf');
-var livereload = require('gulp-livereload');
-var layoutize = require('gulp-layoutize');
-var deploy = require('gulp-gh-pages');
-var srcFromToc = require('./gulp-plugin/gulp-parse-toc');
+var livereload  = require('gulp-livereload');
+var layoutize   = require('gulp-layoutize');
+var deploy      = require('gulp-gh-pages');
 
-const CHAPTERS_DIR = './chapters';
+var srcFromToc  = require('./gulp-plugin/gulp-parse-toc');
 
-const TEMPLATE_DIR = './template';
+const CHAPTERS_DIR       = './chapters';
+
+const TEMPLATE_DIR       = './template';
 const TEMPLATE_VIEWS_DIR = path.join(TEMPLATE_DIR, 'views');
-const TEMPLATE_SASS_DIR = path.join(TEMPLATE_DIR, 'sass');
+const TEMPLATE_SASS_DIR  = path.join(TEMPLATE_DIR, 'sass');
 
 const DEST_DIR = './dist';
 const REPO_NAME = 'book-of-modern-frontend-tooling';
 const BASE_DIR = path.join(DEST_DIR, 'site');
 const SITE_DIR = path.join(BASE_DIR, REPO_NAME);
-const SITE_JS_DIR = path.join(SITE_DIR, 'assets', 'js');
-const SITE_CSS_DIR = path.join(SITE_DIR, 'assets', 'css');
-const SITE_VENDOR_DIR = path.join(SITE_DIR, 'assets', 'vendor');
+const SITE_ASSETS     = path.join(SITE_DIR, 'assets');
+const SITE_JS_DIR     = path.join(SITE_ASSETS, 'js');
+const SITE_CSS_DIR    = path.join(SITE_ASSETS, 'css');
+const SITE_VENDOR_DIR = path.join(SITE_ASSETS, 'vendor');
 
 const TMP_DIR = os.tmpDir();
 
@@ -41,8 +42,8 @@ const TMP_DIR = os.tmpDir();
 gulp.task('default', function () {
   gutil.log('Available Tasks:');
   Object.keys(gulp.tasks).forEach(function (taskName) {
-    if (taskName.indexOf('generate') > -1) {
-      gutil.log('\t', chalk.yellow(taskName));
+    if ( taskName.indexOf('generate') > -1 ) {
+      gutil.log('\t', gutil.colors.yellow(taskName));
     }
   });
 });
@@ -55,6 +56,14 @@ gulp.task('clean', function () {
 });
 
 /*
+ * Removes the distribution (dist/) directory.
+**/
+gulp.task('copy-assets', function () {
+  return gulp.src('chapters/assets/**/*')
+        .pipe(gulp.dest(SITE_ASSETS));;
+});
+
+/*
  * Concatenates all the markdowns into a single index.md markdown
 **/
 gulp.task('concat', function () {
@@ -64,7 +73,8 @@ gulp.task('concat', function () {
     .pipe(srcFromToc('chapters/toc.md'))
     .pipe(concat(concatFileName))
     .pipe(gulp.dest(DEST_DIR));
-});
+
+})
 
 /*
  * Converts the concatenated markdown (index.md) to
@@ -79,7 +89,7 @@ gulp.task('generate:pdf', ['concat'], function () {
     .pipe(markdownpdf({
       cssPath: CSS_PATH
     }))
-    .pipe(gulp.dest(DEST_DIR));
+    .pipe(gulp.dest(DEST_DIR))
 });
 
 /*
@@ -92,8 +102,8 @@ gulp.task('generate:epub', ['concat'], function () {
     ])
     .pipe(pandoc({
       from: 'markdown',
-      to: 'epub',
-      ext: '.epub',
+      to  : 'epub',
+      ext : '.epub',
       args: ['-o', './dist/index.epub', '--latex-engine', 'xelatex']
     }));
 });
@@ -121,7 +131,7 @@ gulp.task('site:sass', function () {
   return gulp.src(TEMPLATE_SASS_DIR + '/*.scss')
     .pipe(sass())
     .pipe(concat(CSS_PATH))
-    .pipe(gulp.dest(SITE_CSS_DIR));
+    .pipe(gulp.dest(SITE_CSS_DIR))
 });
 
 /*
@@ -137,7 +147,7 @@ gulp.task('site:toc', function () {
 /*
  * Generates site
 **/
-gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
+gulp.task('generate:site', ['site:sass', 'site:toc', 'copy-assets'], function () {
   var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8');
   var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
 
@@ -178,8 +188,8 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
     .on('change', function (file) {
       var filePath = path.relative(__dirname, file.path);
 
-      if (filePath.indexOf(TEMPLATE_VIEWS_DIR) === 0 ||
-        filePath.indexOf(TEMPLATE_SASS_DIR) === 0) {
+      if ( filePath.indexOf(TEMPLATE_VIEWS_DIR) === 0 ||
+        filePath.indexOf(TEMPLATE_SASS_DIR) === 0 ) {
         gulp.run('generate:site');
       } else {
         server.changed(file.path);
@@ -193,12 +203,10 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
 gulp.task('serve', function () {
   const PORT = 3000;
   var fileServer = new (require('node-static')).Server(BASE_DIR);
-
   require('http').createServer(function (request, response) {
     request.addListener('end', function () {
       fileServer.serve(request, response);
     }).resume();
   }).listen(PORT);
-
-  gutil.log(chalk.blue('HTTP server listening on port', PORT));
+  gutil.log(gutil.colors.blue('HTTP server listening on port', PORT));
 });
