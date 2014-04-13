@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="requiring-modules">Requiring Modules</h1>
+<p>webpack is unique in that it will try and bundle all <em>potential</em> modules or files within the <strong>context</strong>. The context is a base folder of all your source files and webpack defaults the context to the current working directory (<code>process.cwd()</code> in Node.js).</p>
+<p>Any file within the context will be considered a module and attempted to be bundled. It is recommended to separate the source files you intend on bundling into their own folder, for example <code>./src/</code> to better accommodate this behavior. The benefit of bundling all potential modules is it enables you to dynamically require modules.</p>
+<p>Typically a module is resolved by using <code>require()</code> and supplying a relative path to the file from the context:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">bear</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./animals/bear.js&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>With webpack, due to its potential module bundling behavior, you can also dynamically require modules:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">animalType</span> <span class="o">=</span> <span class="s1">&#39;bear&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">animal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./animals/&#39;</span> <span class="o">+</span> <span class="nx">animalType</span> <span class="o">+</span> <span class="s1">&#39;.js&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<h2 id="asynchronously-require-modules">Asynchronously Require Modules</h2>
+<p>Since everything is considered a module with webpack, you can end up bundling very large files. Having your entire application bundled into a single large file in which users must fully download to view the application isn&#39;t very ideal. Some portions of your application should be only downloaded as needed and webpack handles this by using the familiar AMD syntax:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s1">&#39;./data/large.json&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">large</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// When ./data/large.json has finished downloading,</span>
+  <span class="c1">// we&#39;ll have access to it through the `large` variable</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>Specifying an array as the first parameter of <code>require()</code> will tell webpack to create a new <strong>chunk</strong> or bundle file to load those modules in a separate network request.</p>
+<h2 id="resolving-vendor-modules">Resolving Vendor Modules</h2>
+<p>Vendor modules, third party modules or modules being maintained outside of your application are placed into separate folders. By default webpack considers the folders <code>./node_modules</code> and <code>./web_modules</code> as vendor folders. <strong>webpack will only bundle explicitly required modules from these folders and does not include these folder when bundling potential modules.</strong></p>
+<p>To require a module from a vendor folder, omit the <code>./</code> prefix:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;animals&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>This will create a number of steps to resolve the <code>animals</code> module where the first step to successfully find a module will return:</p>
+<ol>
+<li>Look in the <code>./node_modules/animals/</code> folder for a <code>main</code> key within the module&#39;s <code>package.json</code> file.</li>
+<li>Look for a <code>./node_modules/animals/index.js</code> file.</li>
+<li>Look in the <code>./web_modules/animals/</code> folder for a <code>main</code> key within the module&#39;s <code>package.json</code> file.</li>
+<li>Look for a <code>./web_modules/animals/index.js</code> file.</li>
+<li>Return an error indicating the module could not be resolved.</li>
+</ol>
+<p>You can also specifically require a file from within a vendor module:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">animalCSS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;animals/dist/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>Which will produce the following steps to resolve the module:</p>
+<ol>
+<li>Look for the <code>./node_modules/animals/dist/style.css</code> file.</li>
+<li>Look for the <code>./web_modules/animals/dist/style.css</code> file.</li>
+<li>Return an error indicating the module could not be resolved.</li>
+</ol>
+<p>You can customize the vendor folder and the order the should resolve in with the <code>resolve.modulesDirectories</code> configuration option. Such as <code>[&#39;bower_components&#39;, &#39;node_modules&#39;]</code> to look in the folder <code>bower_components</code> first and then into the <code>node_modules</code> folder.</p>
+<blockquote>
+<p>Note: This will not change how Node.js resolves modules. It only affects webpack and how it will resolve modules.</p>
+</blockquote>
+<p>Use the same AMD syntax to load vendor modules asynchronously as well:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s1">&#39;animals&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Animal</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">bear</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Animal</span><span class="p">(</span><span class="s1">&#39;bear&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

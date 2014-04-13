@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="gulp">Gulp</h1>
+<p>Gulp is a <em>streaming</em> build system that allows you to automate tedious development tasks.</p>
+<h2 id="what-are-streams-">What are Streams?</h2>
+<p>Streams are designed to perform complex operations when constructed as a sequence of smaller, single purpose applications. These applications would connect from one end-point to a starting-point of another, allowing passage of data to be modified or analyzed at each application. This connection of applications is a concept referred to as piping, and the collection of pipes as a whole is referred to as the pipechain.</p>
+<p>If you would like to learn more about streams, take a look at the following resources:</p>
+<ul>
+<li><a href="https://github.com/substack/stream-handbook" title="Stream Handbook on Github">Stream Handbook on Github</a></li>
+<li><a href="http://www.youtube.com/watch?v=lQAV3bPOYHo" title="Video: Harnessing The Awesome Power Of Streams - LXJS 2012">Video: Harnessing The Awesome Power Of Streams - LXJS 2012</a></li>
+<li><a href="http://youtu.be/tc4ROCJYbm0?t=5m32s" title="Video: AT&amp;T Archives: The UNIX Operating System">Video: AT&amp;T Archives: The UNIX Operating System</a></li>
+</ul>
+<h2 id="why-another-build-system-">Why Another Build System?</h2>
+<p>Compared with other build systems, such as Grunt, gulp uses Node.js streams as a means to automate tasks, thereby removing the need to create intermediate files when transforming source files. In gulp, you would install plugins, that do one thing and do it well, and construct a &#39;pipeline&#39; by connecting them to each other. Doing it in this manner, source files would be transformed by plugins, and output from one plugin would be an input to the next. This idea is similar to the concept of pipelines in *nix systems. Some Node.js applications support pipelining as a feature. For example:</p>
+<p><code>browserify main.js | uglifyjs &gt; bundle.js</code></p>
+<p>This can be intuitively translated into a gulp task. And if you can think in *nix pipelines, you will be able to easily construct gulp tasks.</p>
+<p>Writing tasks in gulp requires you to use JavaScript (or a language that compiles to JavaScript) to set up the desirable build system. This code-over-configuration style allows the gulp user to be more flexible in setting up their tasks. The requirement placed on the user is knowing how to use Node.js streams and how they typically work.</p>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="using-loaders">Using Loaders</h1>
+<p>The power of webpack comes from its ability to load anything as a module. This is done through loaders.</p>
+<p>If you try to <code>require()</code> a CSS file by default webpack will make no assumptions and consider it a JavaScript module. The CSS file needs to be first translated into a JavaScript module and then can be loaded.</p>
+<p>Using npm, install the CSS loader with: <code>npm install css-loader --save-dev</code></p>
+<p>Then as you require the file, prefix the loader to perform the transformation separated by a <code>&#39;!&#39;</code> character:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">css</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;css!./css/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>This will transform the CSS into a string and return that string. The useful part of this is the css-loader will treat <code>@import</code> and <code>url()</code> calls within the CSS just like <code>require()</code> statements. Thus making your CSS as modular as the rest of your application.</p>
+<blockquote>
+<p>Note: By convention if a loader name ends with <code>-loader</code> that suffix can be dropped when being used. <code>require(&#39;css-loader!./css/style.css&#39;)</code> will work just the same as <code>require(&#39;css!./css/style.css&#39;)</code>.</p>
+</blockquote>
+<h2 id="chaining-loaders">Chaining Loaders</h2>
+<p>Having your CSS as a raw string most of time isn&#39;t that useful. We likely would prefer to apply that CSS to the page and there is a loader for that: <code>npm install style-loader --save-dev</code>.</p>
+<p>Now you just need to chain the loaders in the order you would like the transformation to occur:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;style!css!./css/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>Which will first transform the file into resolved CSS and then apply that CSS to the page as if you included it in a <code>&lt;link&gt;</code> tag.</p>
+<h2 id="passing-options-to-loaders">Passing Options to Loaders</h2>
+<p>Some loaders have options that can be passed to them. Such as with the exports-loader, a loader for exporting a specific variable from within the module. For example if we have a module that does not use <code>module.exports</code> but rather just defines a global variable:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;I am a &#39;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+</pre></div>
+
+</code></pre>
+<p>You can resolve this module by specifying which variable should be exported by passing an option to the exports loader using the <code>&#39;?&#39;</code> separator:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;exports?Animal!animals/dist/animals.js&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>Which will effectively add <code>module.exports = Animal;</code> to the module&#39;s source when bundling.</p>
+<h2 id="configure-loaders-by-file-type">Configure Loaders by File Type</h2>
+<p>Prefixing all your modules with a loader might be taxing where in a lot of instances you want a specific loader chain to always be applied depending on the file extension. This can be done with the <code>module.loaders</code> config array:</p>
+<p>In your <code>webpack.config.js</code>:</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style!css&#39;</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p>Now any module that ends with <code>.css</code> that is resolved will automatically have the CSS and style loader applied. Which shortens our previous call to apply CSS to our page to:</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./css/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<h2 id="common-useful-loaders">Common Useful Loaders</h2>
+<p>Here is a list of loaders you will likely encounter often and some explanation on their usage:</p>
+<h3 id="-url-loader-https-github-com-webpack-url-loader-"><a href="https://github.com/webpack/url-loader">url-loader</a></h3>
+<p>Loads the module either by base64 encoding as a string or via a separate network request. Configurable by setting the <code>limit</code> option.</p>
+<h3 id="-file-loader-https-github-com-webpack-file-loader-"><a href="https://github.com/webpack/file-loader">file-loader</a></h3>
+<h3 id="-css-loader-https-github-com-webpack-css-loader-"><a href="https://github.com/webpack/css-loader">css-loader</a></h3>
+<h3 id="-style-loader-https-github-com-webpack-style-loader-"><a href="https://github.com/webpack/style-loader">style-loader</a></h3>
+<h3 id="-script-loader-https-github-com-webpack-script-loader-"><a href="https://github.com/webpack/script-loader">script-loader</a></h3>
+<h3 id="-exports-loader-https-github-com-webpack-exports-loader-"><a href="https://github.com/webpack/exports-loader">exports-loader</a></h3>
+<h3 id="-imports-loader-https-github-com-webpack-imports-loader-"><a href="https://github.com/webpack/imports-loader">imports-loader</a></h3>
+<h3 id="-raw-loader-https-github-com-webpack-raw-loader-"><a href="https://github.com/webpack/raw-loader">raw-loader</a></h3>
+<h3 id="-expose-loader-https-github-com-webpack-expose-loader-"><a href="https://github.com/webpack/expose-loader">expose-loader</a></h3>
+<p>// TODO: Using plugins section?</p>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

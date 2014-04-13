@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="linting-code">Linting code</h1>
+<p><strong>Adding a linter</strong> to your project is a wise decision. A linter is a tool that analyses your code and looks for syntax errors, bad practises and badly formatted code.</p>
+<p>A popular JavaScript linter is <a href="http://www.jshint.com/">JSHint</a>, which you can try online. JSHint provides a sensible default ruleset, but you can customise it to suit your needs.</p>
+<h2 id="install-the-plugin">Install the plugin</h2>
+<p>As with most front-end common tasks, there is a plugin for JSHint, <a href="https://github.com/gruntjs/grunt-contrib-jshint"><code>grunt-contrib-jshint</code></a>. You need to install it via <code>npm</code> and then load the task in the <code>Gruntfile.js</code>:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>npm install grunt-contrib-jshint
+</pre></div>
+
+</code></pre>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-jshint&#39;</span><span class="p">);</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    <span class="nx">jshint</span><span class="o">:</span> <span class="p">{}</span> <span class="c1">// config happens here</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p>Now on to scanning the code!</p>
+<h2 id="simple-file-matching">Simple file-matching</h2>
+<p>Configuration is very similar for every Grunt task / plugin. You usually need to <strong>supply some files</strong> that will be passed as input, plus some configuration options.</p>
+<p>In the <code>jshint</code> task that you imported, the files supplied as input will be the files the linter will scan. There are different ways to supply these files, and we will see some of them through this Grunt chapter.</p>
+<p>The most simple way to supply input files, is by setting an array of filenames in a <code>files</code> key:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>If you run the <code>jshint</code> task now, you will see that the linter will scan one file:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>grunt jshint
+</pre></div>
+
+</code></pre>
+<p>If you want to see more output in the tasks you run, you can add the <code>--verbose</code> flag: </p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>grunt jshint --verbose
+</pre></div>
+
+</code></pre>
+<p>If you try that, you will see which files exactly were scanned (in this case <code>Gruntfile.js</code>).</p>
+<h2 id="file-matching-with-globbing">File-matching with globbing</h2>
+<p>On the inside, Grunt makes use of <a href="https://github.com/isaacs/minimatch">minimatch</a> to match filenames. This is a nice library that allow the use of <strong>globbing</strong> to refer to multiple files, and it will make your life easier. You could have, for instance:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">,</span> <span class="s1">&#39;app/*.js&#39;</span><span class="p">]</span>
+</pre></div>
+
+</code></pre>
+<p>And that would make JSHint to scan <code>Gruntfile.js</code> <em>and</em> all the files with <code>.js</code> extension that are immediately under the <code>app</code> directory.</p>
+<p>Note that this will match <code>app/main.js</code>, but <em>not</em> <code>app/models/user.js</code>, since <code>user.js</code> is not directly under <code>app</code>, but in a subdirectory. If you want to use recursive matching, make use of <strong>globstar</strong> (<code>**</code>):</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">,</span> <span class="s1">&#39;app/**/*.js&#39;</span><span class="p">]</span>
+</pre></div>
+
+</code></pre>
+<h2 id="configuration-options">Configuration options</h2>
+<p>Besides files, you usually supply <strong>some configuration options</strong> to the task. These depend on the task itself, so you will have to read the plugin&#39;s documentation to see what is available to you.</p>
+<p>The JSHint plugin for Grunt allows us to configure some of the rules that will be applied[^rules]. For instance, if you want to enforce the use of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">Strict mode</a> in your code, you need to set the <code>strict</code> option to <code>true</code>:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">],</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">strict</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>A common practice in projects which use JSHint is to have the rules defined in a <code>.jshintrc</code> file so the same configuration can be shared across text editors, continuous integration systems, etc.</p>
+<p>If you want to use this feature, just create a <code>.jshintrc</code> JSON file with your rules inside and then set the option <code>jshintrc</code> to <code>true</code>:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">],</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">jshintrc</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>Here&#39;s a sample <code>.jshintrc</code> you can try:</p>
+<pre><code class="lang-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;strict&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>[^rules]: You can see all the rules available at <a href="http://www.jshint.com/docs/options/">JSHint&#39;s documentation</a>.</p>
+<p>[^browser-rule]: This rule will allow the use of global variables available in browsers, like <code>document</code> or <code>FileReader</code>.</p>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

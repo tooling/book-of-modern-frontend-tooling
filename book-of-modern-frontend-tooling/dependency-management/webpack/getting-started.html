@@ -1,0 +1,239 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="getting-started">Getting Started</h1>
+<h2 id="installing-webpack">Installing webpack</h2>
+<p>webpack runs on <a href="http://nodejs.org">Node.js</a> and is required to be installed first. <a href="http://npmjs.org">npm</a> is a part of Node.js and used to install modules and webpack itself.</p>
+<p>To access to the <code>webpack</code> command line tool, type: <code>npm install webpack -g</code>. With webpack installed, you can now compile your assets by pointing webpack to your application&#39;s entry point and specifying an output file path: <code>webpack src/app.js dist/bundle.js</code>.</p>
+<p>Typically you will want webpack saved along with your other dependencies into your local project. Within your project folder, create a <code>package.json</code> file. This is a manifest that describes your project and manages the dependencies your project requires. Type <code>npm init</code> to have npm generate a <code>package.json</code> based on a series of prompts. Now you can install webpack locally and save to your <code>package.json</code> with <code>npm install webpack --save-dev</code>. This way all dependencies, including webpack, of your project can be restored by simply typing <code>npm install</code> from your project folder.</p>
+<h2 id="create-a-project">Create a Project</h2>
+<p>An example folder structure for a webpack based project could be as such after we have <code>npm init</code> and <code>npm install webpack --save-dev</code>:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>├── package.json
+├── node_modules
+├── src
+│   └── app.js
+└── dist
+    ├── bundle.js
+    └── index.html
+</pre></div>
+
+</code></pre>
+<p>Your <code>package.json</code> is key to orchestrating your builds. Here is an example <code>package.json</code> for our application:</p>
+<pre><code class="lang-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;myapp&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack src/app.js dist/bundle.js&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;webpack&quot;</span><span class="p">:</span> <span class="s2">&quot;^1.0.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>Now as we type <code>npm start</code> it will run the command placed in the <code>start</code> section of our <code>scripts</code> block. npm will default to our locally installed <code>webpack</code> command line tool within the <code>node_modules/.bin</code> folder. This will compile the <code>src/app.js</code> into the <code>dist/bundle.js</code> file.</p>
+<p>The <code>src/app.js</code> file is the main entry point to your application. From here, we include other modules or assets required by our project.</p>
+<p>The <code>dist/</code> contains your distributable application. The <code>dist/bundle.js</code> file is created by webpack and is to be included by our <code>dist/index.html</code> file. In a typical webpack project, the main <code>index.html</code> is usually very simple like such:</p>
+<pre><code class="lang-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;bundle.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+</code></pre>
+<p>There is no need to add additional files into the <code>dist/</code> folder or add HTML tags for other scripts, styles and images. webpack will take care of all of that through the single <code>script</code> tag pointing to <code>bundle.js</code>.</p>
+<p>In the <code>src/app.js</code>, type in <code>alert(&#39;Hello world!&#39;);</code>. Then in your terminal type <code>npm start</code> and then open the <code>dist/index.html</code> file in your web browser (<code>open dist/index.html</code>). You should see the text <code>Hello world!</code> pop open in an alert dialog and you have completed your first webpack application.</p>
+<h2 id="creating-assets">Creating Assets</h2>
+<p>The power of webpack is through its ability to include assets that compose the final web application. Let&#39;s create and include another JavaScript file. Create the folder and file <code>src/js/alert.js</code>:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>├── package.json
+├── node_modules
+├── src
+│   ├── js
+│   │   └── alert.js
+│   └── app.js
+└── dist
+    ├── bundle.js
+    └── index.html
+</pre></div>
+
+</code></pre>
+<p>We&#39;ll turn <code>src/js/alert.js</code> into a module by adding the contents:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">what</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="nx">what</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p><code>module.exports</code> signifies what part of this file we want to export as a module. In this case, we are exporting a JavaScript function.</p>
+<p>Within our application entry point <code>src/app.js</code> we can use this module with:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">yell</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./js/alert.js&#39;</span><span class="p">);</span>
+<span class="nx">yell</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p><code>require</code> is used to consume other modules within our application. We are prefixing the path with <code>./</code> to start looking from the current folder <code>app.js</code> resides in, <code>src/</code>, then including the <code>js/alert.js</code> file. <code>require</code> will return the part of the module that has been exported, in our case here the function within <code>src/js/alert.js</code>.</p>
+<p>We are assigning that function to the variable named <code>yell</code> and calling the function by passing the argument <code>&#39;world&#39;</code>.</p>
+<p>Typing <code>npm start</code> and opening <code>dist/index.html</code> in your web browser should open a dialog that says <code>Hello world!</code>.</p>
+<h3 id="stylesheets">Stylesheets</h3>
+<p>In order to include assets other than JavaScript modules, we will need to use loaders. Loaders are prefixes in our <code>require()</code> statements that instruct webpack to transform the asset into a module.</p>
+<p>For stylesheets we will use two loaders: one to turn CSS into a module and one to apply the modularized CSS to the web page. Loaders are available on npm and these two can be installed and saved to the <code>package.json</code> with: <code>npm install css-loader style-loader --save-dev</code>.</p>
+<p>Next create a folder and file <code>src/css/style.css</code> and add some basic CSS rules:</p>
+<pre><code class="lang-css"><div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>Then in your application entry point <code>src/app.js</code>, require the stylesheet prefixing the loaders in the desired order:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;style!css!./css/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>This statement will read the <code>src/css/style.css</code> file, transform it into a module webpack can read using the <code>css-loader</code>, and then apply it to the web page using the <code>style-loader</code>.</p>
+<h2 id="configuring-webpack">Configuring webpack</h2>
+<p>As the application grows, you may want to configure webpack to handle certain things automatically. This can be done with a <code>webpack.config.js</code> file:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>├── package.json
+├── webpack.config.js
+├── node_modules
+├── src
+│   ├── js
+│   │   └── alert.js
+│   ├── css
+│   │   └── style.css
+│   └── app.js
+└── dist
+    ├── bundle.js
+    └── index.html
+</pre></div>
+
+</code></pre>
+<p>The <code>webpack.config.js</code> file is just like any other node module where you export the configuration for webpack to use. Here is an example <code>webpack.config.js</code> that specifies our entry file, output path and file and instructs webpack to always use the <code>css</code> and <code>style</code> loaders for any file that ends with <code>.css</code>:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/app.js&#39;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style!css&#39;</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p>Now we can update our <code>package.json</code> script to just call <code>webpack</code> as our entry and output paths are in our config:</p>
+<pre><code class="lang-json"><div class="highlight"><pre><span class="s2">&quot;scripts&quot;</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>Then update our application entry point <code>src/app.js</code> to require our stylesheet without needing to prefix loaders:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./css/style.css&#39;</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>Running <code>npm start</code> and opening the <code>dist/index.html</code> file in your web browser should render the same results.</p>
+<h2 id="consuming-third-party-modules">Consuming Third Party Modules</h2>
+<p>Capitalizing on the work created and maintained by others can greatly accelerate your web application. Unfortunately that work is dispersed across multiple package managers or often only available as a manual file downloads. webpack rolls with the punches enabling consumption of third party modules seamlessly across multiple sources.</p>
+<p>By default, webpack is configured to resolve modules installed by npm within the <code>node_modules</code> folder. As well an agnostic folder named <code>web_modules</code>.</p>
+<p>With npm, let&#39;s install and load a module. <a href="https://www.npmjs.org/package/hash-change">hash-change</a> is a simple module that notifies us when the hash in the URL has changed. Install it into the <code>node_modules</code> folder by typing: <code>npm install hash-change</code>. Then add the following to your <code>src/app.js</code>:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">yell</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./js/alert.js&#39;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;hash-change&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">yell</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>Calling <code>require(&#39;modulename&#39;)</code> without prepending <code>./</code> to the module name will attempt to load the module from one of the third party module folders, <code>node_modules</code> or <code>web_modules</code>. In the above case, <code>require(&#39;hash-change&#39;)</code> will resolve to the <code>node_modules/hash-change/index.js</code> file.</p>
+<p>Run <code>npm start</code> and open <code>dist/index.html</code>. Then add <code>#world</code> to the end of the URL. This will trigger the hash-change <code>change</code> event calling our own module with the value of the hash and display <code>Hello world!</code>.</p>
+<p>If a library is not available to a package manager, you can simply download and extract the library into the <code>web_modules/libraryname/</code> folder. Then load that library with <code>require(&#39;libraryname/filename.js&#39;);</code> resolving to the file <code>web_modules/libraryname/filename.js</code>.</p>
+<p>The third party module directories are completely customizable. You can use npm, Bower, JamJS, Component, Volo or any combination of the lot. In our <code>webpack.config.js</code>, let&#39;s add the <code>resolve.modulesDirectories</code> config option to make our app first search the <code>node_modules</code> folder, then <code>bower_components</code> (the default install location for Bower) and finally our agnostic <code>web_modules</code> folder, in that order.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/app.js&#39;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style!css&#39;</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">modulesDirectories</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;node_modules&#39;</span><span class="p">,</span> <span class="s1">&#39;bower_components&#39;</span><span class="p">,</span> <span class="s1">&#39;web_modules&#39;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>

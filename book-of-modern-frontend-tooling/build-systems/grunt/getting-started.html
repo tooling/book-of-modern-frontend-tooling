@@ -1,0 +1,149 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
+<li><a href="index.html">Introduction</a></li>
+<li>Build Systems<ul>
+<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<li>Grunt<ul>
+<li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/grunt/linter.html">Linting code</a></li>
+<li><a href="build-systems/grunt/sass.html">Integrating a CSS preprocessor</a></li>
+</ul>
+</li>
+<li>Brunch<ul>
+<li><a href="build-systems/brunch/introduction.html">Introduction</a></li>
+<li><a href="build-systems/brunch/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/brunch/using-brunch.html">Using Brunch</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="build-systems/gulp/introduction.html">Introduction</a></li>
+<li><a href="build-systems/gulp/getting-started.html">Getting started</a></li>
+<li><a href="build-systems/gulp/writing-tasks.html">Writing tasks</a></li>
+<li><a href="build-systems/gulp/references.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dependency management<ul>
+<li>Bower<ul>
+<li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
+</ul>
+</li>
+<li>WebPack<ul>
+<li><a href="dependency-management/webpack/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/webpack/getting-started.html">Getting Started</a></li>
+<li><a href="dependency-management/webpack/1-requiring-modules.html">Requiring Modules</a></li>
+<li><a href="dependency-management/webpack/2-using-loaders.html">Using Loaders</a></li>
+<li><a href="dependency-management/webpack/3-code-splitting.html">Code Splitting</a></li>
+<li><a href="dependency-management/webpack/4-multi-entry-builds.html">Muli-entry Builds</a></li>
+<li><a href="dependency-management/webpack/5-require-context.html">Require Context</a></li>
+<li><a href="dependency-management/webpack/6-hot-module-replacement.html">Hot Module Replacement</a></li>
+<li>Chunk Optimization</li>
+<li><a href="dependency-management/webpack/8-writing-loaders-and-plugins.html">Writing Loaders And Plugins</a></li>
+<li><a href="dependency-management/webpack/9-use-with-build-tools.html">Use With Build Tools</a></li>
+<li><a href="dependency-management/webpack/references.html">References</a></li>
+<li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li>Component JS</li>
+<li>NPM browserify<ul>
+<li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
+<li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
+<li><a href="dependency-management/npm-browserify/writing-modules.html">Writing Modules</a></li>
+<li><a href="dependency-management/npm-browserify/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scaffolding<ul>
+<li>Loom</li>
+<li>Yeoman</li>
+</ul>
+</li>
+</ul>
+</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="getting-started">Getting started</h1>
+<h2 id="installation-of-the-client">Installation of the client</h2>
+<p>Grunt is a Node.js tool, and you use <code>npm</code> to install it. There are two packages to install: <code>grunt-cli</code> and <code>grunt</code>.</p>
+<p>First, you need to <strong>install <code>grunt-cli</code> globally</strong>. This will enable the use of the <code>grunt</code> command in the shell, so you can use Grunt in any project in your machine:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>npm install -g grunt-cli
+</pre></div>
+
+</code></pre>
+<p>You can test it by running:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>grunt --version
+</pre></div>
+
+</code></pre>
+<p>To add Grunt to your project, just <strong>install <code>grunt</code> locally</strong>. Remember to setup your project as a NPM package with <code>npm init</code> so you can have an initial <code>package.json</code> created.</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>npm init
+<span class="nv">$ </span>npm install grunt --save-dev
+</pre></div>
+
+</code></pre>
+<p>The flag <code>--save-dev</code> will update your <code>package.json</code> to add Grunt as a development dependency. This is how it will look:</p>
+<pre><code class="lang-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="err">//</span> <span class="err">...</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;grunt&quot;</span><span class="p">:</span> <span class="s2">&quot;~0.4.2&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>And that&#39;s enough <code>npm</code>! If you try to run <code>grunt</code> now, you will see an error message complaining about the lack of a <code>Gruntfile.js</code>… It&#39;s time to fix this.</p>
+<h2 id="your-gruntfile-js">Your Gruntfile.js</h2>
+<p>By default, Grunt comes with no tasks and no configuration at all. It&#39;s up to you to add this to your project. You do that by <strong>creating a <code>Gruntfile.js</code></strong> file (or <code>Gruntfile.coffee</code> for you coffeescripters).</p>
+<p>Here&#39;s an example of a <code>Gruntfile.js</code> with a task that will print the version of our project (as stated in <code>package.json</code>):</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// create &#39;version&#39; custom task</span>
+    <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="s1">&#39;Shows version number&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">pkg</span> <span class="o">=</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">readJSON</span><span class="p">(</span><span class="s1">&#39;package.json&#39;</span><span class="p">);</span>
+        <span class="nx">grunt</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">writeln</span><span class="p">(</span><span class="nx">pkg</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; version &#39;</span> <span class="o">+</span> <span class="nx">pkg</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p>You can now run this task with:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>grunt version
+</pre></div>
+
+</code></pre>
+<h2 id="grunt-plugins">Grunt plugins</h2>
+<p>Grunt has been around for a while, and there are a lot of <strong><a href="http://gruntjs.com/plugins">plugins</a> with pre-built tasks</strong> that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatenating, linting, etc.</p>
+<p>Grunt plugins are Node.js packages that you install with <code>npm</code> as usual. For example, to install the <code>grunt-contrib-jshint</code>[^jshint] plugin:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>npm install --save-dev grunt-contrib-jshint
+</pre></div>
+
+</code></pre>
+<p>[^jshint]: JSHint is a JavaScript linter – a tool that analyses your code and spots syntax errors and bad practises and formatting.</p>
+<p>In order to use a plugin, we need to load its tasks in the <code>Gruntfile.js</code>, and provide some configuration in it as well. Here&#39;s an example of a <code>Gruntfile.js</code> that makes use of the <code>grunt-contrib-jshint</code>[^contrib] plugin:</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// load plugin tasks</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-jshint&#39;</span><span class="p">);</span>
+
+  <span class="c1">// tasks configuration</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">],</span> <span class="c1">// files to run JSHint on</span>
+      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// options for JShint</span>
+        <span class="nx">globals</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">module</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// allow the use of &#39;module&#39; global</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+
+</code></pre>
+<p>[^contrib]: Plugins which package name start with <code>grunt-contrib</code> are plugins mantained by the Grunt project. You should favor these plugins (they are the most popular ones –that potentially means more bug reporting &amp; fixing) over a non-contrib version.</p>
+<p>You can execute the <code>jshint</code> task, and it will lint the <code>Gruntfile.js</code> itself, with the options that we have specified in the task configuration:</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nv">$ </span>grunt jshint
+</pre></div>
+
+</code></pre>
+</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+});
+</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>
