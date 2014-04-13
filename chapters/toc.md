@@ -5,8 +5,6 @@
   * Yeoman
 
 * Dependency management
-  * Bower
-    * [Introduction](dependency-management/bower/introduction.md)
   * WebPack
     * [Introduction](dependency-management/webpack/introduction.md)
     * [Getting Started](dependency-management/webpack/getting-started.md)
@@ -22,6 +20,8 @@
     * [References](dependency-management/webpack/references.md)
     * [Troubleshooting](dependency-management/webpack/troubleshooting.md)
   * Component JS
+  * Bower
+    * [Introduction](dependency-management/bower/introduction.md)
   * NPM browserify
     * [Introduction](dependency-management/npm-browserify/introduction.md)
     * [Getting started](dependency-management/npm-browserify/getting-started.md)
