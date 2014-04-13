@@ -1,7 +1,9 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/theme.css"><base href="/book-of-modern-frontend-tooling/"><script src="assets/js/scripts.js"></script></head><body><div id="wrapper"><div id="sidebar-wrapper"><ul class="sidebar-nav"><ul>
-<li><a href="index.html">Introduction</a></li>
-<li>Build Systems<ul>
-<li><a href="build-systems/modern-tools-vs-shell-scripts.html">Modern tools vs shell scripts</a></li>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><title>Book of Modern frontend tooling</title><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"><link rel="stylesheet" href="/book-of-modern-frontend-tooling/assets/css/style.css"><base href="/book-of-modern-frontend-tooling/"><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script></head><body><div id="container" class="container-fluid"><div class="row"><div id="sidebar" class="sidebar col-md-3"><div><div class="logo"><a href="https://github.com/tooling/book-of-modern-frontend-tooling">The Front-end Tooling Book</a></div><br><ul>
+<li><p><a href="index.html">Introduction</a></p>
+</li>
+<li><p>Build Systems</p>
+<ul>
+<li>Modern tools vs shell scripts</li>
 <li>Grunt<ul>
 <li><a href="build-systems/grunt/getting-started.html">Getting started</a></li>
 <li><a href="build-systems/grunt/linter.html">Linting code</a></li>
@@ -23,7 +25,8 @@
 </li>
 </ul>
 </li>
-<li>Dependency management<ul>
+<li><p>Dependency management</p>
+<ul>
 <li>Bower<ul>
 <li><a href="dependency-management/bower/introduction.html">Introduction</a></li>
 </ul>
@@ -44,7 +47,6 @@
 <li><a href="dependency-management/webpack/troubleshooting.html">Troubleshooting</a></li>
 </ul>
 </li>
-<li>Component JS</li>
 <li>NPM browserify<ul>
 <li><a href="dependency-management/npm-browserify/introduction.html">Introduction</a></li>
 <li><a href="dependency-management/npm-browserify/getting-started.html">Getting started</a></li>
@@ -55,18 +57,15 @@
 </ul>
 </li>
 <li>Scaffolding<ul>
-<li>Loom</li>
 <li>Yeoman</li>
+<li>Brunch</li>
+<li>Loom</li>
 </ul>
 </li>
 </ul>
-</ul></div><div id="page-content-wrapper"><div class="content-header"><h1><a id="menu-toggle" href="#" class="btn btn-default">Menu</a></h1></div><div class="page-content-inset"><h1 id="webpack">webpack</h1>
+</div></div><div id="content" class="content col-md-9"><h1 id="webpack">webpack</h1>
 <p>webpack is a module bundler that constructs a web application from given assets.</p>
 <p>Web applications are made from combining many types of native assets (JavaScript, CSS, images), transposed assets (coffeescript, templates, sass) and third party assets (npm, bower, downloaded). Each of these assets are also commonly split into smaller and more manageable chunks. webpack treats all of these assets as modules and intelligently constructs those modules into a web application.</p>
 <p>In a raw web application, a user creates HTML, JavaScript, CSS files and then includes them in their HTML via <code>script</code>, <code>link</code> and <code>style</code> tags. As the amount of files required to piece the application together increases, this practice can become quickly unwieldy. Especially as order is important when loading web assets. webpack solves this by bundling all those files into one or sometimes many files and loads them in the correct order as needed.</p>
 <p>There is a staggering amount of open source code available but unfortunately there isn&#39;t a clear, single place to download and use third party code. Whether you&#39;re installing modules using <code>npm</code>, <code>bower</code>, <code>jamjs</code>, <code>component</code> or manually downloading and extracting files; webpack can be configured to load modules seamlessly from those sources.</p>
-</div></div><script type="text/javascript">$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
-});
-</script><hr><div id="footer" class="center">Copyright 2014</div></div><!-- include ./includes/ga.jade--></body></html>
+</div></div><div id="footer" class="center">&copy; 2014 <a href="https://github.com/tooling/book-of-modern-frontend-tooling">The Front-end Tooling Book</a> Authors. Brought to you with love by the <a href='https://github.com/tooling/book-of-modern-frontend-tooling/graphs/contributors'>community</a>. Released under a CC-BY-SA-4.0 license.</div></div><!-- include ./includes/ga.jade--></body></html>
