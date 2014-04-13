@@ -1,7 +1,7 @@
 'use strict'
-var path        = require('path');
-var gutil       = require('gulp-util');
-var through     = require('through2');
+var path = require('path');
+var gutil = require('gulp-util');
+var through = require('through2');
 var PluginError = gutil.PluginError;
 
 /*
@@ -15,41 +15,58 @@ module.exports = function (tocFilePath) {
   var files = [];
 
   function bufferContents (file) {
-    if (file.isNull()) return; // ignore
-    if (file.isStream()) return this.emit('error', 
-      new PluginError('gulp-parse-toc',  'Streaming not supported'));
+    if (file.isNull()) {
+      return;
+    }
+
+    if (file.isStream()) {
+      this.emit('error', new PluginError('gulp-parse-toc',  'Streaming not supported'));
+      return;
+    }
 
     var filePath = file.path.split(path.sep);
-    // Remove unwanted path frome the absolute source
+    // remove unwanted path frome the absolute source
     filePath = filePath.splice(filePath.indexOf('chapters'), filePath.length);
-    filePath = path.join.apply({}, filePath).replace(path.sep, "/");
+    filePath = path.join.apply({}, filePath).replace(path.sep, '/');
     files[filePath] = file;
   }
 
   function getFileList (files) {
+    var contents;
+    var resultFiles;
+    var linkPattern;
     var tempPath = tocFilePath.split('/');
-    var resultFiles, linkPattern, contents;
 
     tempPath.pop();
     resultFiles = [];
-    // Markdown link regex
+
+    // markdown link regex
     linkPattern = new RegExp(/\[([^\[]+)\]\(([^\)]+)\)/m);
-    // Get file contents
+
+    // get file contents
     contents = files[tocFilePath].contents.toString('utf8');
-    // Split by new line
+
+    // split by new line
     contents.split('\n').forEach(function (line) {
-      var constructedPath, results, matchedPath;
+      var constructedPath;
+      var results;
+      var matchedPath;
+
       results = line.match(linkPattern);
-      if (results === null) return;
+
+      if (results === null) {
+        return;
+      }
+
       matchedPath = results[2];
-      
-      constructedPath = path.join(tempPath.join('/'), matchedPath).replace(path.sep, "/");
-      if ( files[constructedPath] ) {
+
+      constructedPath = path.join(tempPath.join('/'), matchedPath).replace(path.sep, '/');
+
+      if (files[constructedPath]) {
         resultFiles.push(files[constructedPath]);
       } else {
-        this.emit('error', 
-          new PluginError('gulp-parse-toc',  'File ' + constructedPath + " does not exist."));
-      } 
+        this.emit('error', new PluginError('gulp-parse-toc',  'File ' + constructedPath + ' does not exist.'));
+      }
     }.bind(this));
 
     return resultFiles;
@@ -60,9 +77,9 @@ module.exports = function (tocFilePath) {
     cb();
   }, function (cb) {
     getFileList.bind(this)(files).forEach(function (file) {
-      file.contents = Buffer.concat([new Buffer("\n"), file.contents]);
+      file.contents = Buffer.concat([new Buffer('\n'), file.contents]);
       this.push(file);
     }.bind(this));
     cb();
-  }); 
+  });
 }
