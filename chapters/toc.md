@@ -1,7 +1,7 @@
 * [Introduction](index.md)
 
 * Build Systems
-  * [Modern tools vs shell scripts](build-systems/modern-tools-vs-shell-scripts.md)
+  * Modern tools vs shell scripts
   * Grunt
     * [Getting started](build-systems/grunt/getting-started.md)
     * [Linting code](build-systems/grunt/linter.md)
@@ -33,12 +33,12 @@
     * [Use With Build Tools](dependency-management/webpack/9-use-with-build-tools.md)
     * [References](dependency-management/webpack/references.md)
     * [Troubleshooting](dependency-management/webpack/troubleshooting.md)
-  * Component JS
   * NPM browserify
     * [Introduction](dependency-management/npm-browserify/introduction.md)
     * [Getting started](dependency-management/npm-browserify/getting-started.md)
     * [Writing Modules](dependency-management/npm-browserify/writing-modules.md)
     * [Development Workflow](dependency-management/npm-browserify/development-workflow.md)
 * Scaffolding
-  * Loom
   * Yeoman
+  * Brunch
+  * Loom
