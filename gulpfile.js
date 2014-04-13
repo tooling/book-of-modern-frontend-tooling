@@ -181,6 +181,7 @@ gulp.task('watch', ['generate:site', 'serve'], function() {
   opn('http://localhost:3000/' + REPO_NAME);
 
   return gulp.watch([
+      CHAPTERS_DIR + '/**/*',
       TEMPLATE_DIR + '/**/*',
       SITE_DIR + '/**/*'
     ])
