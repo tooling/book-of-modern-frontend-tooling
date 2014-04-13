@@ -7,17 +7,21 @@ html
     title
       | Book of Modern frontend tooling
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,700',rel='stylesheet',type='text/css')
-    link(rel="stylesheet", href="http://getbootstrap.com/dist/css/bootstrap.min.css")
-    link(rel="stylesheet", href="/book-of-modern-frontend-tooling/assets/css/style.css")
+    link(rel="stylesheet", href="assets/css/style.css")
+    link(rel="stylesheet", href="assets/css/theme.css")
     base(href="/book-of-modern-frontend-tooling/")
-    script(src="http://code.jquery.com/jquery-2.1.0.min.js")
+    script(src="assets/js/scripts.js")
   body
-    #container.container-fluid
-      .row
-        #sidebar.sidebar.col-md-3
-          include ./includes/sidebar.jade
-        #content.content.col-md-9
-          block content
-      include ./includes/footer.jade
+    #wrapper
+        #sidebar-wrapper
+            ul.sidebar-nav
+              include ./includes/sidebar.jade
+        #page-content-wrapper
+          .content-header
+            h1
+              a(id='menu-toggle' class='btn btn-default', href='#') Menu
+          .page-content-inset
+              block content
+         include ./includes/footer.jade
 
     // include ./includes/ga.jade

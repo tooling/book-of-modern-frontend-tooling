@@ -1,5 +1,4 @@
 * [Introduction](index.md)
-
 * Build Systems
   * [Modern tools vs shell scripts](build-systems/modern-tools-vs-shell-scripts.md)
   * Grunt
@@ -15,7 +14,6 @@
     * [Getting started](build-systems/gulp/getting-started.md)
     * [Writing tasks](build-systems/gulp/writing-tasks.md)
     * [References](build-systems/gulp/references.md)
-
 * Dependency management
   * Bower
     * [Introduction](dependency-management/bower/introduction.md)

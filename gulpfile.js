@@ -24,7 +24,7 @@ const CHAPTERS_DIR = './chapters';
 const TEMPLATE_DIR = './template';
 const TEMPLATE_VIEWS_DIR = path.join(TEMPLATE_DIR, 'views');
 const TEMPLATE_SASS_DIR = path.join(TEMPLATE_DIR, 'sass');
-
+const TEMPLATE_JS_DIR = path.join(TEMPLATE_DIR, 'js');
 const DEST_DIR = './dist';
 const REPO_NAME = 'book-of-modern-frontend-tooling';
 const BASE_DIR = path.join(DEST_DIR, 'site');
@@ -124,6 +124,20 @@ gulp.task('site:sass', function () {
     .pipe(gulp.dest(SITE_CSS_DIR));
 });
 
+
+gulp.task('site:css', function () {
+    return gulp.src(TEMPLATE_SASS_DIR + '/*.css')
+        .pipe(concat('theme.css'))
+        .pipe(gulp.dest(SITE_CSS_DIR));
+});
+
+gulp.task('site:js', function () {
+    return gulp.src(TEMPLATE_JS_DIR + '/*.js')
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest(SITE_JS_DIR));
+});
+
+
 /*
  * Generates TOC html to OS's tmp directory
 **/
@@ -137,7 +151,7 @@ gulp.task('site:toc', function () {
 /*
  * Generates site
 **/
-gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
+gulp.task('generate:site', ['site:css','site:sass', 'site:js', 'site:toc'], function () {
   var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8');
   var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
 
