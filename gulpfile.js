@@ -29,9 +29,10 @@ const DEST_DIR = './dist';
 const REPO_NAME = 'book-of-modern-frontend-tooling';
 const BASE_DIR = path.join(DEST_DIR, 'site');
 const SITE_DIR = path.join(BASE_DIR, REPO_NAME);
-const SITE_JS_DIR = path.join(SITE_DIR, 'assets', 'js');
-const SITE_CSS_DIR = path.join(SITE_DIR, 'assets', 'css');
-const SITE_VENDOR_DIR = path.join(SITE_DIR, 'assets', 'vendor');
+const SITE_ASSETS     = path.join(SITE_DIR, 'assets');
+const SITE_JS_DIR     = path.join(SITE_ASSETS, 'js');
+const SITE_CSS_DIR    = path.join(SITE_ASSETS, 'css');
+const SITE_VENDOR_DIR = path.join(SITE_ASSETS, 'vendor');
 
 const TMP_DIR = os.tmpDir();
 
@@ -52,6 +53,14 @@ gulp.task('default', function () {
 **/
 gulp.task('clean', function () {
   return rimraf.sync(DEST_DIR);
+});
+
+/*
+ * Copy assets from chapters to distrubtion directory.
+**/
+gulp.task('copy-assets', function () {
+  return gulp.src('chapters/assets/**/*')
+        .pipe(gulp.dest(SITE_ASSETS));;
 });
 
 /*
@@ -137,7 +146,7 @@ gulp.task('site:toc', function () {
 /*
  * Generates site
 **/
-gulp.task('generate:site', ['site:sass', 'site:toc'], function () {
+gulp.task('generate:site', ['site:sass', 'site:toc', 'copy-assets'], function () {
   var tocFile = fs.readFileSync(TMP_DIR + '/toc.html', 'utf8');
   var templatePath = path.join(TEMPLATE_VIEWS_DIR, 'index.jade');
 
