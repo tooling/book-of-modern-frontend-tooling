@@ -1,4 +1,4 @@
-# Integrating a CSS preprocessor
+# Integrating a CSS Preprocessor
 
 **CSS preprocessors** can compile CSS stylesheets from other (more powerful) styling languages. These new languages have features like variables, functions, mixins (to re-use code), etc. and they will change for the better the way you approach class naming an use.
 
