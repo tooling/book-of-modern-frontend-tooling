@@ -8,7 +8,7 @@
 * Dependency management
   * Bower
     * [Introduction](dependency-management/bower/introduction.md)
-  * WebPack
+  * webpack
     * [Introduction](dependency-management/webpack/introduction.md)
     * [Getting Started](dependency-management/webpack/getting-started.md)
     * [Requiring Modules](dependency-management/webpack/1-requiring-modules.md)
