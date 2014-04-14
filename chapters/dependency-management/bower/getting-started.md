@@ -1,6 +1,6 @@
 # Getting started
 
-Now, that you have an idea of what Bower actually is and why you want to use it, we
+Now that you have an idea of what Bower actually is and why you want to use it, we
 should start getting our hands dirty and learn how to install it on our local
 machine.
 
@@ -78,7 +78,7 @@ See 'bower help <command>' for more information on a specific command.
 
 As you can see, Bower comes with a lot of useful commands to help you out on your
 journey building your next mind-blowing front-end application! Bower also tells you
-that you can always run `bower help <comand>` if you need more detailed information
+that you can always run `bower help <command>` if you need more detailed information
 about a specific command.
 
 I don't know how **you** feel, but **I** can't wait to run one of those on my
@@ -87,7 +87,7 @@ machine! Let's discover our first packages by using Bower's search utilities.
 ## Discovering/Searching
 
 Usually, when working on a project, you probably already know what tools, frameworks
-or libraries you want to use. However, there are cases where your already choosed 
+or libraries you want to use. However, there are cases where your already chosen 
 tool doesn't solve a problem you currently have. So what do you do when you come 
 in such kind of situation? Right. You start searching for another tool that already
 solves your problem, because you don't want to reinvent the wheel. And that is very
@@ -99,15 +99,16 @@ However, the actual point is, searching is a very common task for developers in
 general. When using Bower as package manager for your projects, you also want to
 search for existing packages that you can reuse.
 
-In addition to that, it might also be **very** useful to find packages that are
-only somehow related to your use case. Because this is how you discover new things.
-Let's see how Bower can help us here.
+In addition to that, it might also be **very** useful to find and discover related
+packages for your use case. Let's see how Bower can help us here.
 
 ### Search Bower, search
 Bower comes with a `search` command that let's you search the entire **registry**
-for packages you might be interested in. Although, Bower's search is pretty
-straight forward, we first take a look at what Bower's help utilities have to say
-about it. Running `bower help search` gives us the following output:
+for packages you might be interested in. It uses a web service that also provides a
+neat web interface at [http://bower.io/search](http://bower.io/search) you can use
+to browse all registered Bower packages. Although, Bower's search is pretty straight
+forward, we first take a look at what Bower's help utilities have to say about it.
+Running `bower help search` gives us the following output:
 
 ```sh
 
@@ -136,8 +137,7 @@ global help for the `search` command.
 
 The other way of running `bower search` feels more useful. Passing an actual string
 as parameter to the command, makes Bower search the entire registry for anything
-that has the value of `<name>` in it. But not only that. Bower also searches for 
-matching key words that are defined on a package.
+that has the value of `<name>` in it.
 
 For example running `bower search angular` returns the following result (I cutted the
 output for readability):
