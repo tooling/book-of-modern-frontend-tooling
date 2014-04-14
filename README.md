@@ -67,6 +67,7 @@ Make sure you are running Node > 0.10.0 and run `npm install` to install the dev
 * `gulp generate:site`: Generate a HTML version of the book.
 * `gulp generate:epub`: Generate a EPUB version of the book.
 
+
 ### Output
 
 The output from the build phase will be available in the `dist` folder.

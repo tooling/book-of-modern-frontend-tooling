@@ -1,4 +1,4 @@
-# Linting code
+# Linting Code
 
 **Adding a linter** to your project is a wise decision. A linter is a tool that analyses your code and looks for syntax errors, bad practises and badly formatted code.
 
