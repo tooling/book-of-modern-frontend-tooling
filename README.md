@@ -68,10 +68,6 @@ Make sure you are running Node > 0.10.0 and run `npm install` to install the dev
 * `gulp generate:epub`: Generate a EPUB version of the book.
 
 
-[Download google fonts to your computer](http://googledevelopers.blogspot.com/2013/05/download-google-fonts-to-your-desktop.html) for offline work and faster rendering
-
-
-
 ### Output
 
 The output from the build phase will be available in the `dist` folder.
