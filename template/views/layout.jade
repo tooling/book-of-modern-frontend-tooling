@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="description" content="")
+    title
+      | Book of Modern frontend tooling
+    link(href='http://fonts.googleapis.com/css?family=Droid+Sans',rel='stylesheet',type='text/css')
+    link(rel="stylesheet", href="http://getbootstrap.com/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/book-of-modern-frontend-tooling/assets/css/style.css")
+    base(href="/book-of-modern-frontend-tooling/")
+    script(src="http://code.jquery.com/jquery-2.1.0.min.js")
+  body
+    #container.container-fluid
+      .row
+        #sidebar.sidebar.col-md-3
+          include ./includes/sidebar.jade
+        #content.content.col-md-9
+          block content
+      include ./includes/footer.jade
+
+    // include ./includes/ga.jade

@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 ## Installation of the client
 
@@ -7,20 +7,20 @@ Grunt is a Node.js tool, and you use `npm` to install it. There are two packages
 First, you need to **install `grunt-cli` globally**. This will enable the use of the `grunt` command in the shell, so you can use Grunt in any project in your machine:
 
 ```bash
-npm install -g grunt-cli
+$ npm install -g grunt-cli
 ```
 
 You can test it by running:
 
 ```bash
-grunt --version
+$ grunt --version
 ```
 
 To add Grunt to your project, just **install `grunt` locally**. Remember to setup your project as a NPM package with `npm init` so you can have an initial `package.json` created.
 
 ```bash
-npm init
-npm install grunt --save-dev
+$ npm init
+$ npm install grunt --save-dev
 ```
 The flag `--save-dev` will update your `package.json` to add Grunt as a development dependency. This is how it will look:
 
@@ -55,17 +55,17 @@ module.exports = function (grunt) {
 You can now run this task with:
 
 ```bash
-grunt version
+$ grunt version
 ```
 
 ## Grunt plugins
 
-Grunt has been around for a while, and there are a lot of **[plugins](http://gruntjs.com/plugins) with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatening, linting, etc.
+Grunt has been around for a while, and there are a lot of **[plugins](http://gruntjs.com/plugins) with pre-built tasks** that you can use out of the box with a minimal configuration. Some of these common tasks provided by plugins include: minifying, concatenating, linting, etc.
 
 Grunt plugins are Node.js packages that you install with `npm` as usual. For example, to install the `grunt-contrib-jshint`[^jshint] plugin:
 
 ```bash
-npm install --save-dev grunt-contrib-jshint
+$ npm install --save-dev grunt-contrib-jshint
 ```
 
 [^jshint]: JSHint is a JavaScript linter – a tool that analyses your code and spots syntax errors and bad practises and formatting.
@@ -96,5 +96,5 @@ module.exports = function (grunt) {
 You can execute the `jshint` task, and it will lint the `Gruntfile.js` itself, with the options that we have specified in the task configuration:
 
 ```bash
-grunt jshint
+$ grunt jshint
 ```
