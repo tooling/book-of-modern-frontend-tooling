@@ -111,30 +111,38 @@ gulp.task('watch', function() {
 gulp.task('default', ['scripts', 'styles', 'watch']);
 ```
 
-## Live Reload
-Live Reload allows us to refresh our browser window automatically when a file is saved. Implementing this is a little more involved and takes an additional step compared to the tasks that we have setup so far. Although, don't worry, it is still quite simple to do!
+## Running a Server (with LiveReload)
+During development it is also valuable to have a quick way to spin up a server on our projects without having to worry about setting up Apache or nginx. This task will set up a simple server instance using the plugin 'gulp-connect' and additionally we will enable the LiveReload feature to save us from page refreshes when we revisit our browser.
 
 ### 1. Install Plugins
-To get LiveReload working properly we need a couple plugins: tiny-lr and gulp-livereload.
+As mentioned above, let's install the 'gulp-connect' to our local project and add it to our devDependencies in our package.json file:
 ```bash
-$ npm install --save-dev gulp-livereload
+$ npm install --save-dev gulp-connect
 ```
-The tiny-lr plugin is a _tiny_ implementation of the LiveReload server that allows us to communicate with our browser so that it can refresh our pages when we save our files. The gulp-livereload plugin works as a bridge between gulp and LiveReload and allows us to pipe our file changes to our tiny-lr server so it knows exactly when to refresh our browser.
 
 ### 2. Include Plugin In gulpfile
+As before with the other plugins, let's assign our plugin to a variable so that we can access it.
 ```js
-var livereload = require('gulp-livereload');
+var connect = require('gulp-livereload');
 ```
 
-### 3. Add LiveReload To Tasks
-Now, we need to make a few changes. First we need add an additional pipe to the tasks that we want to reload our browser. Second, we need to start our LiveReload server in our default task and assign it a port to listen to.
+### 3. Create Connect Task
+Now, let's create a basic connect task that will create both web server and LiveReload server that will quickly allow us to run our website and also auto update the page as we make changes. 
+
 ```js
+gulp.task('connect', function() {
+  return connect.server({
+    port: 8080,
+    livereload: true
+  });  
+});
+
 // Compile/Process Styles
 gulp.task('styles', function() {
     gulp.src('src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('dist'))
-        .pipe(livereload()); // Just Add This To Your Pipechain
+        .pipe(connect.reload()); // Just Add This To Your Pipechain
 });
 
 // Minify Scripts
@@ -142,7 +150,7 @@ gulp.task('scripts', function() {
     gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist'))
-        .pipe(livereload()); // Just Add This To Your Pipechain
+        .pipe(connect.reload()); // Just Add This To Your Pipechain
 });
 
 // Watch Task
@@ -152,11 +160,12 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['scripts', 'styles', 'watch']);
+gulp.task('default', ['connect', 'scripts', 'styles', 'watch']);
 ```
+That is all there is to it. Connect also accepts optional properties that you can override such as port overriding, but for the sake of simplicity this example is using the defaults.
 
 ### 4. Add LiveReload Script To Your Page
-Now that our gulpfile has been setup we need to add a reference to the livereload.js file on our pages so that our browser can properly communicate with tiny-lr. There are multiple ways of doing this and it's really up to your personal preference. Let's go over a couple, and you can decide which is best for you.
+LiveReload works by creating a small server and hosting a livereload.js file that is used to communicate changes to the browser. Now we need add a reference to the livereload.js file on our pages so that our browser can properly communicate with the LiveReload server that our connect task created. There are multiple ways of doing this and it's really up to your personal preference. Let's go over a couple options and you can decide which is best for you.
 
 #### Manual
 If you wish to manually add the LiveReload script, then open up your HTML file and simply include it just as you would any other script.
@@ -166,12 +175,12 @@ If you wish to manually add the LiveReload script, then open up your HTML file a
     <script src="http://localhost:35729/livereload.js"></script>
 </body>
 ```
-That's it! You're ready to go. Keep in mind that you will have to manually include this on every page that you wish to reload automatically. In many cases that wont be much of a problem, but it is good to keep in mind if you run into issues.
+Keep in mind that with this method you will have to manually include this on every page that you wish to reload automatically. In some cases that wont be much of a problem, but it is good to keep in mind if you expect your application to grow quickly, as it will be harder to maintain over time.
 
 #### Browser Extension
 If you prefer to avoid manually adding the script in yourself, you can download a simple browser extension that will add the script for you automatically.
 
-In this example I will be using Chrome, but there are also extensions available for Firefox and Safari. To install, head over to the Chrome Webstore and install the [LiveReload extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei "LiveReload on Chrome Webstore"). Once you have it installed it will create a small icon that will allow you to enable or disable it quickly.
+In this example I will be using Chrome, but there are also extensions available for Firefox and Safari. To install, head over to the Chrome Webstore and install the [LiveReload extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei "LiveReload on Chrome Webstore"). Once you have it installed it will create a small icon that will allow you to enable or disable it quickly. Once you have ran your gulpfile and navigated to your project in your browser, you simply click the new icon it has created for you and the small dot inside 
 
 That's really all there is to it. For more information on the LiveReload browser extensions, visit the [LiveReload knowledgebase](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions- "Browser Extensions on the LiveReload Knowledgebase").
 
