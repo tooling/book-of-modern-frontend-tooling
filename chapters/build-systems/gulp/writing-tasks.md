@@ -70,7 +70,7 @@ var uglify = require('gulp-uglify');
 Now, we will write our minify task. Add the following code to your gulpfile.
 ```js
 gulp.task('minify', function() {
-    gulp.src('src/js/*.js')
+    return gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
@@ -94,77 +94,72 @@ var sass = require('gulp-sass');
 ### 3. Create Preprocessing Task
 ```js
 gulp.task('styles', function() {
-    gulp.src('src/scss/*.scss')
+    return gulp.src('src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('dist'));
 });
 ```
 
-## Creating A Default Task & Watching Our Files
-The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This will reference the other tasks that we have created including a new __watch__ task that will check for changes to our files and run our tasks each time we save them.
-```js
-gulp.task('watch', function() {
-    gulp.watch('src/js/*.js', ['scripts']);
-    gulp.watch('src/scss/*.scss', ['styles']);
-});
-
-gulp.task('default', ['scripts', 'styles', 'watch']);
-```
-
-## Running a Server (with LiveReload)
-During development it is also valuable to have a quick way to spin up a server on our projects without having to worry about setting up Apache or nginx. This task will set up a simple server instance using the plugin 'gulp-connect' and additionally we will enable the LiveReload feature to save us from page refreshes when we revisit our browser.
+## Running a Server
+During development it is also valuable to have a quick way to spin up a server for our projects without having to worry about setting up software like Apache or nginx. This task will set up a simple web server using the node connect module.
 
 ### 1. Install Plugins
-As mentioned above, let's install the 'gulp-connect' to our local project and add it to our devDependencies in our package.json file:
+As mentioned above, let's install the 'connect' module to our local project and add it to our devDependencies in our package.json file:
 ```bash
-$ npm install --save-dev gulp-connect
+$ npm install --save-dev connect
 ```
 
 ### 2. Include Plugin In gulpfile
-As before with the other plugins, let's assign our plugin to a variable so that we can access it.
+As before with the other plugins, let's assign our plugin to a variable so that we can access and reference it in our tasks.
 ```js
-var connect = require('gulp-livereload');
+var connect = require('connect');
 ```
 
-### 3. Create Connect Task
-Now, let's create a basic connect task that will create both web server and LiveReload server that will quickly allow us to run our website and also auto update the page as we make changes. 
-
+### 3. Create Server Task
+Now, let's create a basic server task that will create a web server serving static files from our project directory.
 ```js
-gulp.task('connect', function() {
-  return connect.server({
-    port: 8080,
-    livereload: true
-  });  
+gulp.task('server', function() {
+    var server = connect();
+    server.use(connect.static(__dirname)); // Serves Static Files
+    http.createServer(server)
+        .listen(8080)
+        .on('listening', function() {
+            console.log('Connect web server running at http://localhost/8080.');
+    });
 });
+```
+In this task we reference the connect module by creating the 'server' variable and then we append a .use method that allows us to add features (referred to as Middleware) to our connect server. The 'connect.static(__dirname)' tells connect to serve static files from our base project directory. 
 
+If you would like to expand your connect server, be sure to take a look at all of the connect middleware. There are plenty of great packages to enhance your server.
+
+## LiveReload
+LiveReload is another great way to save time during development. It allows our files to communicate with our browser as we make changes to our files, so the changes are immediately reflected in the browser without having to refresh the page.
+
+###1. Install LiveReload
+Let's install the 'gulp-livereload' plugin to our local project and add it to our devDependencies in our package.json file:
+```bash
+$ npm install --save-dev gulp-livereload
+```
+
+### 2. Include LiveReload In gulpfile
+As before with the other plugins, let's assign our plugin to a variable so that we can access it.
+```js
+var livereload = require('gulp-livereload');
+```
+
+###3. Add LiveReload To Your Tasks
+Next, you need to add LiveReload to the your tasks pipechains. This will spawn a LiveReload server and also instruct gulp to contact our browser anytime those tasks are run.
+```js
 // Compile/Process Styles
 gulp.task('styles', function() {
     gulp.src('src/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('dist'))
-        .pipe(connect.reload()); // Just Add This To Your Pipechain
+        .pipe(livereload()); // Just Add This To Your Pipechain
 });
-
-// Minify Scripts
-gulp.task('scripts', function() {
-    gulp.src('src/js/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'))
-        .pipe(connect.reload()); // Just Add This To Your Pipechain
-});
-
-// Watch Task
-gulp.task('watch', function() {
-    gulp.watch('src/js/*.js', ['scripts']);
-    gulp.watch('src/scss/*.scss', ['styles']);
-});
-
-// Default Task
-gulp.task('default', ['connect', 'scripts', 'styles', 'watch']);
 ```
-That is all there is to it. Connect also accepts optional properties that you can override such as port overriding, but for the sake of simplicity this example is using the defaults.
 
-### 4. Add LiveReload Script To Your Page
+###2. Add LiveReload Script To Your Page
 LiveReload works by creating a small server and hosting a livereload.js file that is used to communicate changes to the browser. Now we need add a reference to the livereload.js file on our pages so that our browser can properly communicate with the LiveReload server that our connect task created. There are multiple ways of doing this and it's really up to your personal preference. Let's go over a couple options and you can decide which is best for you.
 
 #### Manual
@@ -199,3 +194,14 @@ gulp.task('scripts', function() {
 ```
 
 Now our scripts task not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task instead of creating two separate tasks dedicated to a single action.
+
+## Creating A Default Task & Watching Our Files
+The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This will reference the other tasks that we have created including a new __watch__ task that will check for changes to our files and run our tasks each time we save them.
+```js
+gulp.task('watch', function() {
+    gulp.watch('src/js/*.js', ['scripts']);
+    gulp.watch('src/scss/*.scss', ['styles']);
+});
+
+gulp.task('default', ['scripts', 'styles', 'watch']);
+```
