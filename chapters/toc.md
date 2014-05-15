@@ -25,7 +25,8 @@
   * NPM browserify
     * [Introduction](dependency-management/npm-browserify/introduction.md)
     * [Getting Started](dependency-management/npm-browserify/getting-started.md)
-    * [Writing Modules](dependency-management/npm-browserify/writing-modules.md)
+    * [Modules](dependency-management/npm-browserify/modules.md)
+    * [Transforms](dependency-management/npm-browserify/transforms.md)
     * [Development Workflow](dependency-management/npm-browserify/development-workflow.md)
 
 * Build Systems
