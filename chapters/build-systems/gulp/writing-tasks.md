@@ -101,7 +101,7 @@ gulp.task('styles', function() {
 ```
 
 ## Running a Server
-During development it is also valuable to have a quick way to spin up a server for our projects without having to worry about setting up software like Apache or nginx. This task will set up a simple web server using the node connect module.
+During development it is also valuable to have a quick way to spin up a server for our projects without having to worry about setting up software like Apache or nginx. This task will set up a simple web server using the node connect module. Connect is middleware framework for node that will allow us to add functionality to our gulp tasks. In this case, a static file server.
 
 ### 1. Install Plugins
 As mentioned above, let's install the 'connect' module to our local project and add it to our devDependencies in our package.json file:
@@ -128,9 +128,12 @@ gulp.task('server', function() {
     });
 });
 ```
-In this task we reference the connect module by creating the 'server' variable and then we append a .use method that allows us to add features (referred to as Middleware) to our connect server. The 'connect.static(__dirname)' tells connect to serve static files from our base project directory. 
 
-If you would like to expand your connect server, be sure to take a look at all of the connect middleware. There are plenty of great packages to enhance your server.
+In this task we reference the connect module by creating the 'server' variable and then we append a .use method that uses the .static middleware to create a static server. 
+
+>The '__dirname' we have passed in tells our static middleware  to serve files from our base project directory.
+
+Once we have established our connect middleware we will then use node's build in http module to create our server, specify the port it will be using, and then output a simple message when our task runs.
 
 ## LiveReload
 LiveReload is another great way to save time during development. It allows our files to communicate with our browser as we make changes to our files, so the changes are immediately reflected in the browser without having to refresh the page.
