@@ -16,7 +16,6 @@
   "devDependencies": {
     "chalk": "^0.4.0",
     "gulp": "^3.6.0",
-    "gulp-clean": "^0.3.0",
     "gulp-concat": "^2.2.0",
     "gulp-gh-pages": "^0.3.2",
     "gulp-layoutize": "0.0.4",
