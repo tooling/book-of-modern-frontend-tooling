@@ -8,7 +8,7 @@ are working on. Let's say you have decided to build the website with the help of
 [Bootstrap](http://getbootstrap.com), so you don't have to care about the different
 implementations of responsive design. You also want to use [jQuery](http://jquery.com)
 for easy DOM manipulation and last but not least, you want to add some fancy special
-effects by adding animations using [Effeckt.css](http://h5bp.github.io/Effeckt.css/dist/).
+effects by adding animations using [Effeckt.css](https://github.com/h5bp/Effeckt.css/).
 
 So now you have three libraries you want to use and you have to somehow get the source
 code into your project. Now ask yourself: how would you do that? Remember the times
