@@ -101,7 +101,7 @@ gulp.task('styles', function() {
 ```
 
 ## Running a Server
-During development it is also valuable to have a quick way to spin up a server for our projects without having to worry about setting up software like Apache or nginx. This task will set up a simple web server using the node connect module. Connect is middleware framework for node that will allow us to add functionality to our gulp tasks. In this case, a static file server.
+During development it is also valuable to have a quick way to spin up a server for our projects without having to worry about setting up software like Apache or nginx. This task will set up a simple web server using the node connect module. Connect is middleware framework for node that will allow us to add functionality to our gulp tasks. In this case, a static web server.
 
 ### 1. Install Plugins
 As mentioned above, let's install the 'connect' module to our local project and add it to our devDependencies in our package.json file:
@@ -122,9 +122,9 @@ gulp.task('server', function() {
     var server = connect();
     server.use(connect.static(__dirname)); // Serves Static Files
     http.createServer(server)
-        .listen(8080)
+        .listen(8888)
         .on('listening', function() {
-            console.log('Connect web server running at http://localhost/8080.');
+            console.log('Connect web server running at http://localhost:8888.');
     });
 });
 ```
@@ -133,7 +133,7 @@ In this task we reference the connect module by creating the 'server' variable a
 
 >The '__dirname' we have passed in tells our static middleware  to serve files from our base project directory.
 
-Once we have established our connect middleware we will then use node's build in http module to create our server, specify the port it will be using, and then output a simple message when our task runs.
+Once we have established our connect middleware we will then use node's built in http module to create our server, specify the port it will be using, and then output a simple message when our task runs. Now, you can visit http://localhost:8888 in your browser to view your project.
 
 ## LiveReload
 LiveReload is another great way to save time during development. It allows our files to communicate with our browser as we make changes to our files, so the changes are immediately reflected in the browser without having to refresh the page.
@@ -178,9 +178,9 @@ Keep in mind that with this method you will have to manually include this on eve
 #### Browser Extension
 If you prefer to avoid manually adding the script in yourself, you can download a simple browser extension that will add the script for you automatically.
 
-In this example I will be using Chrome, but there are also extensions available for Firefox and Safari. To install, head over to the Chrome Webstore and install the [LiveReload extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei "LiveReload on Chrome Webstore"). Once you have it installed it will create a small icon that will allow you to enable or disable it quickly. Once you have ran your gulpfile and navigated to your project in your browser, you simply click the new icon it has created for you and the small dot inside 
+To install, head over to the Chrome Webstore and install the [LiveReload extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei "LiveReload on Chrome Webstore"). Once you have it installed it will create a small icon that will allow you to enable or disable it quickly. Once you have ran your gulpfile and navigated to your project in your browser, you simply click the new icon it has created for you and the small dot inside will become solid verifying that it is enabled.
 
-That's really all there is to it. For more information on the LiveReload browser extensions, visit the [LiveReload knowledgebase](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions- "Browser Extensions on the LiveReload Knowledgebase").
+That's really all there is to it. If you would prefer to use another browser, there are also extensions available for Firefox and Safari. For more information on the LiveReload browser extensions, visit the [LiveReload knowledgebase](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions- "Browser Extensions on the LiveReload Knowledgebase").
 
 ## Chaining Actions Together
 The examples above are only performing a single action for the sake of simplicity, but you can actually chain many of those actions together into a single, more refined task. Gulp makes this incredibly easy.
