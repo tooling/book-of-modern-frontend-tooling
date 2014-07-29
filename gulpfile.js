@@ -19,19 +19,19 @@ var layoutize = require('gulp-layoutize');
 var deploy = require('gulp-gh-pages');
 var srcFromToc = require('./gulp-plugin/gulp-parse-toc');
 
-const CHAPTERS_DIR = './chapters';
+const CHAPTERS_DIR = 'chapters';
 
-const TEMPLATE_DIR = './template';
+const TEMPLATE_DIR = 'template';
 const TEMPLATE_VIEWS_DIR = path.join(TEMPLATE_DIR, 'views');
 const TEMPLATE_SASS_DIR = path.join(TEMPLATE_DIR, 'sass');
 
-const DEST_DIR = './dist';
+const DEST_DIR = 'dist';
 const REPO_NAME = 'book-of-modern-frontend-tooling';
 const BASE_DIR = path.join(DEST_DIR, 'site');
 const SITE_DIR = path.join(BASE_DIR, REPO_NAME);
-const SITE_ASSETS     = path.join(SITE_DIR, 'assets');
-const SITE_JS_DIR     = path.join(SITE_ASSETS, 'js');
-const SITE_CSS_DIR    = path.join(SITE_ASSETS, 'css');
+const SITE_ASSETS = path.join(SITE_DIR, 'assets');
+const SITE_JS_DIR = path.join(SITE_ASSETS, 'js');
+const SITE_CSS_DIR = path.join(SITE_ASSETS, 'css');
 const SITE_VENDOR_DIR = path.join(SITE_ASSETS, 'vendor');
 
 const TMP_DIR = os.tmpDir();
@@ -60,7 +60,7 @@ gulp.task('clean', function () {
 **/
 gulp.task('copy-assets', function () {
   return gulp.src('chapters/assets/**/*')
-        .pipe(gulp.dest(SITE_ASSETS));;
+        .pipe(gulp.dest(SITE_ASSETS));
 });
 
 /*
