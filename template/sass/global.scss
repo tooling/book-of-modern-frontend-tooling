@@ -1,0 +1,45 @@
+body {
+	font-family: 'Droid Sans', 'Open Sans', 'Helvetica', 'Arial';
+}
+
+#sidebar {
+	background: black;
+}
+
+#sidebar ul li p {
+	color: #C32828;
+}
+
+#sidebar li {
+	color: white;
+}
+
+#sidebar li a {
+	color: #CCCBCB;
+}
+
+#footer {
+	background: #F9F9F9;
+	padding: 2em 0em 4em 6em;
+}
+
+div.logo {
+	background: gray;
+	padding: 5px;
+	font-weight: bold;
+}
+
+div.logo a {
+	color: white;
+	text-decoration: none;
+}
+
+.center {
+  text-align: center;
+}
+
+li p {
+  margin: 10px 0;
+}
+
+@import "syntaxhighlighting";
