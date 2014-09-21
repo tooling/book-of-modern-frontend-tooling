@@ -33,7 +33,7 @@ all that stuff from one application to another? Wouldn't it be better, if you do
 to care about how the source flies from the internet down to your local machine on your 
 hard drive?
 
-Oh yes, this would be indeed better. And you know what? **Bower** got you covered.
+Oh yes, this would be indeed better. And you know what? **[Bower](http://bower.io/)** got you covered.
 
 ## A package manager for the web
 
