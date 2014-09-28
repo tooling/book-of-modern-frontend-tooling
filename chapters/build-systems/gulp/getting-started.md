@@ -3,13 +3,11 @@
 ## Installing gulp
 
 First, we must install gulp globally so that we can access `gulp` from the command-line.
-
 ```bash
 $ npm install -g gulp
 ```
 
 Next, let's navigate to our project directory and we will install gulp locally and add it to our list of devDependencies. This allows our gulpfile, containing the build tasks, to access it.
-
 ```bash
 $ npm install --save-dev gulp
 ```
@@ -19,7 +17,6 @@ Once gulp is installed, we need to create a file in your projects root directory
 
 ## Running Gulp
 Now that you have gulp installed and your `gulpfile.js` has been created. All that is left to do is simply run the gulp command in your command-line application. Type in the following line, and press enter.
-
 ```bash
 $ gulp
 ```
@@ -42,7 +39,6 @@ We can search for plugins using the official gulp plugin search tool or we can s
 
 ### Installing A Plugin
 Installing a gulp plugin requires the same simple process we used when installing gulp. Once you have found the plugin that you would like to use, simply take note of its name and return to your command line to install it via npm. As a quick example, let's install gulp-concat. Open your command-line application and then run the following command:
-
 ```bash
 $ npm install gulp-concat
 ```
@@ -50,4 +46,3 @@ $ npm install gulp-concat
 It's that simple. You can pass any of the npm flags such as `--save` and `--save-dev` along with it if you would like to add that plugin to your package.json file as a dependency. 
 
 That's all there is to it! Let's start writing tasks.
-
