@@ -1,10 +1,8 @@
-* [Introduction](index.md)
-
+* [Introduction](README.md)
 * Scaffolding
   * Yeoman
   * Brunch
   * Loom
-
 * Dependency Management
   * Bower
     * [Introduction](dependency-management/bower/introduction.md)
@@ -28,7 +26,6 @@
     * [Modules](dependency-management/npm-browserify/modules.md)
     * [Transforms](dependency-management/npm-browserify/transforms.md)
     * [Development Workflow](dependency-management/npm-browserify/development-workflow.md)
-
 * Build Systems
   * Modern Tools vs Shell Scripts
   * Grunt
