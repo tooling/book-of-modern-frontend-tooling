@@ -40,7 +40,7 @@ ESLint is easy to get started with as it has sane default rules; however, it als
 
     {
         "scripts": {
-            "lint": "eslint"
+            "lint": "eslint ."
         }
     }
 

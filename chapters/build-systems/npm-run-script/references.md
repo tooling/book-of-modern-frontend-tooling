@@ -11,7 +11,9 @@
 ## modules for watching files
 
 - [catw](https://www.npmjs.org/package/catw)
+- [nodemon](http://nodemon.io)
 - [watchify](https://www.npmjs.org/package/watchify)
+- [watchman](https://github.com/facebook/watchman)
 - [rerun-script](https://www.npmjs.org/package/rerun-script)
 
 ## modules for bundling assets
