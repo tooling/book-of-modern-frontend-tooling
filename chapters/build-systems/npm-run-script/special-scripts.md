@@ -60,3 +60,18 @@ You can refer to your server by name as shown above if you set `process.title = 
 ## npm restart
 
 By default, the `restart` script runs the defined `stop` script, if one was provided, and then the `start` script. You can optionally override this behavior by providing your own `scripts.restart` script definition.
+
+## `pre*` scripts
+
+A `pre*` script can be defined so that it is run **before** the script is invoked. For example, you might want to always run a lint checker just before running tests. This would be setup as follows:
+
+    {
+      "scripts": {
+        "lint": "eslint .",
+        "test": "node test/*.js",
+        "pretest": "npm run lint"
+      }
+    }
+
+With the above scripts defined, running `npm test` would invoke `npm run lint` before invoking `npm run test`.
+
