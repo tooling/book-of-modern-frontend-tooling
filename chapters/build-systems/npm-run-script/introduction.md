@@ -24,7 +24,7 @@ To add lint checking to a project the following is all that is necessary to get 
 
     {
         "scripts": {
-            "lint": "eslint"
+            "lint": "eslint ."
         }
     }
 
