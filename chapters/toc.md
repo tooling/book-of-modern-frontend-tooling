@@ -4,6 +4,11 @@
   * Yeoman
   * Brunch
   * Loom
+  * Sprout
+    * [Introduction](build-systems/sprout/introduction.md)
+    * [Getting Started](build-systems/sprout/getting-started.md)
+    * [Creating Templates](build-systems/sprout/creating-templates.md)
+    * [Troubleshooting](build-systems/sprout/troubleshooting.md)
 
 * Dependency Management
   * Bower
@@ -45,4 +50,3 @@
     * [Writing Basic Tasks](build-systems/gulp/basic-tasks.md)
     * [Writing Advanced Tasks](build-systems/gulp/advanced-tasks.md)
     * [References](build-systems/gulp/references.md)
-
