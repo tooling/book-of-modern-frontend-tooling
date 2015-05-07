@@ -1,11 +1,11 @@
 var path = require('path');
-var os = require('os');
 var gulp = require('gulp');
 var rimraf = require('rimraf');
 var fs = require('fs');
 var pygmentize = require('pygmentize-bundled');
 var opn = require('opn');
 var chalk = require('chalk');
+var osTmpdir = require('os-tmpdir');
 
 var replace = require('gulp-replace');
 var gutil = require('gulp-util');
@@ -34,7 +34,7 @@ const SITE_JS_DIR = path.join(SITE_ASSETS, 'js');
 const SITE_CSS_DIR = path.join(SITE_ASSETS, 'css');
 const SITE_VENDOR_DIR = path.join(SITE_ASSETS, 'vendor');
 
-const TMP_DIR = os.tmpDir();
+const TMP_DIR = osTmpdir();
 
 /*
  * List all tasks
