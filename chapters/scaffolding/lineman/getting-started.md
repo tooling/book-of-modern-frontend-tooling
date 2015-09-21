@@ -96,17 +96,43 @@ Lineman can be integrated with your Ruby on Rails project via the `lineman-rails
 
 In your Ruby on Rails app:
 
-1. Add this to your Gemfile: `gem 'rails-lineman'`
-2. Tell the gem where to look for Lineman: `config.rails_lineman.lineman_project_location = "my/app"`. You can also set an environment variable called **LINEMAN_PROJECT_LOCATION**
-3. Include Lineman's CSS & JavaScript: `<%= stylesheet_link_tag "lineman/app" %> <%= javascript_include_tag "lineman/app" %>`
-4. Boot your Rails server: `$ bundle exec rails s`
-5. When you deploy, Lineman assets will be built and included: `$ rake assets:precompile`
+- Add this to your Gemfile: 
+``` bash
+gem 'rails-lineman'
+```
+- Tell the gem where to look for Lineman: 
+``` bash
+config.rails_lineman.lineman_project_location = "my/app"
+```
+You can also set an environment variable called **LINEMAN_PROJECT_LOCATION**
+- Include Lineman's CSS & JavaScript: 
+``` erb
+<%= stylesheet_link_tag "lineman/app" %>
+<%= javascript_include_tag "lineman/app" %>
+```
+- Boot your Rails server: 
+``` bash
+$ bundle exec rails s
+```
+- When you deploy, Lineman assets will be built and included: 
+``` bash
+$ rake assets:precompile
+```
 
 In your Lineman app:
 
-1. Install Lineman's Rails plugin. This will setup some additional static routes and enable the API proxy: `$ npm install --save-dev lineman-rails`
-2. Start your Lineman server: `$ lineman run`
-3. During development use Lineman's server: `$ open http://localhost:8000`
+- Install Lineman's Rails plugin. This will setup some additional static routes and enable the API proxy: 
+``` bash
+$ npm install --save-dev lineman-rails
+```
+- Start your Lineman server: 
+``` bash 
+$ lineman run
+```
+- During development use Lineman's server:
+``` bash
+$ open http://localhost:8000
+```
 
 ## Lineman plugins
 Lineman aims to be focused on sensible default task configuration and some level of build awareness. A plugin architecture allows you to break up large configurations down into more focused ones which are likely to be comman across multiple projects. [Published plugins](https://www.npmjs.com/search?q=lineman) can be installed using npm:
@@ -117,8 +143,8 @@ $ npm install --save-dev lineman-jade
 ## Creating plugins
 A Lineman plugin has the following requirments:
 
-1. Every plugin's name must start with "lineman-" in order to be discovered and auto-loaded by Lineman.
-2. The plugin's `package.json` file should declare "lineman" as a peer dependency:
+- Every plugin's name must start with "lineman-" in order to be discovered and auto-loaded by Lineman.
+- The plugin's `package.json` file should declare "lineman" as a peer dependency:
 ``` js
 // package.json
 
@@ -126,7 +152,7 @@ A Lineman plugin has the following requirments:
   "lineman": ">= 0.24.0"
 }
 ```
-3. Any grunt task modules or other runtime dependencies you need should be included in the "dependencies" object so that they will be installed and available to the end user.
+- Any grunt task modules or other runtime dependencies you need should be included in the "dependencies" object so that they will be installed and available to the end user.
 
 A plugin file closely resembles the format of each project's `config/application` and `config/files` files. JavaScript and Coffeescript files under `config/plugins` will be automatically picked-up and run by Lineman and merged into your project configuration. An example of a plugin file is:
 
