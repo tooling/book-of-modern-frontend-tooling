@@ -58,6 +58,7 @@ API proxying allows your front-end Lineman app to send requests to your back-end
 
 ``` js
 // config/application.js
+
 server: {
   apiProxy: {
     enabled: true,
@@ -66,7 +67,21 @@ server: {
 }
 ```
 
-TODO: API Stubbing
+## API Stubbing
+
+API stubbing is intended to be a rapid prototyping tool that allows you to quickly validate the specifications for your front-end app. As such, it is only available on the development server and is also not available in Lineman's built in unit test suite run with `lineman spec`. API stubs are routes which respond with a pre-configured response, for example,
+
+``` js
+// config/server.js
+
+module.exports = {
+  drawRoutes: function(app) {
+    app.get('/api/greeting/:message', function(req, res){
+      res.json({ message: "OK, "+req.params.message });
+    });
+  }
+};
+```
 
 TODO: deploying to heroku
 
