@@ -113,7 +113,7 @@ A Lineman plugin has the following requirments:
 ```
 3. Any grunt task modules or other runtime dependencies you need should be included in the "dependencies" object so that they will be installed and available to the end user.
 
-A plugin file closely resembles the format of each project's `config/application` and `config/files` files. JavaScript and Coffeescript files under `config/plugins` will be automatically pickedup and run by Lineman and merged into your project configuration. An example of a plugin file is:
+A plugin file closely resembles the format of each project's `config/application` and `config/files` files. JavaScript and Coffeescript files under `config/plugins` will be automatically picked-up and run by Lineman and merged into your project configuration. An example of a plugin file is:
 
 ``` js
 // config/plugins/my-task-here.{js,coffee}
