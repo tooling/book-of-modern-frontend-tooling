@@ -52,7 +52,19 @@ And this will build a ready-to-deploy set of artifacts in a directory named "dis
 
 TODO: configuring asset fingerprinting
 
-TODO: Setting up an API proxy
+## Setting up an API proxy
+
+API proxying allows your front-end Lineman app to send requests to your back-end application on another port. For example if you have a Ruby on Rails application on port 3000 and your Lineman app is on port 8000 you can configure Lineman requests to be proxied to port 3000 like this:
+
+``` js
+// config/application.js
+server: {
+  apiProxy: {
+    enabled: true,
+    port: 3000
+  }
+}
+```
 
 TODO: API Stubbing
 
