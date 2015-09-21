@@ -91,7 +91,22 @@ $ heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-nod
 $ heroku config:set NPM_CONFIG_PRODUCTION=false
 ```
 
-TODO: Ruby on Rails integration
+## Ruby on Rails integration
+Lineman can be integrated with your Ruby on Rails project via the `lineman-rails` plugin and `rails-lineman` gem.
+
+In your Ruby on Rails app:
+
+1. Add this to your Gemfile: `gem 'rails-lineman'`
+2. Tell the gem where to look for Lineman: `config.rails_lineman.lineman_project_location = "my/app"`. You can also set an environment variable called **LINEMAN_PROJECT_LOCATION**
+3. Include Lineman's CSS & JavaScript: `<%= stylesheet_link_tag "lineman/app" %> <%= javascript_include_tag "lineman/app" %>`
+4. Boot your Rails server: `$ bundle exec rails s`
+5. When you deploy, Lineman assets will be built and included: `$ rake assets:precompile`
+
+In your Lineman app:
+
+1. Install Lineman's Rails plugin. This will setup some additional static routes and enable the API proxy: `$ npm install --save-dev lineman-rails`
+2. Start your Lineman server: `$ lineman run`
+3. During development use Lineman's server: `$ open http://localhost:8000`
 
 ## Lineman plugins
 Lineman aims to be focused on sensible default task configuration and some level of build awareness. A plugin architecture allows you to break up large configurations down into more focused ones which are likely to be comman across multiple projects. [Published plugins](https://www.npmjs.com/search?q=lineman) can be installed using npm:
