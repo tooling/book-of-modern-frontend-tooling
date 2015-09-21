@@ -93,4 +93,42 @@ $ heroku config:set NPM_CONFIG_PRODUCTION=false
 
 TODO: Ruby on Rails integration
 
-TODO: using Lineman plugins
+## Lineman plugins
+Lineman aims to be focused on sensible default task configuration and some level of build awareness. A plugin architecture allows you to break up large configurations down into more focused ones which are likely to be comman across multiple projects. [Published plugins](https://www.npmjs.com/search?q=lineman) can be installed using npm:
+``` bash
+$ npm install --save-dev lineman-jade
+```
+
+## Creating plugins
+A Lineman plugin has the following requirments:
+
+1. Every plugin's name must start with "lineman-" in order to be discovered and auto-loaded by Lineman.
+2. The plugin's `package.json` file should declare "lineman" as a peer dependency:
+``` js
+// package.json
+
+"peerDependencies": {
+  "lineman": ">= 0.24.0"
+}
+```
+3. Any grunt task modules or other runtime dependencies you need should be included in the "dependencies" object so that they will be installed and available to the end user.
+
+A plugin file closely resembles the format of each project's `config/application` and `config/files` files. JavaScript and Coffeescript files under `config/plugins` will be automatically pickedup and run by Lineman and merged into your project configuration. An example of a plugin file is:
+
+``` js
+// config/plugins/my-task-here.{js,coffee}
+
+module.exports = function(lineman) {
+  return {
+    files: {
+      //Any file patterns you have can go here
+    },
+    config: {
+      //Any project & task configurations go here
+    }
+  };
+};
+```
+The provided `lineman` object exposes the current configuration (as it exists prior to loading your plugin file) under `lineman.config`. Concat any array-type configuration values to avoid overwriting them entirely. For example, setting `loadNpmTasks: ["my-task-module"]` would overwrite all the tasks loaded by previous plugins. Use `loadNpmTasks: lineman.config.application.loadNpmTasks.concat("my-task-module")` instead.
+
+Test your plugin with a local project using [npm link](https://docs.npmjs.com/cli/link) before publishing.
