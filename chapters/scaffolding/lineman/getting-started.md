@@ -69,7 +69,7 @@ server: {
 
 ## API Stubbing
 
-API stubbing is intended to be a rapid prototyping tool that allows you to quickly validate the specifications for your front-end app. As such, it is only available on the development server and is also not available in Lineman's built in unit test suite run with `lineman spec`. API stubs are routes which respond with a pre-configured response, for example,
+API stubbing is intended to be a rapid prototyping tool that allows you to quickly validate the specifications for your front-end app. As such, it is only available on the development server and is also not available in Lineman's built in unit test suite run with `lineman spec`. API stubs are routes which respond with a pre-configured response, for example:
 
 ``` js
 // config/server.js
@@ -83,7 +83,13 @@ module.exports = {
 };
 ```
 
-TODO: deploying to heroku
+## Deploying to heroku
+Once you have heroku [toolbelt installed](https://toolbelt.heroku.com/), simply run this from your project:
+``` bash
+$ heroku create <name>
+$ heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-nodejs
+$ heroku config:set NPM_CONFIG_PRODUCTION=false
+```
 
 TODO: Ruby on Rails integration
 
