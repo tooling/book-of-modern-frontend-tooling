@@ -14,6 +14,7 @@ A free open-source book introducing you to the world of tooling for modern web a
   * [Brunch](https://github.com/tooling/book-of-modern-frontend-tooling/issues/5)
   * [Gulp](https://github.com/tooling/book-of-modern-frontend-tooling/issues/3)
   * Automation with [npm run](https://github.com/tooling/book-of-modern-frontend-tooling/issues/22)
+  * [Roots](https://github.com/tooling/book-of-modern-frontend-tooling/issues/85)
 * Scaffolding
   * [Yeoman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/4)
   * [Lineman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/27)
