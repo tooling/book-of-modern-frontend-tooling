@@ -18,6 +18,7 @@ A free open-source book introducing you to the world of tooling for modern web a
   * [Yeoman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/4)
   * [Lineman](https://github.com/tooling/book-of-modern-frontend-tooling/issues/27)
   * Loom
+  * [Sprout](https://github.com/tooling/book-of-modern-frontend-tooling/issues/86)
 * Dependency Management
   * [Bower](https://github.com/tooling/book-of-modern-frontend-tooling/issues/6)
   * [npm + Browserify](https://github.com/tooling/book-of-modern-frontend-tooling/issues/7)
