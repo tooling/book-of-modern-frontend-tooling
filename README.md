@@ -75,3 +75,33 @@ The output from the build phase will be available in the `dist` folder.
 ## Licensing
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/tooling/book-of-modern-frontend-tooling/graphs/contributors"><img src="https://opencollective.com/modern-js-dp/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/modern-js-dp/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/modern-js-dp"><img src="https://opencollective.com/modern-js-dp/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/modern-js-dp/contribute)]
+
+<a href="https://opencollective.com/modern-js-dp/organization/0/website"><img src="https://opencollective.com/modern-js-dp/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/1/website"><img src="https://opencollective.com/modern-js-dp/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/2/website"><img src="https://opencollective.com/modern-js-dp/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/3/website"><img src="https://opencollective.com/modern-js-dp/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/4/website"><img src="https://opencollective.com/modern-js-dp/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/5/website"><img src="https://opencollective.com/modern-js-dp/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/6/website"><img src="https://opencollective.com/modern-js-dp/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/7/website"><img src="https://opencollective.com/modern-js-dp/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/8/website"><img src="https://opencollective.com/modern-js-dp/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/modern-js-dp/organization/9/website"><img src="https://opencollective.com/modern-js-dp/organization/9/avatar.svg"></a>
